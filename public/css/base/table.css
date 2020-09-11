@@ -1,0 +1,43 @@
+.table-container {
+    margin: 10px;
+    overflow-x: auto;
+}
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid var(--color-theme-3);
+}
+
+.table th {
+    background: var(--color-theme-3);
+}
+
+.table th, .table td {
+    text-align: left;
+    padding: 8px;
+}
+  
+.table tr { background-color: var(--color-theme-1) }
+.table tr:hover { background-color: unset }
+
+
+/* button */
+.table button {
+    display: inline-block;
+    border: none;
+    font-size: inherit;
+    padding: 5px;
+    border-radius: 5px;
+}
+.table button i {
+    width: 16px;
+}
+.table button.delete {
+    background: brown;
+    color: white;
+}
+.table button.edit {
+    background: chocolate;
+    color: white;
+}

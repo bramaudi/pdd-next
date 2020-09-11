@@ -13,6 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::namespace('App\Http\Controllers\Pages')->group(function()
+{
+    Route::get('/', Welcome::class);
+    Route::get('/login', Login::class)->name('login');
+    
+    /**
+     * Auth Routes
+     */
+    Route::middleware('auth')->group(function () {
+        Route::get('dashboard', Dashboard::class);
+    
+        // Dashboard
+        Route::group([
+            'namespace' => 'Dashboard',
+            'prefix' => 'dashboard'
+        ], function ()
+        {
+            Route::group(['middleware' => ['role:Super Admin']], function () {
+                Route::get('/user', User\Index::class);
+                Route::get('/role', Role\Index::class);
+            });
+        });
+    });
 });
+

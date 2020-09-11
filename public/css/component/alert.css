@@ -1,0 +1,11 @@
+.alert {
+    margin: 10px 0;
+    padding: 10px;
+    background: var(--color-theme-3);
+    color: var(--color-theme-4);
+}
+
+.alert.alert-danger {
+    background: indianred;
+    color: white;
+}
