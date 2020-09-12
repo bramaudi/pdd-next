@@ -178,5 +178,10 @@ class Install extends Command
     private function setUpKey(){
         $this->call('key:generate');
         $this->info("\nAplikasi berhasil diinstal!");
+        $this->info("Login Admin:");
+        $this->line("==================");
+        $this->line("| User: admin    |");
+        $this->line("| Pass: password |");
+        $this->line("==================");
     }
 }
