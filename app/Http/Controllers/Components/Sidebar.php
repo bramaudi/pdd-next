@@ -6,14 +6,30 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
-    public $dropdown = [
-        'pengaturan' => false
+    public $links = [
+        [
+            'icon' => 'activity',
+            'name' => 'Dashboard',
+            'url' => '/dashboard'
+        ],
+        [
+            'role' => 'Super Admin',
+            'icon' => 'settings',
+            'name' => 'Pengaturan',
+            'url' => [
+                [
+                    'icon' => 'users',
+                    'name' => 'Pengguna',
+                    'url' => '/dashboard/user'
+                ],
+                [
+                    'icon' => 'lock',
+                    'name' => 'Jabatan',
+                    'url' => '/dashboard/role'
+                ],
+            ]
+        ],
     ];
-
-    public function toggleDropdown($name)
-    {
-        $this->dropdown[$name] = !$this->dropdown[$name];
-    }
 
     public function render()
     {
