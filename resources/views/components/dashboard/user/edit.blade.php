@@ -1,6 +1,6 @@
 <form wire:submit.prevent="submit" class="pb-2">
-    <div wire:loading.class.remove="d-none" class="loading loading-lg d-center d-none"></div>
-    <div wire:loading.remove>
+    <div wire:target="submit" wire:loading.class.remove="d-none" class="loading loading-lg d-center d-none"></div>
+    <div wire:target="submit" wire:loading.remove>
         <div class="form-group">
             <label class="form-label" for="inp-edit-username">Nama Pengguna:</label>
             <input class="form-input" type="text" id="inp-edit-username" wire:model="username">
