@@ -30,9 +30,8 @@ Route::namespace('App\Http\Controllers\Pages')->group(function()
             'prefix' => 'dashboard'
         ], function ()
         {
-            Route::group(['middleware' => ['role:Super Admin']], function () {
+            Route::group(['middleware' => ['permission:user.create|user.read|user.update|user.delete']], function () {
                 Route::get('/user', User::class);
-                Route::get('/role', Role::class);
             });
         });
     });

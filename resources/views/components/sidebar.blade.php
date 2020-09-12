@@ -1,8 +1,8 @@
 <aside class="sidebar">
     @foreach($links as $link)
         @if(is_array($link['url']))
-            @if(isset($link['role']))
-            @role($link['role'])
+            @if(isset($link['permission']))
+            @can($link['permission'])
             <div class="accordion menu menu-nav">
                 <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
                 <label class="accordion-header c-hand" for="accordion-1">
@@ -23,7 +23,7 @@
                     </ul>
                 </div>
             </div>
-            @endrole
+            @endcan
             @else
             <div class="accordion menu menu-nav">
                 <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
@@ -47,8 +47,8 @@
             </div>
             @endif
         @else
-            @if(isset($link['role']))
-            @role($link['role'])
+            @if(isset($link['permission']))
+            @can($link['permission'])
             <ul class="menu menu-nav">
                 <li class="menu-item">
                     <a href="{{ $link['url'] }}">
@@ -57,7 +57,7 @@
                     </a>
                 </li>
             </ul>
-            @endrole
+            @endcan
             @else
             <ul class="menu menu-nav">
                 <li class="menu-item">

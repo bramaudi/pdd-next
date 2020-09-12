@@ -24,8 +24,8 @@ class Delete extends Component
     {
         $user = User::findOrFail($this->userId);
 
-        // cegah hapus akun sendiri
-        if (Auth::user()->id != $user->id) {
+        // cegah hapus akun sendiri / durhaka kpd Super Admin
+        if (Auth::user()->id != $user->id && !$user->hasRole('Super Admin')) {
             $user->delete();
         }
 

@@ -28,8 +28,6 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        // Buat jabatan Super Admin dan pasang
-        Role::create(['name' => 'Super Admin']);
         $admin->assignRole('Super Admin');
 
         // Dummy user jika mode pengembangan

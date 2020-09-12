@@ -13,7 +13,7 @@ class Sidebar extends Component
             'url' => '/dashboard'
         ],
         [
-            'role' => 'Super Admin',
+            'permission' => ['user.create', 'user.read', 'user.update', 'user.delete'],
             'icon' => 'settings',
             'name' => 'Pengaturan',
             'url' => [
@@ -21,12 +21,7 @@ class Sidebar extends Component
                     'icon' => 'users',
                     'name' => 'Pengguna',
                     'url' => '/dashboard/user'
-                ],
-                [
-                    'icon' => 'lock',
-                    'name' => 'Jabatan',
-                    'url' => '/dashboard/role'
-                ],
+                ]
             ]
         ],
     ];

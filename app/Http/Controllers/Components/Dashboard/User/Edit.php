@@ -42,10 +42,13 @@ class Edit extends Component
         $user->email = $this->email;
         $user->username = $this->username;
         
-        if ($this->role == '-') {
-            $user->syncRoles(); // kosongkan roles
-        } else {
-            $user->assignRole($this->role);
+        // Mencegah jika "Operator" inspect form agar menjadi Super Admin
+        if ($this->role != 'Super Admin') {
+            if ($this->role == '-') {
+                $user->syncRoles(); // kosongkan roles
+            } else {
+                $user->assignRole($this->role);
+            }
         }
 
         $user->save();
@@ -56,7 +59,7 @@ class Edit extends Component
 
     public function render()
     {
-        $this->roles = Role::all();
+        $this->roles = Role::where('name', '!=', 'Super Admin')->get();
         return view('components.dashboard.user.edit');
     }
 }
