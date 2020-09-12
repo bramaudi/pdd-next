@@ -1,34 +1,30 @@
 <ul class="pagination">
 @if ($paginator->hasPages())
     
-    {{-- Previous Page Link --}}
+    {{-- First Page --}}
     @if ($paginator->onFirstPage())
     <li class="page-item disabled">
         <span>
-            {!! __('pagination.previous') !!}
+            {!! __('pagination.first') !!}
         </span>
     </li>
     @else   
     <li class="page-item">
         <a class="c-hand" href="#prev" wire:click="previousPage" rel="prev">
-            {!! __('pagination.previous') !!}
+            {!! __('pagination.first') !!}
         </a>
     </li>
     @endif
 
-    <!-- Pagination Elements -->
     @foreach ($elements as $element)
-        <!-- Array Of Links -->
         @if (is_array($element))
             @foreach ($element as $page => $url)
-            <!--  Use three dots when current page is greater than 3.  -->
             @if ($paginator->currentPage() > 3 && $page === 2)
                 <li class="page-item">
                     <span>...</span>
                 </li>
                 @endif
 
-                <!--  Show active page two pages before and after it.  -->
                 @if ($page == $paginator->currentPage())
                 <li class="page-item active">
                     <a>{{ $page }}</a>
@@ -39,7 +35,6 @@
                 </li>
                 @endif
 
-                <!--  Use three dots when current page is away from end.  -->
                 @if ($paginator->currentPage() < $paginator->lastPage() - 2  && $page === $paginator->lastPage() - 1)
                 <li class="page-item">
                     <span>...</span>
@@ -49,17 +44,17 @@
         @endif
     @endforeach
     
-    {{-- Next Page Link --}}
+    {{-- Last Page --}}
     @if ($paginator->hasMorePages())
     <li class="page-item">
         <a class="c-hand" href="#next" wire:click="nextPage" rel="next">
-            {!! __('pagination.next') !!}
+            {!! __('pagination.last') !!}
         </a>
     </li>
     @else
     <li class="page-item disabled">
         <span>
-            {!! __('pagination.next') !!}
+            {!! __('pagination.last') !!}
         </span>
     </li>
     @endif
