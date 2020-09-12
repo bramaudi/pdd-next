@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pages\Dashboard\User;
+namespace App\Http\Controllers\Components\Dashboard\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +11,9 @@ class Delete extends Component
     public $userId;
     public $name;
 
-    protected $listeners = ['loadDeleteData'];
+    protected $listeners = ['loadData'];
 
-    public function loadDeleteData($id)
+    public function loadData($id)
     {
         $user = User::findOrFail($id);
         $this->userId = $id;
@@ -35,11 +35,11 @@ class Delete extends Component
 
     public function close()
     {
-        $this->emit('closeModalDelete');
+        $this->emit('closeActiveModals');
     }
 
     public function render()
     {
-        return view('pages.dashboard.user.delete');
+        return view('components.dashboard.user.delete');
     }
 }

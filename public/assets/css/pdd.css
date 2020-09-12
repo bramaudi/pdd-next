@@ -1,3 +1,34 @@
+/* width */
+::-webkit-scrollbar {
+    width: 10px; /* Y size */
+    height: 10px; /* X size */
+}
+.modal-body::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.icon { margin-bottom: 3px; } /* Spectre icon */
+
+/* feather icon digunakan pada sidebar */
+.feather {
+    width: 18px;
+    height: 18px;
+    margin-bottom: -3px;
+}
+
 header {
     padding: 8px 15px;
     border-bottom: 1px solid #ccc;
@@ -18,6 +49,23 @@ header .icon.icon-menu {
     padding: .2rem .4rem;
 }
 
+.sidebar .accordion-body .menu-item {
+    margin-left: 10px;
+}
+
+.sidebar .menu-nav .feather {
+    margin-right: 5px;
+}
+
 .off-canvas-content {
     padding: 0 !important;
+}
+
+.table-container {
+    overflow: auto;
+    width: 95vw;
+    margin: 3px;
+}
+.table {
+    white-space: nowrap;
 }

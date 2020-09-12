@@ -30,5 +30,7 @@
     </div>
 
     <livewire:scripts />
+    <script src="{{ asset('assets/js/feather.min.js') }}"></script>
+    <script>feather.replace()</script>
 </body>
 </html>

@@ -31,8 +31,8 @@ Route::namespace('App\Http\Controllers\Pages')->group(function()
         ], function ()
         {
             Route::group(['middleware' => ['role:Super Admin']], function () {
-                Route::get('/user', User\Index::class);
-                Route::get('/role', Role\Index::class);
+                Route::get('/user', User::class);
+                Route::get('/role', Role::class);
             });
         });
     });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pages\Dashboard\User;
+namespace App\Http\Controllers\Components\Dashboard\User;
 
 use Livewire\Component;
 use App\Models\User;
@@ -44,14 +44,14 @@ class Add extends Component
         $this->emit('remountList');
         $this->close();
     }
-
+    
     public function close()
     {
-        $this->emit('closeModalAdd');
+        $this->emit('closeActiveModals');
     }
 
     public function render()
     {
-        return view('pages.dashboard.user.add');
+        return view('components.dashboard.user.add');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pages\Dashboard\User;
+namespace App\Http\Controllers\Components\Dashboard\User;
 
 use App\Models\User;
 use Livewire\Component;
@@ -17,9 +17,9 @@ class Edit extends Component
     public $email;
     public $role;
 
-    protected $listeners = ['loadEditData'];
+    protected $listeners = ['loadData'];
 
-    public function loadEditData($id)
+    public function loadData($id)
     {
         $user = User::findOrFail($id);
         $this->userId = $id;
@@ -56,12 +56,12 @@ class Edit extends Component
 
     public function close()
     {
-        $this->emit('closeModalEdit');
+        $this->emit('closeActiveModals');
     }
 
     public function render()
     {
         $this->roles = Role::all();
-        return view('pages.dashboard.user.edit');
+        return view('components.dashboard.user.edit');
     }
 }

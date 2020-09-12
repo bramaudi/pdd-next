@@ -32,9 +32,9 @@
                 @if($state['menu'])
                 <li class="menu-item">
                     @if(Auth::user())
-                    <a href="#" wire:click="logout">Keluar</a>
+                    <a href="#" wire:click="logout"><i data-feather="log-out"></i> Keluar</a>
                     @else
-                    <a href="/login">Masuk</a>
+                    <a href="/login"><i data-feather="log-in"></i> Masuk</a>
                     @endif
                 </li>
                 @endif
