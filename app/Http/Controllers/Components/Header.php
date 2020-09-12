@@ -23,6 +23,7 @@ class Header extends Component
     public function logout()
     {
         Auth::logout();
+        return redirect()->to('/login');
     }
 
     public function toggleLogin()
