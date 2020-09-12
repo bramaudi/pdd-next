@@ -1,6 +1,0 @@
-.display-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 49.78px); /* 49.78 = header height */
-}

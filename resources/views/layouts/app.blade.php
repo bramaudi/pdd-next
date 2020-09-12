@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@if(View::hasSection('title')) @yield('title') @else PDD @endif</title>
-    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/spectre.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/spectre-exp.min.css') }}">
     <livewire:styles />
-    <script src="{{ asset('js/alpine.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/alpine.min.js') }}" defer></script>
 </head>
 <body>
     <div id="layout">
