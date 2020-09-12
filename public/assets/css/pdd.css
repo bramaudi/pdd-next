@@ -1,0 +1,23 @@
+header {
+    padding: 8px 15px;
+    border-bottom: 1px solid #ccc;
+}
+header .icon.icon-menu {
+    margin-bottom: .2rem;
+}
+
+.avatar-dropdown {
+    left: unset !important;
+    right: 0;
+    width: 250px;
+    max-height: 100vw !important;
+}
+
+.sidebar .accordion-header,
+.sidebar .menu {
+    padding: .2rem .4rem;
+}
+
+.off-canvas-content {
+    padding: 0 !important;
+}

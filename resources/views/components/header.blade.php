@@ -1,35 +1,44 @@
-<header>
-    <button class="nav-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars fa-lg"></i>
-    </button>
-    
-    <div class="brand">PDD</div>
-
-    <div class="menu" onclick="toggleAvatarDropdown()">
-        <div class="avatar">
+<header class="navbar">
+  <section class="navbar-section">
+    <a href="#sidebar" class="off-canvas-toggle btn btn-link btn-action">
+        <i class="icon icon-menu"></i>
+    </a>
+    <a href="/" class="navbar-brand mx-2">PDD</a>
+  </section>
+  <section class="navbar-section">
+        <div class="dropdown">
             @if(Auth::user())
-                <img src="{{ $gravatar }}" alt="{{ Auth::user()->name }}" />
+            <div class="tile tile-centered dropdown-toggle" tabindex="0">
+                <div class="tile-icon">
+                    <img src="{{ $gravatar }}" alt="{{ Auth::user()->name }}" class="s-circle" style="width: 28px; float: left">
+                </div>
+                <div class="tile-content">{{ Auth::user()->name }}</div>
+            </div>
             @else
-                <i class="fas fa-user"></i>
+                <div class="btn btn-primary btn-sm s-circle dropdown-toggle" tabindex="0">
+                    <i class="icon icon-person"></i>
+                </div>
             @endif
+            
+            <ul class="menu avatar-dropdown">
+                {{--
+                <li class="menu-item">
+                    <button wire:click="toggleLogin" type="button" class="btn btn-link text-left pl-0" style="width: 100%">
+                        <i class="icon icon-back"></i>
+                    </button>
+                </li>
+                --}}
+
+                @if($state['menu'])
+                <li class="menu-item">
+                    @if(Auth::user())
+                    <a href="#" wire:click="logout">Keluar</a>
+                    @else
+                    <a href="/login">Masuk</a>
+                    @endif
+                </li>
+                @endif
+            </ul>
         </div>
-    </div>
-
-    <!-- Dropdown content -->
-    <livewire:components.header.dropdown-account />
+    </section>
 </header>
-
-<script>
-    function toggleSidebar () {
-      var sidebarElement = document.querySelector('aside#sidebar')
-      var toggleButtonElement = document.querySelector('header .nav-btn')
-      sidebarElement.classList.toggle('active')
-      sidebarElement.classList.contains('active')
-        ? toggleButtonElement.classList.add('focus')
-        : toggleButtonElement.classList.remove('focus')
-    }
-
-    function toggleAvatarDropdown () {
-      document.querySelector('#dropdown-avatar').classList.toggle('active')
-    }
-</script>
