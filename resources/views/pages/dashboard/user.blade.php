@@ -75,5 +75,7 @@
             @endforeach
         </table>
     </div>
+
+    {{ $users->links('components.pagination') }}
 </div>
 

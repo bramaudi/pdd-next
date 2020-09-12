@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Pages\Dashboard;
 
 use Livewire\Component;
 use App\Models\User as UserModel;
+use Livewire\WithPagination;
 
 class User extends Component
 {
-    public $users;
+    use WithPagination;
 
     public $modal = [
         'add' => false,
@@ -35,7 +36,8 @@ class User extends Component
 
     public function render()
     {
-        $this->users = UserModel::all();
-        return view('pages.dashboard.user');
+        return view('pages.dashboard.user', [
+            'users' => UserModel::paginate(10)
+        ]);
     }
 }

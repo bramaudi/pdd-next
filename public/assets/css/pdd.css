@@ -61,6 +61,12 @@ header .icon.icon-menu {
     padding: 0 !important;
 }
 
+/* Sesuaikan Paingation */
+.pagination {
+    justify-content: center;
+}
+
+/* Suaiankan Table */
 .table-container {
     overflow: auto;
     width: 95vw;
@@ -68,4 +74,10 @@ header .icon.icon-menu {
 }
 .table {
     white-space: nowrap;
+}
+
+/* Seuaikan Modal */
+.modal-body .content > form {
+    margin-top: -.8rem;
+    margin-bottom: .2rem;
 }
