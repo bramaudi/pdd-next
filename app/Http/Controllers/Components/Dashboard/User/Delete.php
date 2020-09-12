@@ -30,12 +30,7 @@ class Delete extends Component
         }
 
         $this->emit('remountList');
-        $this->close();
-    }
-
-    public function close()
-    {
-        $this->emit('closeActiveModals');
+        $this->dispatchBrowserEvent('close-modals');
     }
 
     public function render()

@@ -1,5 +1,5 @@
 <form wire:submit.prevent="submit" class="pb-2">
-    <div wire:loading class="loading loading-lg d-center"></div>
+    <div wire:loading.class.remove="d-none" class="loading loading-lg d-center d-none"></div>
     <div wire:loading.remove>
         <div class="form-group">
             <label class="form-label" for="inp-edit-username">Nama Pengguna:</label>
@@ -32,7 +32,6 @@
         
         <div class="form-group">
             <button class="btn btn-primary">Simpan</button>
-            <button class="btn" type="button" wire:click="close">Tutup</button>
             <progress class="progress" max="100" wire:loading wire:target="submit"></progress>
         </div>
     </div>

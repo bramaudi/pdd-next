@@ -51,12 +51,7 @@ class Edit extends Component
         $user->save();
 
         $this->emit('remountList');
-        $this->close();
-    }
-
-    public function close()
-    {
-        $this->emit('closeActiveModals');
+        $this->dispatchBrowserEvent('close-modals');
     }
 
     public function render()

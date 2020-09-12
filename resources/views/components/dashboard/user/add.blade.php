@@ -31,7 +31,6 @@
 
     <div class="form-group">
         <button class="btn btn-primary" wire:loading.attr="disabled" wire:target="submit">Simpan</button>
-        <button class="btn" type="button" wire:click="close">Batal</button>
         <progress class="progress" max="100" wire:loading wire:target="submit"></progress>
     </div>
 

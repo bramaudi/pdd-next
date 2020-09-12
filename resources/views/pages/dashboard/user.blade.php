@@ -1,14 +1,14 @@
-<div class="container py-2" x-data>
-    <button class="btn m-1" wire:click="openModal('add', true)">
+<div class="container py-2" x-data="pagesDashboardUser()">
+    <button class="btn m-1" @click="add = true">
         <i class="icon icon-plus mr-1"></i> Tambah Pengguna Baru
     </button>
 
     <!-- Modal Add -->
-    <div class="modal" :class="{ 'active': $wire.modal.add }">
-        <a href="#close" wire:click="closeActiveModals" class="modal-overlay" aria-label="Close"></a>
+    <div class="modal" :class="{ 'active': add }" @close-modals.window="closeAll()">
+        <a href="#close" @click="closeAll()" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
-                <a href="#close" wire:click="closeActiveModals" class="btn btn-clear float-right" aria-label="Close"></a>
+                <a href="#close" @click="closeAll()" class="btn btn-clear float-right" aria-label="Close"></a>
                 <div class="modal-title h5">Tambah Pengguna Baru</div>
             </div>
             <div class="modal-body">
@@ -20,11 +20,11 @@
     </div>
     
     <!-- Modal Edit -->
-    <div class="modal" :class="{ 'active': $wire.modal.edit }">
-        <a href="#close" wire:click="closeActiveModals" class="modal-overlay" aria-label="Close"></a>
+    <div class="modal" :class="{ 'active': edit }" @close-modals.window="closeAll()">
+        <a href="#close" @click="closeAll()" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
-                <a href="#close" wire:click="closeActiveModals" class="btn btn-clear float-right" aria-label="Close"></a>
+                <a href="#close" @click="closeAll()" class="btn btn-clear float-right" aria-label="Close"></a>
                 <div class="modal-title h5">Ubah Data Pengguna</div>
             </div>
             <div class="modal-body">
@@ -36,11 +36,11 @@
     </div>
     
     <!-- Modal Delete -->
-    <div class="modal" :class="{ 'active': $wire.modal.delete }">
-        <a href="#close" wire:click="closeActiveModals" class="modal-overlay" aria-label="Close"></a>
+    <div class="modal" :class="{ 'active': del }" @close-modals.window="closeAll()">
+        <a href="#close" @click="closeAll()" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
-                <a href="#close" wire:click="closeActiveModals" class="btn btn-clear float-right" aria-label="Close"></a>
+                <a href="#close" @click="closeAll()" class="btn btn-clear float-right" aria-label="Close"></a>
                 <div class="modal-title h5">Hapus Pengguna</div>
             </div>
             <div class="modal-body">
@@ -65,8 +65,8 @@
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>
-                    <button class="btn btn-sm" wire:click="openModal('edit', {{ $user->id }})"><i class="icon icon-edit"></i></button>
-                    <button class="btn btn-sm btn-error" wire:click="openModal('delete', {{ $user->id }})"><i class="icon icon-delete"></i></button>
+                    <button class="btn btn-sm" @click="edit = true" wire:click="$emit('loadData', {{ $user->id }})"><i class="icon icon-edit"></i></button>
+                    <button class="btn btn-sm btn-error" @click="del = true" wire:click="$emit('loadData', {{ $user->id }})"><i class="icon icon-delete"></i></button>
                 </td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->name }}</td>
@@ -79,3 +79,17 @@
     {{ $users->links('components.pagination') }}
 </div>
 
+<script>
+function pagesDashboardUser() {
+    return {
+        add: false,
+        edit: false,
+        del: false,
+        closeAll () {
+            this.add = false
+            this.edit = false
+            this.del = false
+        }
+    }
+}
+</script>

@@ -42,12 +42,7 @@ class Add extends Component
 
         $this->resetInputs();
         $this->emit('remountList');
-        $this->close();
-    }
-    
-    public function close()
-    {
-        $this->emit('closeActiveModals');
+        $this->dispatchBrowserEvent('close-modals');
     }
 
     public function render()
