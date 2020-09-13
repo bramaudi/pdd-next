@@ -8,8 +8,8 @@ use Spatie\Permission\Models\Role;
 
 class Edit extends Component
 {
-    public $userId;
-    public $roles;
+    public $userId, $roles;
+    public $dataLoaded = false;
 
     // Form Model
     public $name;
@@ -17,20 +17,33 @@ class Edit extends Component
     public $email;
     public $role;
 
-    protected $listeners = ['loadData'];
+    protected $listeners = ['loadData', 'resetLoaded'];
 
     public function loadData($id)
-    {
+    {   
         $user = User::findOrFail($id);
         $this->userId = $id;
 
         $this->name = $user->name;
         $this->email = $user->email;
         $this->username = $user->username;
+        $this->dataLoaded = true;
+    }
+
+    public function resetLoaded()
+    {
+        $this->userId = null;
+
+        $this->name = null;
+        $this->email = null;
+        $this->username = null;
+        $this->dataLoaded = false;
     }
 
     public function submit()
     {
+        $this->resetLoaded();
+
         $this->validate([
             'name' => 'required|min:3|max:20',
             'email' => 'required|email|unique:users,email,'.$this->userId,

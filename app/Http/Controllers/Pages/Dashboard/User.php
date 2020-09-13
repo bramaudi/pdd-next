@@ -10,11 +10,6 @@ class User extends Component
 {
     use WithPagination;
 
-    /**
-     * Modal states
-     */
-    public $add, $edit, $del;
-
     protected $listeners = [
         'remountList' => 'render'
     ];

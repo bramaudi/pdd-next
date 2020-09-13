@@ -21,10 +21,10 @@
     
     <!-- Modal Edit -->
     <div class="modal" :class="{ 'active': edit }" @close-modals.window="closeAll()">
-        <a href="#close" @click="closeAll()" class="modal-overlay" aria-label="Close"></a>
+        <a href="#close" @click="closeAll()" wire:click="$emit('resetLoaded')" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
-                <a href="#close" @click="closeAll()" class="btn btn-clear float-right" aria-label="Close"></a>
+                <a href="#close" @click="closeAll()" wire:click="$emit('resetLoaded')" class="btn btn-clear float-right" aria-label="Close"></a>
                 <div class="modal-title h5">Ubah Data Pengguna</div>
             </div>
             <div class="modal-body">
