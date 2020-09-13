@@ -21,7 +21,12 @@ class Sidebar extends Component
                     'icon' => 'users',
                     'name' => 'Pengguna',
                     'url' => '/dashboard/user'
-                ]
+                ],
+                [
+                    'icon' => 'lock',
+                    'name' => 'Jabatan',
+                    'url' => '/dashboard/role'
+                ],
             ]
         ],
     ];
