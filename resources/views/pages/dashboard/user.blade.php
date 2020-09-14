@@ -52,6 +52,7 @@
     </div>
     
     <div class="table-container">
+        <div class="loading loading-lg" wire:loading></div>
         <table class="table table-striped table-hover">
             <tr>
                 <th>ID</th>
