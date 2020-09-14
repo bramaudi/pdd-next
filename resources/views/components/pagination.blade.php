@@ -26,11 +26,11 @@
                 @endif
 
                 @if ($page == $paginator->currentPage())
-                <li class="page-item active">
+                <li class="page-item active" wire:key="{{ $page }}">
                     <a>{{ $page }}</a>
                 </li>
                 @elseif ($page === $paginator->currentPage() + 1 || $page === $paginator->currentPage() + 2 || $page === $paginator->currentPage() - 1 || $page === $paginator->currentPage() - 2)
-                <li class="page-item c-hand">
+                <li class="page-item c-hand" wire:key="{{ $page }}">
                     <a wire:click="gotoPage({{$page}})">{{ $page }}</a>
                 </li>
                 @endif
