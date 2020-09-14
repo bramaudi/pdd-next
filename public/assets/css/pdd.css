@@ -1,7 +1,7 @@
 /* width */
 ::-webkit-scrollbar {
-    width: 10px; /* Y size */
-    height: 10px; /* X size */
+    width: 5px; /* Y size */
+    height: 5px; /* X size */
 }
 .modal-body::-webkit-scrollbar {
     width: 0;
@@ -13,11 +13,11 @@
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #ccc;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #aaa;
 }
 
 .icon { margin-bottom: 3px; } /* Spectre icon */
