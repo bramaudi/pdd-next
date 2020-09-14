@@ -41,6 +41,12 @@ header .icon.icon-menu {
     padding: 0 !important;
 }
 
+/* Font Awesome */
+i[class*="fa"] {
+    width: 16px;
+    height: 16px;
+}
+
 /* Sidebar */
 .sidebar .accordion-header,
 .sidebar .menu {
@@ -49,9 +55,7 @@ header .icon.icon-menu {
 .sidebar .accordion-body .menu-item {
     margin-left: 10px;
 }
-
-/* Menu */
-.menu-item i {
+.sidebar i {
     margin-right: 8px;
 }
 
