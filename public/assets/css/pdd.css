@@ -22,13 +22,6 @@
 
 .icon { margin-bottom: 3px; } /* Spectre icon */
 
-/* feather icon digunakan pada sidebar */
-.feather {
-    width: 18px;
-    height: 18px;
-    margin-bottom: -3px;
-}
-
 header {
     padding: 8px 15px;
     border-bottom: 1px solid #ccc;
@@ -44,24 +37,21 @@ header .icon.icon-menu {
     max-height: 100vw !important;
 }
 
-.sidebar .accordion-header,
-.sidebar .menu {
-    padding: .2rem .4rem;
-}
-
-.sidebar .accordion-body .menu-item {
-    margin-left: 10px;
-}
-
-.sidebar .menu-nav .feather {
-    margin-right: 5px;
-}
-
 .off-canvas-content {
     padding: 0 !important;
 }
 
-.menu-item .feather {
+/* Sidebar */
+.sidebar .accordion-header,
+.sidebar .menu {
+    padding: .2rem .4rem;
+}
+.sidebar .accordion-body .menu-item {
+    margin-left: 10px;
+}
+
+/* Menu */
+.menu-item i {
     margin-right: 8px;
 }
 

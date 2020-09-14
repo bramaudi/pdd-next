@@ -8,13 +8,13 @@ class Sidebar extends Component
 {
     public $links = [
         [
-            'icon' => 'activity',
+            'icon' => 'chart-line',
             'name' => 'Dashboard',
             'url' => '/dashboard'
         ],
         [
             'permission' => ['user.create', 'user.read', 'user.update', 'user.delete'],
-            'icon' => 'settings',
+            'icon' => 'cog',
             'name' => 'Pengaturan',
             'url' => [
                 [

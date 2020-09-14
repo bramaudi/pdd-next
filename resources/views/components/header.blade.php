@@ -54,10 +54,10 @@
 
                 <li class="menu-item" x-show="menu">
                     @if(Auth::user())
-                    <a href="#" @click="toggleGantiSandi"><i data-feather="unlock"></i> Ganti Kata Sandi</a>
-                    <a href="#" wire:click="logout"><i data-feather="log-out"></i> Keluar</a>
+                    <a href="#" @click="toggleGantiSandi"><i class="fas fa-unlock"></i> Ganti Kata Sandi</a>
+                    <a href="#" wire:click="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
                     @else
-                    <a href="/login"><i data-feather="log-in"></i> Masuk</a>
+                    <a href="/login"><i class="fas fa-sign-in-alt"></i> Masuk</a>
                     @endif
                 </li>
             </ul>

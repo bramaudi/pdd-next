@@ -7,6 +7,8 @@
     <livewire:styles />
     <link rel="stylesheet" href="{{ asset('assets/css/spectre.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/icons.min.css') }}">
+    <!-- FontAwesome all -->
+    <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/spectre-exp.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pdd.css') }}">
     <script src="{{ asset('assets/js/alpine.min.js') }}" defer></script>
@@ -30,7 +32,5 @@
     </div>
 
     <livewire:scripts />
-    <script src="{{ asset('assets/js/feather.min.js') }}"></script>
-    <script>feather.replace()</script>
 </body>
 </html>
