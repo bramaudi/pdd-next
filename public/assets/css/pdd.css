@@ -61,6 +61,10 @@ header .icon.icon-menu {
     padding: 0 !important;
 }
 
+.menu-item .feather {
+    margin-right: 8px;
+}
+
 /* Sesuaikan Paingation */
 .pagination {
     justify-content: center;
