@@ -180,6 +180,11 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
 
+        /*
+         * Custom View Service Provider
+         */
+        App\Providers\ViewServiceProvider::class,
+
     ],
 
     /*
