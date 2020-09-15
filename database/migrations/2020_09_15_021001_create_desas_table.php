@@ -46,7 +46,7 @@ class CreateDesasTable extends Migration
             $table->text('map_path');
             $table->tinyInteger('map_zoom');
 
-            $table->char('google_analytic');
+            $table->char('google_analytic')->nullable();
 
             $table->timestamps();
         });
