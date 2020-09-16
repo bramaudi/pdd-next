@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a41bb6e0ad37805afe7ad00c7daf4500",
+    "content-hash": "85187fea9bc14c9412a71bb51f4045ec",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2376,6 +2376,55 @@
                 }
             ],
             "time": "2020-08-18T17:14:06+00:00"
+        },
+        {
+            "name": "staudenmeir/eloquent-has-many-deep",
+            "version": "v1.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/eloquent-has-many-deep.git",
+                "reference": "6ba7af2a83e263bd27ee4e65fafabf89c2efcb26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/eloquent-has-many-deep/zipball/6ba7af2a83e263bd27ee4e65fafabf89c2efcb26",
+                "reference": "6ba7af2a83e263bd27ee4e65fafabf89c2efcb26",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "illuminate/pagination": "^8.0",
+                "laravel/homestead": "^11.0",
+                "phpunit/phpunit": "^9.3",
+                "staudenmeir/eloquent-eager-limit": "^1.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\EloquentHasManyDeep\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel Eloquent HasManyThrough relationships with unlimited levels",
+            "funding": [
+                {
+                    "url": "https://paypal.me/JonasStaudenmeir",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-08-19T20:13:24+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

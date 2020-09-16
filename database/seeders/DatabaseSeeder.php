@@ -18,5 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(DesaSeeder::class);
+
+        $this->call(LabelSeeder::class);
+        $this->call(IndonesiaSeeder::class);
+        $this->call(MetaSeeder::class);
+
+        $this->call(FactorySeeder::class); // Untuk dummy,
     }
 }
