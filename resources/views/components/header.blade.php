@@ -6,21 +6,21 @@
     <a href="/" class="navbar-brand mx-2">PDD</a>
   </section>
   <section class="navbar-section">
-        <div class="dropdown">
+        <div class="dropdown" :class="{ 'active': dropdown }" @click="dropdown = true" @click.away="dropdown = false">
             @if(Auth::user())
-            <div class="tile tile-centered dropdown-toggle" tabindex="0">
+            <div class="tile tile-centered">
                 <div class="tile-icon">
                     <img src="{{ $gravatar }}" alt="{{ Auth::user()->name }}" class="s-circle" style="width: 28px; float: left">
                 </div>
                 <div class="tile-content">{{ Auth::user()->name }}</div>
             </div>
             @else
-                <div class="btn btn-primary btn-sm s-circle dropdown-toggle" tabindex="0">
+                <div class="btn btn-primary btn-sm s-circle">
                     <i class="icon icon-person"></i>
                 </div>
             @endif
             
-            <ul class="menu avatar-dropdown">
+            <ul class="menu avatar-dropdown" x-show="dropdown">
                 @if(Auth::user())
                 <li class="menu-item" x-show="gantiSandi">
                     <button @click="toggleGantiSandi()" type="button" class="btn btn-link text-left pl-0" style="width: 100%">
@@ -68,6 +68,7 @@
 <script>
     function componentsHeader() {
         return {
+            dropdown: false,
             menu: true,
             gantiSandi: false,
             toggleGantiSandi() {
