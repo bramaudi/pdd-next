@@ -1,3 +1,15 @@
 {
-    "id_desa": 7305030008
+    "id_desa": 7305030008,
+    "nama": "Kalimandi",
+    "email": "kalimandi@desa.id",
+    "telepon": "081553049077",
+    "website": "http://kalimandi.desa.id",
+    "tentang": "Lorem ipsum sit dolor amet village",
+    "kades_nama": "Pak Kades",
+    "kades_nip": 321321321321,
+    "camat_nama": "Pak Camat",
+    "camat_nip": 654654654654,
+    "province_id": 33,
+    "regency_id": 3304,
+    "district_id": 3304020
 }
