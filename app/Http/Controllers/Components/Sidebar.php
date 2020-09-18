@@ -13,6 +13,17 @@ class Sidebar extends Component
             'url' => '/dashboard'
         ],
         [
+            'icon' => 'info',
+            'name' => 'Info Desa',
+            'url' => [
+                [
+                    'icon' => 'id-card',
+                    'name' => 'Identitas Desa',
+                    'url' => '/dashboard/config'
+                ]
+            ]
+        ],
+        [
             'permission' => ['user.create', 'user.read', 'user.update', 'user.delete'],
             'icon' => 'cog',
             'name' => 'Pengaturan',

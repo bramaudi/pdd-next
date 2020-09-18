@@ -20,6 +20,7 @@
     background: #aaa;
 }
 
+.side-control { margin: auto 10vw; }
 .icon { margin-bottom: 3px; } /* Spectre icon */
 
 header {

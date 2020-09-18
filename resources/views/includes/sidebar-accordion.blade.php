@@ -1,6 +1,6 @@
 <div class="accordion menu menu-nav">
-    <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
-    <label class="accordion-header c-hand" for="accordion-1">
+    <input type="checkbox" id="accordion-{{ $link['name'] }}" name="accordion-checkbox" hidden>
+    <label class="accordion-header c-hand" for="accordion-{{ $link['name'] }}">
         <i class="fas fa-{{ $link['icon'] }}"></i>
         {{ $link['name'] }}
         <i class="icon icon-arrow-right float-right mt-1 mr-1"></i>

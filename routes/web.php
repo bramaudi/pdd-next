@@ -19,20 +19,23 @@ Route::namespace('App\Http\Controllers\Pages')->group(function()
     Route::get('/login', Login::class)->name('login');
     
     /**
-     * Auth Routes
+     * Logged Auth
      */
     Route::middleware('auth')->group(function () {
         Route::get('dashboard', Dashboard::class);
     
         // Dashboard
-        Route::group([
-            'namespace' => 'Dashboard',
-            'prefix' => 'dashboard'
-        ], function ()
+        Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard' ], function()
         {
-            Route::group(['middleware' => ['permission:user.create|user.read|user.update|user.delete']], function () {
+            // User Management
+            Route::group(['middleware' => ['permission:user.create|user.read|user.update|user.delete']], function() {
                 Route::get('/user', User::class);
                 Route::get('/role', Role::class);
+            });
+
+            // Config Desa
+            Route::group(['middleware' => ['permission:config.update']], function() {
+                Route::get('/config', Config::class);
             });
         });
     });
