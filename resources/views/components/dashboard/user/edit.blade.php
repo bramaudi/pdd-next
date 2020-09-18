@@ -1,22 +1,23 @@
 <form wire:submit.prevent="submit" class="pb-2">
     @if($dataLoaded)
-        <div class="form-group">
-            <label class="form-label" for="inp-edit-username">Nama Pengguna:</label>
-            <input class="form-input" type="text" id="inp-edit-username" wire:model="username">
-            @error('username') <div class="form-input-hint">{{ $message }}</div> @enderror
-        </div>
+        
+        @include('includes/form-group', [
+            'name' => 'username',
+            'label' => 'Nama Pengguna',
+            'type' => 'text'
+        ])
 
-        <div class="form-group">
-            <label class="form-label" for="inp-edit-email">Email:</label>
-            <input class="form-input" type="email" id="inp-edit-email" wire:model="email">
-            @error('email') <div class="form-input-hint">{{ $message }}</div> @enderror
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="inp-edit-name">Nama Lengkap:</label>
-            <input class="form-input" type="text" id="inp-edit-name" wire:model="name">
-            @error('name') <div class="form-input-hint">{{ $message }}</div> @enderror
-        </div>
+        @include('includes/form-group', [
+            'name' => 'email',
+            'label' => 'Email',
+            'type' => 'email'
+        ])
+        
+        @include('includes/form-group', [
+            'name' => 'name',
+            'label' => 'Nama Lengkap',
+            'type' => 'text'
+        ])
 
         <div class="form-group">
             <label class="form-label" for="inp-edit-role">Jabatan:</label>
@@ -30,7 +31,10 @@
         </div>
         
         @include('includes/submit-button', ['text' => 'Simpan'])
+
     @else
+
         <div class="loading loading-lg d-center"></div>
+        
     @endif
 </form>

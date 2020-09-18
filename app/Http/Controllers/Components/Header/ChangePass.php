@@ -9,25 +9,25 @@ use Illuminate\Support\Facades\Auth;
 
 class ChangePass extends Component
 {
-    public $changePassOld, $changePassNew, $changePassNew2;
+    public $pass_old, $pass_new, $pass_new2;
 
     public function submitGantiSandi()
     {
         $this->validate([
-            'changePassOld' => 'required|min:6',
-            'changePassNew' => 'required|min:6',
-            'changePassNew2' => 'required|same:changePassNew'
+            'pass_old' => 'required|min:6',
+            'pass_new' => 'required|min:6',
+            'pass_new2' => 'required|same:pass_new'
         ], [], [
-            'changePassOld' => 'Kata Sandi',
-            'changePassNew' => 'Kata Sandi Baru',
-            'changePassNew2' => 'Konfirmasi Kata Sandi Baru',
+            'pass_old' => 'Kata Sandi',
+            'pass_new' => 'Kata Sandi Baru',
+            'pass_new2' => 'Konfirmasi Kata Sandi Baru',
         ]);
 
         $user = User::find(Auth::user()->id);
 
         // Periksa kecocokan sandi
-        if (Hash::check($this->changePassOld, $user->password)) {
-            $user->password = Hash::make($this->changePassNew);
+        if (Hash::check($this->pass_old, $user->password)) {
+            $user->password = Hash::make($this->pass_new);
             $user->save();
             session()->flash('success', 'Kata sandi berhasil diperbarui!');
         } else {

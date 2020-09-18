@@ -1,4 +1,4 @@
-<header class="navbar" x-data="componentsHeader()">
+<header class="navbar" x-data="{ dropdown: false, menu: null }">
   <section class="navbar-section">
     <a href="#sidebar" class="off-canvas-toggle btn btn-link btn-action">
         <i class="icon icon-menu"></i>
@@ -22,17 +22,19 @@
             
             <ul class="menu avatar-dropdown" x-show="dropdown">
                 @if(Auth::user())
-                <li class="menu-item" x-show="gantiSandi">
-                    <button @click="toggleGantiSandi()" type="button" class="btn btn-link text-left pl-0" style="width: 100%">
+                <li class="menu-item" x-show="menu == 'pass'">
+                    <button @click="menu = null" type="button" class="btn btn-link text-left pl-0" style="width: 100%">
                         <i class="icon icon-back"></i>
                     </button>
                 </li>
-                <livewire:components.header.change-pass />
+                <template x-if="menu == 'pass'">
+                    <livewire:components.header.change-pass />
+                </template>
                 @endif
 
-                <li class="menu-item" x-show="menu">
+                <li class="menu-item" x-show="menu == null">
                     @if(Auth::user())
-                    <a href="#" @click="toggleGantiSandi"><i class="fas fa-unlock"></i> Ganti Kata Sandi</a>
+                    <a href="#" @click="menu = 'pass'"><i class="fas fa-unlock"></i> Ganti Kata Sandi</a>
                     <a href="#" wire:click="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
                     @else
                     <a href="/login"><i class="fas fa-sign-in-alt"></i> Masuk</a>
@@ -42,17 +44,3 @@
         </div>
     </section>
 </header>
-
-<script>
-    function componentsHeader() {
-        return {
-            dropdown: false,
-            menu: true,
-            gantiSandi: false,
-            toggleGantiSandi() {
-                this.menu = !this.menu
-                this.gantiSandi = !this.gantiSandi
-            }
-        }
-    }
-</script>

@@ -5,49 +5,29 @@
 
         <input type="hidden" wire:model="id_desa">
 
-        {{-- Nama --}}
-        <div class="form-group @error('nama') has-error @enderror">
-            <div class="col-3 col-sm-12">
-                <label class="form-label" for="input-config-nama">Nama Desa:</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input class="form-input" type="text" id="input-config-nama" wire:model="nama" placeholder="Nama Desa">
-                @error('nama') <div class="form-input-hint">{{ $message }}</div> @enderror
-            </div>
-        </div>
+        @include('includes/form-group-horizontal', [
+            'name' => 'nama',
+            'label' => 'Nama Desa',
+            'type' => 'text'
+        ])
 
-        {{-- Email --}}
-        <div class="form-group @error('email') has-error @enderror">
-            <div class="col-3 col-sm-12">
-                <label class="form-label" for="input-config-email">Email Desa:</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input class="form-input" type="email" id="input-config-email" wire:model="email" placeholder="Alamat Email">
-                @error('email') <div class="form-input-hint">{{ $message }}</div> @enderror
-            </div>
-        </div>
+        @include('includes/form-group-horizontal', [
+            'name' => 'email',
+            'label' => 'Email Desa',
+            'type' => 'email'
+        ])
 
-        {{-- Telepon --}}
-        <div class="form-group @error('telepon') has-error @enderror">
-            <div class="col-3 col-sm-12">
-                <label class="form-label" for="input-config-telp">Telepon:</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input class="form-input" type="tel" id="input-config-telp" wire:model="telepon" placeholder="081553049077">
-                @error('telepon') <div class="form-input-hint">{{ $message }}</div> @enderror
-            </div>
-        </div>
+        @include('includes/form-group-horizontal', [
+            'name' => 'telepon',
+            'label' => 'Nomor Telepon Desa',
+            'type' => 'text'
+        ])
 
-        {{-- Website --}}
-        <div class="form-group @error('website') has-error @enderror">
-            <div class="col-3 col-sm-12">
-                <label class="form-label" for="input-config-website">Website:</label>
-            </div>
-            <div class="col-9 col-sm-12">
-                <input class="form-input" type="url" id="input-config-website" wire:model="website" placeholder="http://">
-                @error('website') <div class="form-input-hint">{{ $message }}</div> @enderror
-            </div>
-        </div>
+        @include('includes/form-group-horizontal', [
+            'name' => 'website',
+            'label' => 'Website Desa',
+            'type' => 'url'
+        ])
 
         {{-- Tentang --}}
         <div class="form-group @error('tentang') has-error @enderror">
