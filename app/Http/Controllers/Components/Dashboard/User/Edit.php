@@ -42,8 +42,6 @@ class Edit extends Component
 
     public function submit()
     {
-        $this->resetLoaded();
-
         $this->validate([
             'name' => 'required|min:3|max:20',
             'email' => 'required|email|unique:users,email,'.$this->userId,
@@ -68,6 +66,7 @@ class Edit extends Component
 
         $this->emit('remountList');
         $this->dispatchBrowserEvent('close-modals');
+        $this->resetLoaded();
     }
 
     public function render()

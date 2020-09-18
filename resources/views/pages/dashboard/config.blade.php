@@ -151,17 +151,6 @@
             </div>
         </div>
 
-        @if(session()->has('success'))
-            @include('includes/toast-above-button', ['name' => 'success'])
-        @endif
-
-        @if(session()->has('failed'))
-            @include('includes/toast-above-button', ['name' => 'failed'])
-        @endif
-        
-        <div class="form-group">
-            <button class="btn btn-primary" wire:loading.attr="disabled" wire:loading.class="loading" wire:target="submit">Simpan</button>
-        </div>
-
+        @include('includes/submit-button', ['text' => 'Simpan'])
     </form>
 </div>

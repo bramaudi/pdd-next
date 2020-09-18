@@ -29,9 +29,5 @@
         @error('password2') <div class="form-input-hint">{{ $message }}</div> @enderror
     </div>
 
-    <div class="form-group">
-        <button class="btn btn-primary" wire:loading.attr="disabled" wire:target="submit">Simpan</button>
-        <progress class="progress" max="100" wire:loading wire:target="submit"></progress>
-    </div>
-
+    @include('includes/submit-button', ['text' => 'Tambah'])
 </form>

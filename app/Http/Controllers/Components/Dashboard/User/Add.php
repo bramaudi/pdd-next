@@ -40,9 +40,9 @@ class Add extends Component
 
         User::create($validatedData);
 
-        $this->resetInputs();
         $this->emit('remountList');
         $this->dispatchBrowserEvent('close-modals');
+        $this->resetInputs();
     }
 
     public function render()

@@ -12,15 +12,8 @@
                 <input class="form-input" type="password" id="input-login-dropdown-pass" wire:model="password">
                 @error('password') <p class="form-input-hint">{{ $message }}</p>@enderror
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" wire:loading.attr="disabled" wire:target="submit">Masuk</button>
-                <progress class="progress" max="100" wire:loading wire:target="submit"></progress>
-            </div>
-            @if(session()->has('failed'))
-            <div class="toast toast-error">
-                {{ @session('failed') }}
-            </div>
-            @endif
+            
+            @include('includes/submit-button', ['text' => 'Masuk'])
         </div>
     </form>
 </div>
