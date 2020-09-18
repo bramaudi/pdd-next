@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Desa;
+use App\Models\Meta\Meta;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +26,8 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $view->with('desa', Desa::find(1));
+            $meta = json_decode(Meta::where('key', 'portal-desa-digital')->first()->value);
+            $view->with('desa', $meta);
         });
     }
 }
