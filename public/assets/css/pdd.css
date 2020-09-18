@@ -45,12 +45,16 @@ header .icon.icon-menu {
 i[class*="fa"] {
     width: 16px;
     height: 16px;
+    text-align: center;
 }
 
 /* Sidebar */
 .sidebar .accordion-header,
 .sidebar .menu {
     padding: .2rem .4rem;
+}
+.sidebar .accordion.menu.menu-nav {
+    padding-bottom: 0;
 }
 .sidebar .accordion-body .menu-item {
     margin-left: 10px;
