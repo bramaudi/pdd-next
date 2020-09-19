@@ -6,7 +6,7 @@ use App\Models\User;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
-class Edit extends Component
+class Update extends Component
 {
     public $userId, $roles;
     public $dataLoaded = false;
@@ -72,6 +72,6 @@ class Edit extends Component
     public function render()
     {
         $this->roles = Role::where('name', '!=', 'Super Admin')->get();
-        return view('components.dashboard.user.edit');
+        return view('components.dashboard.user.update');
     }
 }

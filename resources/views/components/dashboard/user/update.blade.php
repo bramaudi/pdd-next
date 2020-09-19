@@ -21,9 +21,8 @@
 
         <div class="form-group">
             <label class="form-label" for="inp-edit-role">Jabatan:</label>
-            <select class="form-input" id="inp-edit-role" wire:model="role">
-                <option value="">(Tidak Diubah)</option>
-                <option value="-">Tidak Ada</option>
+            <select class="form-select" id="inp-edit-role" wire:model="role">
+                <option value="">--</option>
                 @foreach($roles as $role)
                 <option value="{{ $role->name }}">{{ $role->name }}</option>
                 @endforeach

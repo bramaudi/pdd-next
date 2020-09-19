@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class Add extends Component
+class Create extends Component
 {
     public $username;
     public $email;
@@ -47,6 +47,6 @@ class Add extends Component
 
     public function render()
     {
-        return view('components.dashboard.user.add');
+        return view('components.dashboard.user.create');
     }
 }

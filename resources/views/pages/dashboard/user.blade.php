@@ -15,7 +15,7 @@
             </div>
             <div class="modal-body">
                 <div class="content">
-                    <livewire:components.dashboard.user.add />
+                    <livewire:components.dashboard.user.create />
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="modal-body">
                 <div class="content">
-                    <livewire:components.dashboard.user.edit />
+                    <livewire:components.dashboard.user.update />
                 </div>
             </div>
         </div>
