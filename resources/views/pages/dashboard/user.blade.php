@@ -1,9 +1,11 @@
 <div class="container py-2" x-data="{ modal: null }" @close-modals.window="modal = null">
+    
     <button class="btn m-1" @click="modal = 'add'">
         <i class="icon icon-plus mr-1"></i> Tambah Pengguna Baru
     </button>
 
-    <!-- Modal Add -->
+    {{-- Modal Add --}}
+    
     <div x-show="modal == 'add'" class="modal active">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
@@ -19,7 +21,8 @@
         </div>
     </div>
     
-    <!-- Modal Edit -->
+    {{-- Modal Edit --}}
+
     <div x-show="modal == 'edit'" class="modal active">
         <a href="#close" @click="modal = null" wire:click="$emit('resetLoaded')" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
@@ -35,7 +38,8 @@
         </div>
     </div>
     
-    <!-- Modal Delete -->
+    {{-- Modal Delete --}}
+
     <div x-show="modal == 'del'" class="modal active">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
@@ -50,6 +54,8 @@
             </div>
         </div>
     </div>
+    
+    {{-- Table --}}
     
     <div class="loading loading-lg loading-full" wire:loading></div>
     

@@ -7,6 +7,8 @@ use Spatie\Permission\Models\Role as ModelsRole;
 
 class Role extends Component
 {
+    protected $listeners = ['remount' => 'render'];
+
     public function render()
     {
         return view('pages.dashboard.role', [
