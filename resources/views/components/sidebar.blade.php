@@ -12,7 +12,11 @@
 
         @else
 
-            @if(isset($link['permission']))
+            @if (array_key_exists('auth', $link))
+                @if(Auth::user())
+                    @include('includes/sidebar-link', ['link' => $link])
+                @endif
+            @elseif(array_key_exists('permission', $link))
                 @can($link['permission'])
                     @include('includes/sidebar-link', ['link' => $link])
                 @endcan

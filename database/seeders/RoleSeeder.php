@@ -18,19 +18,19 @@ class RoleSeeder extends Seeder
         /**
          * Super Admin
          */
-        Role::create(['name' => 'Super Admin']);
+        Role::firstOrCreate(['name' => 'Super Admin']);
 
         /**
          * Operator
          */
-        $operator = Role::create(['name' => 'Operator']);
+        $operator = Role::firstOrCreate(['name' => 'Operator']);
 
 
         /** CRUD Pengguna */
-        Permission::create(['name' => 'user.create']);
-        Permission::create(['name' => 'user.read']);
-        Permission::create(['name' => 'user.update']);
-        Permission::create(['name' => 'user.delete']);
+        Permission::firstOrCreate(['name' => 'user.create']);
+        Permission::firstOrCreate(['name' => 'user.read']);
+        Permission::firstOrCreate(['name' => 'user.update']);
+        Permission::firstOrCreate(['name' => 'user.delete']);
 
         $operator->givePermissionTo([
             'user.create',
@@ -38,5 +38,13 @@ class RoleSeeder extends Seeder
             'user.update',
             'user.delete'
         ]);
+
+
+        /**
+         * Ubah Identitas Desa
+         */
+        Permission::firstOrCreate(['name' => 'config.update']);
+
+        $operator->givePermissionTo('config.update');
     }
 }

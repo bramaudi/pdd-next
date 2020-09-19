@@ -8,11 +8,18 @@ class Sidebar extends Component
 {
     public $links = [
         [
+            'icon' => 'home',
+            'name' => 'Beranda',
+            'url' => '/'
+        ],
+        [
+            'auth' => true,
             'icon' => 'chart-line',
             'name' => 'Dashboard',
             'url' => '/dashboard'
         ],
         [
+            'permission' => ['config.update'],
             'icon' => 'info',
             'name' => 'Info Desa',
             'url' => [
