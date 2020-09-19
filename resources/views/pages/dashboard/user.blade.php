@@ -73,8 +73,23 @@
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>
-                    <button class="btn btn-sm" @click="modal = 'edit'" wire:click="$emit('loadData', {{ $user->id }})"><i class="icon icon-edit"></i></button>
-                    <button class="btn btn-sm btn-error" @click="modal = 'del'" wire:click="$emit('loadData', {{ $user->id }})"><i class="icon icon-delete"></i></button>
+                    <button
+                        class="btn btn-sm tooltip"
+                        data-tooltip="Ubah Data"
+                        @click="modal = 'edit'"
+                        wire:click="$emit('loadData', {{ $user->id }})"
+                    >
+                        <i class="icon icon-edit"></i>
+                    </button>
+
+                    <button
+                        class="btn btn-sm btn-error tooltip"
+                        data-tooltip="Hapus Pengguna"
+                        @click="modal = 'del'"
+                        wire:click="$emit('loadData', {{ $user->id }})"
+                    >
+                        <i class="icon icon-delete"></i>
+                    </button>
                 </td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->name }}</td>

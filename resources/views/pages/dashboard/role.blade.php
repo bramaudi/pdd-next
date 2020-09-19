@@ -73,11 +73,28 @@
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
-                        <button class="btn btn-sm btn-warning" @click="modal = 'update'" wire:click="$emit('loadData', {{ $role->id }})">
+                        <button
+                            class="btn btn-sm btn-warning tooltip"
+                            data-tooltip="Ganti Nama"
+                            @click="modal = 'update'"
+                            wire:click="$emit('loadData', {{ $role->id }})"
+                        >
                             <i class="icon icon-edit"></i>
                         </button>
 
-                        <button class="btn btn-sm btn-error" @click="modal = 'delete'" wire:click="$emit('loadData', {{ $role->id }})">
+                        <button
+                            class="btn btn-sm btn-primary tooltip"
+                            data-tooltip="Ubah Hak Akses"
+                        >
+                            <i class="fas fa-lock"></i>
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-error tooltip"
+                            data-tooltip="Hapus Jabatan"
+                            @click="modal = 'delete'"
+                            wire:click="$emit('loadData', {{ $role->id }})"
+                        >
                             <i class="icon icon-delete"></i>
                         </button>
                     </td>
