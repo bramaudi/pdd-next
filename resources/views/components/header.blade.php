@@ -12,7 +12,7 @@
                 <div class="tile-icon">
                     <img src="{{ $gravatar }}" alt="{{ Auth::user()->name }}" class="s-circle" style="width: 28px; float: left">
                 </div>
-                <div class="tile-content">{{ Auth::user()->name }}</div>
+                {{-- <div class="tile-content">{{ Auth::user()->name }}</div> --}}
             </div>
             @else
                 <div class="btn btn-primary btn-sm s-circle">
