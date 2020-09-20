@@ -9,8 +9,8 @@ class Meta extends Model
 {
     protected $fillable = ['key', 'description', 'value'];
 
-    public function decode(): stdClass
+    public function decode(bool $array_mode = false): stdClass
     {
-        return json_decode($this->value);
+        return json_decode($this->value, $array_mode);
     }
 }
