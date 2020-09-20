@@ -12,7 +12,8 @@
                 <th>Hapus</th>
             </tr>
 
-            {{-- Pengguna --}}
+            <!-- Pengguna -->
+
             <tr>
                 <td>
                     <i class="fas fa-users mr-2"></i>
@@ -28,13 +29,19 @@
                 @endforeach
             </tr>
 
-            {{-- Config --}}
+            <!-- Identitas Desa -->
+
             <tr>
                 <td>
                     <i class="fas fa-id-card mr-2"></i>
                     Identitas Desa
                 </td>
-                <td>--</td>
+                <td>
+                    <label class="form-checkbox">
+                        <input type="checkbox" disabled>
+                        <i class="form-icon"></i>
+                    </label>
+                </td>
                 <td>
                     <label class="form-checkbox">
                         <input wire:model="config.read" type="checkbox">
@@ -47,7 +54,12 @@
                         <i class="form-icon"></i>
                     </label>
                 </td>
-                <td>--</td>
+                <td>
+                    <label class="form-checkbox">
+                        <input type="checkbox" disabled>
+                        <i class="form-icon"></i>
+                    </label>
+                </td>
             </tr>
         </table>
     </div>
