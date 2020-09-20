@@ -8,7 +8,7 @@
   <section class="navbar-section">
         <div class="dropdown" :class="{ 'active': dropdown }" @click="dropdown = true" @click.away="dropdown = false">
             @if(Auth::user())
-            <div class="tile tile-centered">
+            <div class="tile tile-centered" tabindex="0">
                 <div class="tile-icon">
                     <img src="{{ $gravatar }}" alt="{{ Auth::user()->name }}" class="s-circle" style="width: 28px; float: left">
                 </div>
