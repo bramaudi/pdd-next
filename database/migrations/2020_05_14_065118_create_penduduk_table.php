@@ -16,6 +16,7 @@ class CreatePendudukTable extends Migration
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nik');
+            $table->unsignedBigInteger('keluarga_id');
             $table->unsignedBigInteger('rt_id');
             $table->unsignedBigInteger('agama_id');
             $table->unsignedBigInteger('jenis_kelamin_id');

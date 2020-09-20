@@ -59,4 +59,9 @@ class Penduduk extends Model
     {
         return $this->belongsTo(Label::class);
     }
+
+    public function keluarga(): BelongsTo
+    {
+        return $this->belongsTo(Keluarga::class);
+    }
 }

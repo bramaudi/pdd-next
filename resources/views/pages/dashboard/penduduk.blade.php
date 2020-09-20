@@ -106,7 +106,7 @@
                 <td>{{ $penduduk->foto_id }}</td>
                 <td>{{ $penduduk->nik }}</td>
                 <td>{{ $penduduk->nama }}</td>
-                <td>no-kk?</td>
+                <td>{{ $penduduk->keluarga->no_kk }}</td>
                 <td>nama-ayah?</td>
                 <td>nama-ibu?</td>
                 <td>no-rumah-tangga?</td>

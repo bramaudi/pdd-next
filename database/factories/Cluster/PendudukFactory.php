@@ -4,6 +4,7 @@ namespace Database\Factories\Cluster;
 
 use App\Models\Label\Label;
 use App\Models\Cluster\Rt;
+use App\Models\Penduduk\Keluarga;
 use App\Models\Penduduk\Penduduk;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,7 @@ class PendudukFactory extends Factory
             'alamat'                => $this->faker->streetAddress,
             'ponsel'                => $this->faker->phoneNumber,
             'rt_id'                 => Rt::all()->random()->id,
+            'keluarga_id'           => Keluarga::all()->random()->id,
             'jenis_kelamin_id'      => Label::whereLabel('jenis-kelamin')       ->first()->turunan->random()->id,
             'golongan_darah_id'     => Label::whereLabel('golongan-darah')      ->first()->turunan->random()->id,
             'agama_id'              => Label::whereLabel('agama')               ->first()->turunan->random()->id,
