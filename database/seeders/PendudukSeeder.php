@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cluster\Penduduk;
 use Illuminate\Database\Seeder;
 
-class PendudukFactorySeeder extends Seeder
+class PendudukSeeder extends Seeder
 {
     /**
      * Run the database seeds.

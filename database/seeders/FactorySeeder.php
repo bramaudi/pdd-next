@@ -13,9 +13,9 @@ class FactorySeeder extends Seeder
      */
     public function run()
     {
-        $this->call(LingkunganFactorySeeder::class);
-        $this->call(LingkunganRWFactorySeeder::class);
-        $this->call(LingkunganRTFactorySeeder::class);
-        $this->call(PendudukFactorySeeder::class);
+        $this->call(LingkunganSeeder::class);
+        $this->call(LingkunganRWSeeder::class);
+        $this->call(LingkunganRTSeeder::class);
+        $this->call(PendudukSeeder::class);
     }
 }

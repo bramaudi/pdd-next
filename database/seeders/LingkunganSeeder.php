@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cluster\Lingkungan;
 use Illuminate\Database\Seeder;
 
-class LingkunganFactorySeeder extends Seeder
+class LingkunganSeeder extends Seeder
 {
     /**
      * Run the database seeds.

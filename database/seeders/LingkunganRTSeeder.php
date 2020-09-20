@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cluster\Rw;
+use App\Models\Cluster\Rt;
 use Illuminate\Database\Seeder;
 
-class LingkunganRWFactorySeeder extends Seeder
+class LingkunganRTSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class LingkunganRWFactorySeeder extends Seeder
      */
     public function run()
     {
-        Rw::factory()
-                ->times(18 * 18 + 10)
+        Rt::factory()
+                ->times(18 * 18 + 10 * 18 + 100)
                 ->create();
     }
 }
