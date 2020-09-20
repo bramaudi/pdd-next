@@ -1,3 +1,7 @@
+* {
+    outline: 0;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px; /* Y size */
@@ -38,6 +42,10 @@ header .icon.icon-menu {
     max-height: 100vw !important;
 }
 
+/** Off-Canvas Overwrie */
+.off-canvas .off-canvas-sidebar {
+    min-width: 13rem;
+}
 .off-canvas-content {
     padding: 0 !important;
 }
@@ -50,19 +58,35 @@ i[class*="fa"] {
 }
 
 /* Sidebar */
-.sidebar .accordion-header,
-.sidebar .menu {
-    padding: .2rem .4rem;
+.sidebar {
+    padding: .5rem;
 }
-.sidebar .accordion.menu.menu-nav {
-    padding-bottom: 0;
+.sidebar a,
+.sidebar .accordion .accordion-header {
+    display: block;
+    padding: .4rem;
+    text-decoration: none;
 }
-.sidebar .accordion-body .menu-item {
-    margin-left: 10px;
+.sidebar a:hover,
+.sidebar .accordion .accordion-header:hover {
+    background: #eee;
+}
+.sidebar a:focus {
+    box-shadow: none;
+}
+.sidebar .accordion-body a {
+    margin-left: 0.75rem;
+    padding-left: .8rem;
+    border-left: 1px solid #b2b4b6;
 }
 .sidebar i {
-    margin-right: 8px;
+    color: #000;
+    margin-right: .4rem;
 }
+.sidebar .accordion-body {
+    margin-bottom: 0;
+}
+
 
 /* Sesuaikan Paingation */
 .pagination {

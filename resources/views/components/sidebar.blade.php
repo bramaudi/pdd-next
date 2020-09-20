@@ -1,29 +1,32 @@
 <aside class="sidebar">
-    @foreach($links as $link)
-        @if(is_array($link['url']))
-            
-            @if(isset($link['permission']))
-                @can($link['permission'])
-                    @include('includes/sidebar-accordion', ['link' => $link])
-                @endcan
-            @else
-                @include('includes/sidebar-accordion', ['link' => $link])
-            @endif
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    @if(Auth::guest())
+    @else
+        <a href="/"><i class="fas fa-chart-line"></i> Dashboard</a>
 
-        @else
-
-            @if (array_key_exists('auth', $link))
-                @if(Auth::user())
-                    @include('includes/sidebar-link', ['link' => $link])
+        <div class="accordion">
+            <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
+            <label class="accordion-header c-hand" for="accordion-1" tabindex="0">
+                <i class="fas fa-info"></i> Info Desa
+            </label>
+            <div class="accordion-body">
+                @if(Auth::user()->can(['config.read', 'config.update']))
+                <a href="/dashboard/config"><i class="fas fa-id-card"></i> Identitas Desa</a>
                 @endif
-            @elseif(array_key_exists('permission', $link))
-                @can($link['permission'])
-                    @include('includes/sidebar-link', ['link' => $link])
-                @endcan
-            @else
-                @include('includes/sidebar-link', ['link' => $link])
-            @endif
+            </div>
+        </div>
 
-        @endif
-    @endforeach
+        <div class="accordion">
+            <input type="checkbox" id="accordion-2" name="accordion-checkbox" hidden>
+            <label class="accordion-header c-hand" for="accordion-2" tabindex="0">
+                <i class="fas fa-cog"></i> Pengaturan
+            </label>
+            <div class="accordion-body">
+                @if(Auth::user()->can(['user.create', 'user.read', 'user.update', 'user.delete']))
+                <a href="/dashboard/user"><i class="fas fa-users"></i> Pengguna</a>
+                <a href="/dashboard/role"><i class="fas fa-lock"></i> Jabatan</a>
+                @endif
+            </div>
+        </div>
+    @endif
 </aside>
