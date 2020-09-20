@@ -1,4 +1,5 @@
 <div class="container py-2">
+
     <form wire:submit.prevent="submit" class="form-horizontal side-control pb-2">
 
         <div class="divider" data-content="Identitas Desa"></div>
@@ -132,5 +133,7 @@
         </div>
 
         @include('includes/submit-button', ['text' => 'Simpan'])
+    
     </form>
+
 </div>

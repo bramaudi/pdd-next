@@ -6,7 +6,7 @@
 
     {{-- Modal Add --}}
     
-    <div x-show="modal == 'add'" class="modal active">
+    <div :class="{ 'active': modal == 'add' }" class="modal">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
@@ -23,7 +23,7 @@
     
     {{-- Modal Edit --}}
 
-    <div x-show="modal == 'edit'" class="modal active">
+    <div :class="{ 'active': modal == 'edit' }" class="modal">
         <a href="#close" @click="modal = null" wire:click="$emit('resetLoaded')" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
@@ -40,7 +40,7 @@
     
     {{-- Modal Delete --}}
 
-    <div x-show="modal == 'del'" class="modal active">
+    <div :class="{ 'active': modal == 'del' }" class="modal">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">

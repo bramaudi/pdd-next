@@ -8,7 +8,7 @@
 
     {{-- Modal Buat Jabatan Baru --}}
 
-    <div x-show="modal == 'add'" class="modal active">
+    <div :class="{ 'active': modal == 'add' }" class="modal">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
@@ -25,7 +25,7 @@
 
     {{-- Modal Update Jabatan --}}
 
-    <div x-show="modal == 'update'" class="modal active">
+    <div :class="{ 'active': modal == 'update' }" class="modal">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">
@@ -42,7 +42,7 @@
 
     {{-- Modal Hapus Jabatan --}}
 
-    <div x-show="modal == 'delete'" class="modal active">
+    <div :class="{ 'active': modal == 'delete' }" class="modal">
         <a href="#close" @click="modal = null" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container">
             <div class="modal-header">

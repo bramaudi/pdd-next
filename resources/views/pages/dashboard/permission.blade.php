@@ -1,6 +1,6 @@
 <div class="container py-2">
     
-    <h5>Jabatan: {{ $role->name }}</h5>
+    <h3>{{ $role->name }}</h3>
 
     <div class="table-container mb-2">
         <table class="table table-striped table-hover">
