@@ -23,6 +23,7 @@ class CreatePendudukTable extends Migration
             $table->unsignedBigInteger('kewarganegaraan_id');
             $table->unsignedBigInteger('status_perkawinan_id');
             $table->unsignedBigInteger('pekerjaan_id');
+            $table->unsignedBigInteger('pendidikan_id');
             $table->unsignedBigInteger('foto_id')->nullable();
             $table->string('ponsel');
             $table->string('nama');

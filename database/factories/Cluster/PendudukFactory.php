@@ -25,6 +25,7 @@ class PendudukFactory extends Factory
             'golongan_darah_id'     => Label::whereLabel('golongan-darah')      ->first()->turunan->random()->id,
             'agama_id'              => Label::whereLabel('agama')               ->first()->turunan->random()->id,
             'status_perkawinan_id'  => Label::whereLabel('status-perkawinan')   ->first()->turunan->random()->id,
+            'pendidikan_id'         => Label::whereLabel('pendidikan')          ->first()->turunan->random()->id,
             'pekerjaan_id'          => Label::whereLabel('pekerjaan')           ->first()->turunan->random()->id,
             'kewarganegaraan_id'    => Label::whereLabel('kewarganegaraan')     ->first()->turunan->random()->id,
         ];

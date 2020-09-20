@@ -15,7 +15,7 @@ class PendudukFactorySeeder extends Seeder
     public function run()
     {
         Penduduk::factory()
-                    ->times(2000)
+                    ->times(50)
                     ->create();
     }
 }

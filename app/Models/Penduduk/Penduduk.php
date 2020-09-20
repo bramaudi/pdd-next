@@ -3,11 +3,14 @@
 namespace App\Models\Penduduk;
 
 use App\Models\Label\Label;
+use App\Traits\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Penduduk extends Model
 {
+    use Helper;
+
     protected $table = 'penduduk';
 
     protected $fillable = [
@@ -27,6 +30,11 @@ class Penduduk extends Model
         'foto_id'
     ];
 
+    public function getUmurAttribute()
+    {
+        return $this->calcUmur($this->tanggal_lahir);
+    }
+
     public function rt(): BelongsTo
     {
         return $this->belongsTo(Rt::class);
@@ -43,6 +51,11 @@ class Penduduk extends Model
     }
 
     public function kewarganegaraan(): BelongsTo
+    {
+        return $this->belongsTo(Label::class);
+    }
+
+    public function pendidikan(): BelongsTo
     {
         return $this->belongsTo(Label::class);
     }

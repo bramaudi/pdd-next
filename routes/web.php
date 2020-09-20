@@ -38,6 +38,11 @@ Route::namespace('App\Http\Controllers\Pages')->group(function()
             Route::group(['middleware' => ['permission:config.read|config.update']], function() {
                 Route::get('/config', Config::class);
             });
+
+            // Kependudukan
+            Route::group(['middleware' => ['permission:penduduk.create|penduduk.read|penduduk.update|penduduk.delete']], function() {
+                Route::get('/penduduk', Penduduk::class);
+            });
         });
     });
 });
