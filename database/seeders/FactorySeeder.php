@@ -17,6 +17,5 @@ class FactorySeeder extends Seeder
         $this->call(LingkunganRWSeeder::class);
         $this->call(LingkunganRTSeeder::class);
         $this->call(KeluargaSeeder::class);
-        $this->call(PendudukSeeder::class);
     }
 }
