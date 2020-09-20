@@ -17,7 +17,6 @@ class CreateKeluargaTable extends Migration
             $table->id();
             $table->unsignedBigInteger('no_kk');
             $table->unsignedBigInteger('rt_id');
-            $table->string('district_id');
             $table->timestamps();
         });
     }

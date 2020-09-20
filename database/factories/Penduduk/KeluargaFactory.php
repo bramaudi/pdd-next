@@ -4,7 +4,6 @@ namespace Database\Factories\Penduduk;
 
 use App\Models\Penduduk\Keluarga;
 use App\Models\Cluster\Rt;
-use App\Models\Indonesia\District;
 use App\Models\Meta\Meta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,12 +23,11 @@ class KeluargaFactory extends Factory
      */
     public function definition()
     {
-        $config = json_decode(Meta::where('key', 'portal-desa-digital')->first()->value);
+        $config = Meta::where('key', 'portal-desa-digital')->first()->decode();
 
         return [
             'no_kk'         => $this->faker->unique()->numberBetween(pow(10, 15), pow(11, 15)),
-            'rt_id'         => Rt::all()->random()->id,
-            'district_id'   => District::where('regency_id', $config->regency_id)->get()->random()->id,
+            'rt_id'         => Rt::all()->random()->id
         ];
     }
 }
