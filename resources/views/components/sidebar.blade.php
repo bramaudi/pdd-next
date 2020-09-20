@@ -4,6 +4,7 @@
     @else
         <a href="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
 
+        <!-- Info Desa -->
         <div class="accordion">
             <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
             <label class="accordion-header c-hand" for="accordion-1" tabindex="0">
@@ -16,6 +17,20 @@
             </div>
         </div>
 
+        <!-- Kependudukan -->
+        <div class="accordion">
+            <input type="checkbox" id="accordion-penduduk" name="accordion-checkbox" hidden>
+            <label class="accordion-header c-hand" for="accordion-penduduk" tabindex="0">
+                <i class="fas fa-users"></i> Kependudukan
+            </label>
+            <div class="accordion-body">
+                @if(Auth::user()->can(['penduduk.create', 'penduduk.read', 'config.update', 'penduduk.delete']))
+                <a href="/dashboard/penduduk"><i class="fas fa-user-friends"></i> Penduduk</a>
+                @endif
+            </div>
+        </div>
+
+        <!-- Pengaturan -->
         <div class="accordion">
             <input type="checkbox" id="accordion-2" name="accordion-checkbox" hidden>
             <label class="accordion-header c-hand" for="accordion-2" tabindex="0">
