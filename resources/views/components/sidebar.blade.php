@@ -2,7 +2,7 @@
     <a href="/"><i class="fas fa-home"></i> Home</a>
     @if(Auth::guest())
     @else
-        <a href="/"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
 
         <div class="accordion">
             <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>

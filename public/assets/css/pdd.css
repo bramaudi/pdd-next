@@ -130,3 +130,31 @@ i[class*="fa"] {
     height: 100%;
     background: rgba(255, 255, 255, 0.8);
 }
+
+
+/** Dashboard */
+.dashboard .stats {
+    min-width: 100px;
+    min-height: 100px;
+    padding: 1rem;
+    padding-bottom: .5rem;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: right;
+    background: crimson;
+    color: #fff;
+}
+.dashboard .stats .title {
+    margin: -1rem;
+    margin-bottom: 0;
+    padding: .5rem;
+    padding-left: 1rem;
+    font-size: medium;
+    font-weight: normal;
+    text-align: left;
+}
+.dashboard .stats i {
+    display: block;
+    font-size: xx-large;
+    margin-bottom: 1rem;
+}
