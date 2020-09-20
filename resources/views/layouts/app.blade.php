@@ -42,6 +42,8 @@
 
         <div class="off-canvas-content">
             {{ $slot }}
+
+            <footer>&copy; 2020 Portal Desa Ditigal</footer>
         </div>
 
     </div>

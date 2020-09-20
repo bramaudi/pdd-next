@@ -24,9 +24,12 @@
     background: #aaa;
 }
 
+
 .side-control { margin: auto 10vw; }
 .icon { margin-bottom: 3px; } /* Spectre icon */
 
+
+/* Header */
 header {
     padding: 8px 15px;
     border-bottom: 1px solid #ccc;
@@ -34,7 +37,6 @@ header {
 header .icon.icon-menu {
     margin-bottom: .2rem;
 }
-
 .avatar-dropdown {
     left: unset !important;
     right: 0;
@@ -42,7 +44,16 @@ header .icon.icon-menu {
     max-height: 100vw !important;
 }
 
-/** Off-Canvas Overwrie */
+/* Footer */
+footer {
+    padding: .5rem 1.5rem;
+    margin: -.5rem;
+    margin-top: 1rem;
+    text-align: right;
+    border-top: 1px solid #ddd;
+}
+
+/* Off-Canvas Overwrie */
 .off-canvas .off-canvas-sidebar {
     min-width: 13rem;
 }
