@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class Install extends Command
 {
-    private $installed;
     /**
      * The name and signature of the console command.
      *
@@ -31,7 +30,6 @@ class Install extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->envExists = file_exists('.env');
     }
 
     /**
@@ -41,6 +39,16 @@ class Install extends Command
      */
     public function handle()
     {
+        $this->info('
+██████╗ ██████╗ ██████╗ 
+██╔══██╗██╔══██╗██╔══██╗
+██████╔╝██║  ██║██║  ██║
+██╔═══╝ ██║  ██║██║  ██║
+██║     ██████╔╝██████╔╝
+╚═╝     ╚═════╝ ╚═════╝ 
+Selamat Datang di Portal Desa Digital Installer v1
+------------------------------------------------------');
+
         if (!$this->testDbConnection()) {
             $this->setupDatabase();
         }
