@@ -31,10 +31,11 @@ Route::namespace('App\Http\Controllers\Pages')->group(function()
             Route::group(['middleware' => ['permission:user.create|user.read|user.update|user.delete']], function() {
                 Route::get('/user', User::class);
                 Route::get('/role', Role::class);
+                Route::get('/permission/{roleId?}', Permission::class);
             });
 
             // Config Desa
-            Route::group(['middleware' => ['permission:config.update']], function() {
+            Route::group(['middleware' => ['permission:config.read|config.update']], function() {
                 Route::get('/config', Config::class);
             });
         });

@@ -12,7 +12,7 @@ class Role extends Component
     public function render()
     {
         return view('pages.dashboard.role', [
-            'roles' => ModelsRole::with('permissions')->get(),
+            'roles' => ModelsRole::where('reserved', 0)->with('permissions')->get(),
         ]);
     }
 }

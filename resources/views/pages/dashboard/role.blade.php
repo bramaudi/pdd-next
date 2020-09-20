@@ -82,12 +82,13 @@
                             <i class="icon icon-edit"></i>
                         </button>
 
-                        <button
+                        <a
                             class="btn btn-sm btn-primary tooltip"
                             data-tooltip="Ubah Hak Akses"
+                            href="/dashboard/permission/{{ $role->id }}"
                         >
                             <i class="fas fa-lock"></i>
-                        </button>
+                        </a>
 
                         <button
                             class="btn btn-sm btn-error tooltip"
