@@ -6,7 +6,6 @@ use App\Models\Kependudukan\Penduduk;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Keluarga extends Model
 {
@@ -14,9 +13,9 @@ class Keluarga extends Model
 
     protected $table = 'keluarga';
 
-    public function kepala(): HasOne
+    public function kepala()
     {
-        return $this->anggota->whereNotNull('is_kepala');
+        return $this->anggota->whereNotNull('is_kepala')->first();
     }
 
     public function anggota(): HasMany
