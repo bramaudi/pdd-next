@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Penduduk;
 
+use App\Models\Cluster\Penduduk;
 use App\Models\Penduduk\Keluarga;
 use App\Models\Cluster\Rt;
 use App\Models\Meta\Meta;

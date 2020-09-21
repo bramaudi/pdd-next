@@ -17,11 +17,9 @@ class KeluargaSeeder extends Seeder
     {
         Keluarga::factory()
             ->times(10)
-            ->create()
-            ->each(function($keluarga)
-            {
-                $penduduk = Penduduk::factory()->times(5)->make();
-                $keluarga->anggota()->saveMany($penduduk);
-            });
+            ->hasAnggota(5)
+            ->create();
+
+        $this->call(KepalaKeluargaSeeder::class);
     }
 }
