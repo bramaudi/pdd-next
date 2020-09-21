@@ -18,7 +18,6 @@ class MetaSeeder extends Seeder
         foreach (glob(base_path('database/seeders/_data/meta/*.json')) as $file) {
 
             Meta::firstOrCreate([
-
                 'key'           => Str::slug(pathinfo($file, PATHINFO_FILENAME)),
                 'description'   => 'system, jangan diganggu',
                 'value'         => file_get_contents($file)
