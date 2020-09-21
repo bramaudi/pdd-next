@@ -107,8 +107,8 @@
                 <td>{{ $penduduk->nik }}</td>
                 <td>{{ $penduduk->nama }}</td>
                 <td>{{ $penduduk->keluarga->no_kk }}</td>
-                <td>nama-ayah?</td>
-                <td>nama-ibu?</td>
+                <td>{{ $penduduk->nama_ayah }}</td>
+                <td>{{ $penduduk->nama_ibu }}</td>
                 <td>no-rumah-tangga?</td>
                 <td>{{ $penduduk->alamat }}</td>
                 <td>{{ $penduduk->tempat_lahir }}</td>

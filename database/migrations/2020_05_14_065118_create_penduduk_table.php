@@ -27,6 +27,8 @@ class CreatePendudukTable extends Migration
             $table->unsignedBigInteger('pendidikan_id');
             $table->unsignedBigInteger('foto_id')->nullable();
             $table->tinyInteger('is_kepala')->nullable();
+            $table->string('nama_ayah');
+            $table->string('nama_ibu');
             $table->string('ponsel');
             $table->string('nama');
             $table->string('tempat_lahir');

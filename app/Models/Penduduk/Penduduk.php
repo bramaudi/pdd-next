@@ -64,4 +64,5 @@ class Penduduk extends Model
     {
         return $this->belongsTo(Keluarga::class);
     }
+
 }

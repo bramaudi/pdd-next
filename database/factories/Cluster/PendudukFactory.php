@@ -17,6 +17,8 @@ class PendudukFactory extends Factory
         return [
             'nik'                   => $this->faker->unique()->numberBetween(pow(10, 15), pow(11, 15)),
             'nama'                  => $this->faker->name,
+            'nama_ayah'             => $this->faker->name,
+            'nama_ibu'              => $this->faker->name,
             'tempat_lahir'          => $this->faker->city,
             'tanggal_lahir'         => $this->faker->date,
             'alamat'                => $this->faker->streetAddress,
