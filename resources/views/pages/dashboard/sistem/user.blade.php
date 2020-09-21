@@ -73,6 +73,7 @@
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>
+                @if(!$user->hasRole('Super Admin'))
                     <button
                         class="btn btn-sm tooltip"
                         data-tooltip="Ubah Data"
@@ -90,6 +91,7 @@
                     >
                         <i class="icon icon-delete"></i>
                     </button>
+                @else -- @endif
                 </td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->name }}</td>
