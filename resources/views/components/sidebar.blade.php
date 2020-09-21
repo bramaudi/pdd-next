@@ -4,7 +4,7 @@
     @else
         <a href="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
 
-        <!-- Info Desa -->
+        <!-- Desa -->
         <div class="accordion">
             <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
             <label class="accordion-header c-hand" for="accordion-1" tabindex="0">
@@ -12,7 +12,7 @@
             </label>
             <div class="accordion-body">
                 @if(Auth::user()->can(['config.read', 'config.update']))
-                <a href="/dashboard/config"><i class="fas fa-id-card"></i> Identitas Desa</a>
+                <a href="/dashboard/desa/config"><i class="fas fa-id-card"></i> Identitas Desa</a>
                 @endif
             </div>
         </div>
@@ -37,12 +37,12 @@
         <div class="accordion">
             <input type="checkbox" id="accordion-2" name="accordion-checkbox" hidden>
             <label class="accordion-header c-hand" for="accordion-2" tabindex="0">
-                <i class="fas fa-cog"></i> Pengaturan
+                <i class="fas fa-cog"></i> Sistem
             </label>
             <div class="accordion-body">
                 @if(Auth::user()->can(['user.create', 'user.read', 'user.update', 'user.delete']))
-                <a href="/dashboard/user"><i class="fas fa-users"></i> Pengguna</a>
-                <a href="/dashboard/role"><i class="fas fa-lock"></i> Jabatan</a>
+                <a href="/dashboard/sistem/user"><i class="fas fa-users"></i> Pengguna</a>
+                <a href="/dashboard/sistem/role"><i class="fas fa-lock"></i> Jabatan</a>
                 @endif
             </div>
         </div>

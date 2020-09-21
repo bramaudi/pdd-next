@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Pages\Dashboard;
+namespace App\Http\Controllers\Pages\Dashboard\Sistem;
 
 use Livewire\Component;
-use App\Models\User as UserModel;
+use App\Models\User as Pengguna;
 use Livewire\WithPagination;
 
 class User extends Component
@@ -16,8 +16,8 @@ class User extends Component
 
     public function render()
     {
-        return view('pages.dashboard.user', [
-            'users' => UserModel::paginate(10)
+        return view('pages.dashboard.sistem.user', [
+            'users' => Pengguna::paginate(10)
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pages\Dashboard;
+namespace App\Http\Controllers\Pages\Dashboard\Sistem;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -91,6 +91,6 @@ class Permission extends Component
 
     public function render()
     {
-        return view('pages.dashboard.permission');
+        return view('pages.dashboard.sistem.permission');
     }
 }
