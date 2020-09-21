@@ -41,6 +41,11 @@ class Penduduk extends Model
         return $this->belongsTo(Rt::class);
     }
 
+    public function jenisKelamin(): BelongsTo
+    {
+        return $this->belongsTo(Label::class);
+    }
+
     public function statusPerkawinan(): BelongsTo
     {
         return $this->belongsTo(Label::class);
