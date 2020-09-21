@@ -122,8 +122,7 @@ class Install extends Command
                 file_get_contents('.env')
             ));
 
-            $this->info("Tersimpan!");
-            $this->info("\nDatabase telah siap! Mohon jalankan installer sekali lagi.");
+            $this->info("Menyiapkan installer...");
 
         }
     }
