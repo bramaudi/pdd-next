@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Penduduk;
+namespace App\Models\Kependudukan;
 
-use App\Models\Cluster\Penduduk;
+use App\Models\Kependudukan\Penduduk;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

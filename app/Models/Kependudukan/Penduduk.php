@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Models\Penduduk;
+namespace App\Models\Kependudukan;
 
 use App\Models\Label\Label;
 use App\Traits\Helper;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Penduduk extends Model
 {
-    use Helper;
+    use HasFactory, Helper;
 
     protected $table = 'penduduk';
 

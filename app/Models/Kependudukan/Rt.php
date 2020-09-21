@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Penduduk;
+namespace App\Models\Kependudukan;
 
 use App\Models\Cluster\Rt as LingkunganRt;
 
