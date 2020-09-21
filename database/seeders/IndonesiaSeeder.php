@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Closure;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,7 @@ class IndonesiaSeeder extends Seeder
              ->villagesSeeder();
     }
 
-    protected function loop(array $input, $fn): self
+    protected function loop(array $input, Closure $fn): self
     {
         $count = count($input);
         $side = ceil($count / 1500);
