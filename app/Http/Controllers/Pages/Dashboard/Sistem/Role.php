@@ -13,6 +13,7 @@ class Role extends Component
     {
         return view('pages.dashboard.sistem.role', [
             'roles' => ModelsRole::where('reserved', 0)->with('permissions')->get(),
+            'systemRoles' => ModelsRole::where('reserved', 1)->with('permissions')->get(),
         ]);
     }
 }

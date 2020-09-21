@@ -68,7 +68,17 @@
                 <th>Terakhir diperbarui</th>
                 <th>Dibuat</th>
             </tr>
-                @foreach($roles as $role)
+            @foreach($systemRoles as $role)
+                <tr>
+                    <td>{{ $role->id }}</td>
+                    <td>{{ $role->name }}</td>
+                    <td>--</td>
+                    <td>{{ $role->updated_at }}</td>
+                    <td>{{ $role->created_at }}</td>
+                </tr>
+            @endforeach
+
+            @foreach($roles as $role)
                 <tr>
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
@@ -102,6 +112,6 @@
                     <td>{{ $role->updated_at }}</td>
                     <td>{{ $role->created_at }}</td>
                 </tr>
-                @endforeach
+            @endforeach
         </table>
     </div>
