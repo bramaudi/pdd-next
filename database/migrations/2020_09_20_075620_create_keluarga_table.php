@@ -17,6 +17,7 @@ class CreateKeluargaTable extends Migration
             $table->id();
             $table->unsignedBigInteger('no_kk');
             $table->unsignedBigInteger('rt_id');
+            $table->timestamp('tanggal_cetak')->nullable();
             $table->timestamps();
         });
     }
