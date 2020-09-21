@@ -1,9 +1,8 @@
 <?php
 
-namespace Database\Factories\Penduduk;
+namespace Database\Factories\Kependudukan;
 
-use App\Models\Cluster\Penduduk;
-use App\Models\Penduduk\Keluarga;
+use App\Models\Kependudukan\Keluarga;
 use App\Models\Cluster\Rt;
 use App\Models\Meta\Meta;
 use Illuminate\Database\Eloquent\Factories\Factory;

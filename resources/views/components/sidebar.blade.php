@@ -21,11 +21,14 @@
         <div class="accordion">
             <input type="checkbox" id="accordion-penduduk" name="accordion-checkbox" hidden>
             <label class="accordion-header c-hand" for="accordion-penduduk" tabindex="0">
-                <i class="fas fa-users"></i> Kependudukan
+                <i class="fas fa-user-friends"></i> Kependudukan
             </label>
             <div class="accordion-body">
                 @if(Auth::user()->can(['penduduk.create', 'penduduk.read', 'config.update', 'penduduk.delete']))
-                <a href="/dashboard/penduduk"><i class="fas fa-user-friends"></i> Penduduk</a>
+                <a href="/dashboard/kependudukan/penduduk"><i class="fas fa-user"></i> Penduduk</a>
+                @endif
+                @if(Auth::user()->can(['keluarga.create', 'keluarga.read', 'keluarga.update', 'keluarga.delete']))
+                <a href="/dashboard/kependudukan/keluarga"><i class="fas fa-users"></i> Keluarga</a>
                 @endif
             </div>
         </div>

@@ -40,8 +40,13 @@ Route::namespace('App\Http\Controllers\Pages')->group(function()
             });
 
             // Kependudukan
-            Route::group(['middleware' => ['permission:penduduk.create|penduduk.read|penduduk.update|penduduk.delete']], function() {
+            Route::group([
+                'middleware' => ['permission:penduduk.create|penduduk.read|penduduk.update|penduduk.delete'],
+                'namespace' => 'Kependudukan',
+                'prefix' => 'kependudukan'
+            ], function() {
                 Route::get('/penduduk', Penduduk::class);
+                Route::get('/keluarga', Keluarga::class);
             });
         });
     });

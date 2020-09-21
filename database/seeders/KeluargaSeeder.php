@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cluster\Penduduk;
-use App\Models\Penduduk\Keluarga;
+use App\Models\Kependudukan\Keluarga;
 use Illuminate\Database\Seeder;
 
 class KeluargaSeeder extends Seeder

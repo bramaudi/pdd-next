@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Factories\Cluster;
+namespace Database\Factories\Kependudukan;
 
 use App\Models\Label\Label;
 use App\Models\Cluster\Rt;
-use App\Models\Penduduk\Keluarga;
-use App\Models\Penduduk\Penduduk;
+use App\Models\Kependudukan\Keluarga;
+use App\Models\Kependudukan\Penduduk;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PendudukFactory extends Factory
