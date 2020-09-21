@@ -33,6 +33,7 @@ class Update extends Component
             $role->save();
         }
 
+        $this->name = '';
         $this->emit('remount');
         $this->dispatchBrowserEvent('close-modals');
     }
