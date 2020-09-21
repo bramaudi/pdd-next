@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Install extends Command
 {
@@ -13,7 +14,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'pdd:install';
+    protected $signature = 'pdd:install {--dummy}';
 
     /**
      * The console command description.
@@ -39,15 +40,17 @@ class Install extends Command
      */
     public function handle()
     {
-        $this->info('
-██████╗ ██████╗ ██████╗ 
-██╔══██╗██╔══██╗██╔══██╗
-██████╔╝██║  ██║██║  ██║
-██╔═══╝ ██║  ██║██║  ██║
-██║     ██████╔╝██████╔╝
-╚═╝     ╚═════╝ ╚═════╝ 
-Selamat Datang di Portal Desa Digital Installer v1
-------------------------------------------------------');
+        $output = new ConsoleOutput();
+        $this->info('');
+        $this->error('                         ');
+        $output->write("<fg=black;bg=red> ██████╗ ██████╗ ██████╗ </>");
+        $output->write("\n<fg=black;bg=red> ██╔══██╗██╔══██╗██╔══██╗</>");
+        $output->write("\n<fg=black;bg=red> ██████╔╝██║  ██║██║  ██║</>");
+        $output->write("\n<fg=black;bg=white> ██╔═══╝ ██║  ██║██║  ██║</>");
+        $output->write("\n<fg=black;bg=white> ██║     ██████╔╝██████╔╝</>");
+        $output->write("\n<fg=black;bg=white> ╚═╝     ╚═════╝ ╚═════╝ </>\n");
+        $this->info("\nSelamat Datang di Portal Desa Digital Installer v1");
+        $this->info('------------------------------------------------------');
 
         if (!$this->testDbConnection()) {
             $this->setupDatabase();
@@ -121,7 +124,8 @@ Selamat Datang di Portal Desa Digital Installer v1
     /**
      * Test koneksi database
      */
-    private function testDbConnection(){
+    private function testDbConnection()
+    {
         $this->line('Memeriksa Koneksi Database...');
 
         
@@ -163,7 +167,8 @@ Selamat Datang di Portal Desa Digital Installer v1
      * 
      * @return void 
     */
-    private function migrate(){
+    private function migrate()
+    {
         $this->line("\nMemulai Proses Migrate...");
         $this->call('migrate');
     }
@@ -173,9 +178,17 @@ Selamat Datang di Portal Desa Digital Installer v1
      * 
      * @return void 
     */
-    private function seed(){
+    private function seed()
+    {
         $this->line("\nMemulai Proses Seeding...");
         $this->call('db:seed');
+
+        if ($this->option('dummy')) {
+            $this->info('Membuat data dummy...');
+            $this->call('db:seed', [
+                '--class' => 'DummySeeder'
+            ]);
+        }
     }
  
     /** 
@@ -183,7 +196,8 @@ Selamat Datang di Portal Desa Digital Installer v1
      * 
      * @return void 
     */
-    private function setUpKey(){
+    private function setUpKey()
+    {
         $this->call('key:generate');
         $this->info("\nAplikasi berhasil diinstal!");
         $this->info("Login Admin:");

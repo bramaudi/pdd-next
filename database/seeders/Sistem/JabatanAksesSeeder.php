@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Sistem;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -13,6 +13,14 @@ class JabatanAksesSeeder extends Seeder
      * @return void
      */
     public function run()
+    {
+        $this->roleOperator();
+    }
+
+    /**
+     * Beri hak akses untuk Operator
+     */
+    public function roleOperator()
     {
         $operator = Role::where('name', 'Operator')->first();
         $operator->givePermissionTo([

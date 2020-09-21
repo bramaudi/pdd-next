@@ -1,10 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Sistem;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -28,12 +27,5 @@ class UserSeeder extends Seeder
         ]);
 
         $admin->assignRole('Super Admin');
-
-        // Dummy user jika mode pengembangan
-        if (App::environment('local')) {
-            User::factory()
-                ->times(50)
-                ->create();
-        }
     }
 }

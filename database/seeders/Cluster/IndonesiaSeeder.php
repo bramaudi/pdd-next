@@ -1,9 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Cluster;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class IndonesiaSeeder extends Seeder
 {
@@ -22,7 +24,9 @@ class IndonesiaSeeder extends Seeder
 
     protected function loop(array $input, $fn): self
     {
+        $output = new ConsoleOutput();
         $count = count($input);
+        $progressBar = new ProgressBar($output, $count);
         $side = ceil($count / 1500);
 
         for($i = 0; $i <= $side; $i += 1)
@@ -35,14 +39,19 @@ class IndonesiaSeeder extends Seeder
             }
 
             call_user_func($fn, $data);
+
+            $progressBar->advance();
         }
+
+        $progressBar->finish();
+        $output->write("\n");
 
         return $this;
     }
 
     protected function provincesSeeder(): self
     {
-        $data = file(base_path('database/seeders/data/indonesia/provinces.csv'));
+        $data = file(base_path('database/seeders/_data/indonesia/provinces.csv'));
 
         return $this->loop($data, function ($data) {
 
@@ -61,7 +70,7 @@ class IndonesiaSeeder extends Seeder
 
     protected function regenciesSeeder(): self
     {
-        $data = file(base_path('database/seeders/data/indonesia/regencies.csv'));
+        $data = file(base_path('database/seeders/_data/indonesia/regencies.csv'));
 
         return $this->loop($data, function ($data) {
 
@@ -80,7 +89,7 @@ class IndonesiaSeeder extends Seeder
 
     protected function districtsSeeder(): self
     {
-        $data = file(base_path('database/seeders/data/indonesia/districts.csv'));
+        $data = file(base_path('database/seeders/_data/indonesia/districts.csv'));
 
         return $this->loop($data, function ($data) {
 
@@ -99,7 +108,7 @@ class IndonesiaSeeder extends Seeder
 
     protected function villagesSeeder(): self
     {
-        $data = file(base_path('database/seeders/data/indonesia/villages.csv'));
+        $data = file(base_path('database/seeders/_data/indonesia/villages.csv'));
 
         return $this->loop($data, function ($data) {
 

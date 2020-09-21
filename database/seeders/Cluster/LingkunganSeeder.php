@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Cluster;
 
 use App\Models\Cluster\Lingkungan;
 use Illuminate\Database\Seeder;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Sistem;
 
 use App\Models\Meta\Meta;
 use Illuminate\Database\Seeder;
@@ -15,7 +15,7 @@ class MetaSeeder extends Seeder
      */
     public function run()
     {
-        foreach (glob(base_path('database/seeders/data/meta/*.json')) as $file) {
+        foreach (glob(base_path('database/seeders/_data/meta/*.json')) as $file) {
 
             Meta::firstOrCreate([
 

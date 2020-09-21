@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Kependudukan;
 
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Kependudukan\Keluarga;
