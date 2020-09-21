@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Cluster;
 
+use Closure;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -22,7 +23,7 @@ class IndonesiaSeeder extends Seeder
              ->villagesSeeder();
     }
 
-    protected function loop(array $input, $fn): self
+    protected function loop(array $input, Closure $fn): self
     {
         $output = new ConsoleOutput();
         $count = count($input);
