@@ -4,6 +4,8 @@
         <i class="icon icon-plus mr-2"></i> Tambah KK Baru
     </button>
 
+    <div class="loading loading-lg loading-full" wire:loading></div>
+
     <div class="table-container">
         <table class="table table-striped table-hover">
             <tr>
@@ -33,7 +35,7 @@
                     <td>{{ $keluarga->anggota->count() }}</td>
                     <td>{{ $keluarga->kepala()->jenisKelamin->label }}</td>
                     <td>{{ $keluarga->kepala()->alamat }}</td>
-                    <td>{{ var_dump($keluarga->kepala()->rt->rw->village) }}</td>
+                    <td>{{ $keluarga->kepala()->rt->rw->lingkungan->nama }}</td>
                     <td>{{ $keluarga->kepala()->rt->nomor }}</td>
                     <td>{{ $keluarga->kepala()->rt->rw->nomor }}</td>
                     <td>{{ $keluarga->created_at }}</td>
@@ -42,5 +44,7 @@
             @endforeach
         </table>
     </div>
+
+    {{ $keluargaList->links('components.pagination') }}
 
 </div>
