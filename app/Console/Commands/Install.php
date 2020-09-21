@@ -81,7 +81,14 @@ class Install extends Command
         $dbUser = $this->anticipate('Masukan User Database', ['root', 'mysql']);
         $dbPass = $this->ask('Masukan Password Database');
 
-        $conn = new \mysqli($dbHost, $dbUser, $dbPass);
+        try {
+            $conn = new \mysqli($dbHost, $dbUser, $dbPass);
+        } catch (\Exception $e) {
+            $output = new ConsoleOutput();
+            $output->write("<fg=red>Sambungan database tidak benar!</>\n");
+            die();
+        }
+
         if (!$conn->connect_errno) {
 
             $databaseName = $this->ask('Masukan Nama Database');
