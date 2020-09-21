@@ -87,7 +87,7 @@
                 <label class="form-label" for="input-config-provincies">Provinsi:</label>
             </div>
             <div class="col-9 col-sm-12">
-                <select class="form-select" id="input-config-provincies" wire:change="$set('province_id', $event.target.value)">
+                <select class="form-select" id="input-config-provincies" wire:change="changeProvince($event.target.value)">
                     <option value="{{ $province_id }}">{{ $province_name }}</option>
                     <option value="">--</option>
                     @foreach($provinces as $province)
@@ -104,9 +104,11 @@
                 <label class="form-label" for="input-config-provincies">Kabupaten:</label>
             </div>
             <div class="col-9 col-sm-12">
-                <select class="form-input" id="input-config-provincies" wire:change="$set('regency_id', $event.target.value)">
-                    <option value="{{ $regency_id }}">{{ $regency_name }}</option>
-                    <option value="">--</option>
+                <select class="form-input" id="input-config-provincies" wire:change="changeRegency($event.target.value)">
+                    @if($regency_id)
+                        <option value="{{ $regency_id }}">{{ $regency_name }}</option>
+                        <option value="">--</option>
+                    @endif
                     @foreach($regencies as $regency)
                         <option value="{{ $regency->id }}">{{ $regency->name }}</option>
                     @endforeach
@@ -122,8 +124,10 @@
             </div>
             <div class="col-9 col-sm-12">
                 <select class="form-input" id="input-config-provincies" wire:change="$set('district_id', $event.target.value)">
-                    <option value="{{ $district_id }}">{{ $district_name }}</option>
-                    <option value="">--</option>
+                    @if($district_id)
+                        <option value="{{ $district_id }}">{{ $district_name }}</option>
+                        <option value="">--</option>
+                    @endif
                     @foreach($districts as $district)
                         <option value="{{ $district->id }}">{{ $district->name }}</option>
                     @endforeach

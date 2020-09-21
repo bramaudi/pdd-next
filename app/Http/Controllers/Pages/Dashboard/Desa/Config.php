@@ -9,14 +9,10 @@ use App\Models\Meta\Meta;
 use Livewire\Component;
 
 class Config extends Component
-{
-    // Identitas Desa
+{   
+    /** Model */
     public $id_desa, $nama, $email, $telepon, $website, $tentang;
-
-    // Identitas Pemerintah
     public $kades_nama, $kades_nip, $camat_nama, $camat_nip;
-
-    // Alamat Desa
     public $province_id, $regency_id, $district_id;
 
     /**
@@ -30,6 +26,22 @@ class Config extends Component
         foreach(array_keys($config) as $key) {
             $this->$key = $config[$key];
         }
+    }
+
+    /**
+     * Ganti provinsi -> reset id kabupaten & kecamatan
+     */
+    public function changeProvince($province_id)
+    {
+        $this->province_id = $province_id;
+        $this->regency_id = null;
+        $this->district_id = null;
+    }
+
+    public function changeRegency($regency_id)
+    {
+        $this->regency_id = $regency_id;
+        $this->district_id = null;
     }
 
     /**
@@ -90,8 +102,8 @@ class Config extends Component
             'regencies' => $this->province_id ? Regency::where('province_id', $this->province_id)->get() : [],
             'districts' => $this->regency_id ? District::where('regency_id', $this->regency_id)->get() : [],
             'province_name' => Province::find($this->province_id)->name,
-            'regency_name' => Regency::find($this->regency_id)->name,
-            'district_name' => District::find($this->district_id)->name,
+            'regency_name' => $this->regency_id ? Regency::find($this->regency_id)->name : '--',
+            'district_name' => $this->district_id ? District::find($this->district_id)->name : '--',
         ]);
     }
 }
