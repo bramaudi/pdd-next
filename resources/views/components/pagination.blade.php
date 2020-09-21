@@ -10,7 +10,7 @@
     </li>
     @else   
     <li class="page-item">
-        <a class="c-hand" href="#first" wire:click="gotoPage(1)" rel="first">
+        <a class="c-hand" href="#first" wire:key="first" wire:click="gotoPage(1)" rel="first">
             {!! __('pagination.first') !!}
         </a>
     </li>
@@ -47,7 +47,7 @@
     {{-- Last Page --}}
     @if ($paginator->hasMorePages())
     <li class="page-item">
-        <a class="c-hand" href="#last" wire:click="gotoPage({{ $paginator->lastPage() }})" rel="last">
+        <a class="c-hand" href="#last" wire:key="last" wire:click="gotoPage({{ $paginator->lastPage() }})" rel="last">
             {!! __('pagination.last') !!}
         </a>
     </li>

@@ -17,6 +17,7 @@ class Create extends Component
 
         Role::create(['name' => $this->name]);
 
+        $this->name = '';
         $this->emit('remount');
         $this->dispatchBrowserEvent('close-modals');
     }
