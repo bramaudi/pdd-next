@@ -3,14 +3,14 @@
 namespace App\Models\Kependudukan;
 
 use App\Models\Label\Label;
-use App\Traits\Helper;
+use App\Helper\Math;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Penduduk extends Model
 {
-    use HasFactory, Helper;
+    use HasFactory;
 
     protected $table = 'penduduk';
 
@@ -33,7 +33,7 @@ class Penduduk extends Model
 
     public function getUmurAttribute()
     {
-        return $this->calcUmur($this->tanggal_lahir);
+        return Math::calcUmur($this->tanggal_lahir);
     }
 
     public function rt(): BelongsTo

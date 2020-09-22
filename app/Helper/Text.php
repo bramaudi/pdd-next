@@ -1,21 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace App\Helper;
 
-use DateTime;
-
-trait Helper
-{
-    /**
-     * Hitung umur dari tanggal lahir
-     */
-    public function calcUmur(String $date): String
-    {
-        $birth = new DateTime($date);
-        $today = new DateTime('today');
-        return $birth < $today ? $today->diff($birth)->y : null;
-    }
-
+trait Text {
 
     /**
      * snake_case => snakeCase
@@ -52,4 +39,5 @@ trait Helper
 
         return $str;
     }
+
 }
