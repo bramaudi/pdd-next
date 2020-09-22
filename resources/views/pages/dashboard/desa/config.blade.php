@@ -101,10 +101,10 @@
         {{-- Kabupaten --}}
         <div class="form-group @error('regency_id') has-error @enderror">
             <div class="col-3 col-sm-12">
-                <label class="form-label" for="input-config-provincies">Kabupaten:</label>
+                <label class="form-label" for="input-config-regencies">Kabupaten:</label>
             </div>
             <div class="col-9 col-sm-12">
-                <select class="form-input" id="input-config-provincies" wire:change="changeRegency($event.target.value)">
+                <select class="form-input" id="input-config-regencies" wire:change="changeRegency($event.target.value)">
                     @if($regency_id)
                         <option value="{{ $regency_id }}">{{ $regency_name }}</option>
                         <option value="">--</option>
@@ -120,10 +120,10 @@
         {{-- Kecamatan --}}
         <div class="form-group @error('district_id') has-error @enderror">
             <div class="col-3 col-sm-12">
-                <label class="form-label" for="input-config-provincies">Kecamatan:</label>
+                <label class="form-label" for="input-config-districts">Kecamatan:</label>
             </div>
             <div class="col-9 col-sm-12">
-                <select class="form-input" id="input-config-provincies" wire:change="$set('district_id', $event.target.value)">
+                <select class="form-input" id="input-config-districts" wire:change="changeDistrict($event.target.value)">
                     @if($district_id)
                         <option value="{{ $district_id }}">{{ $district_name }}</option>
                         <option value="">--</option>
@@ -133,6 +133,25 @@
                     @endforeach
                 </select>
                 @error('district_id') <div class="form-input-hint">{{ $message }}</div> @enderror
+            </div>
+        </div>
+
+        {{-- Kelurahan --}}
+        <div class="form-group @error('village_id') has-error @enderror">
+            <div class="col-3 col-sm-12">
+                <label class="form-label" for="input-config-villages">Kelurahan:</label>
+            </div>
+            <div class="col-9 col-sm-12">
+                <select class="form-input" id="input-config-villages" wire:change="$set('village_id', $event.target.value)">
+                    @if($village_id)
+                        <option value="{{ $village_id }}">{{ $village_name }}</option>
+                        <option value="">--</option>
+                    @endif
+                    @foreach($villages as $village)
+                        <option value="{{ $village->id }}">{{ $village->name }}</option>
+                    @endforeach
+                </select>
+                @error('village_id') <div class="form-input-hint">{{ $message }}</div> @enderror
             </div>
         </div>
 
