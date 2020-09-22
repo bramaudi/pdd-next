@@ -2,8 +2,10 @@
 
 namespace Database\Seeders\Sistem;
 
+use Database\Seeders\Sistem\HakAkses\Desa;
+use Database\Seeders\Sistem\HakAkses\Kependudukan;
+use Database\Seeders\Sistem\HakAkses\Sistem;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 
 class HakAksesSeeder extends Seeder
 {
@@ -12,20 +14,11 @@ class HakAksesSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        /**
-         * Pengguna
-         */
-        Permission::firstOrCreate(['name' => 'user.create']);
-        Permission::firstOrCreate(['name' => 'user.read']);
-        Permission::firstOrCreate(['name' => 'user.update']);
-        Permission::firstOrCreate(['name' => 'user.delete']);
+    public function run() {
 
-        /**
-         * Ubah Identitas Desa
-         */
-        Permission::firstOrCreate(['name' => 'config.read']);
-        Permission::firstOrCreate(['name' => 'config.update']);
+        $this->call(Desa::class);
+        $this->call(Kependudukan::class);
+        $this->call(Sistem::class);
+
     }
 }
