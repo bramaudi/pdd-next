@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('App\Http\Controllers\Pages')->group(function()
+Route::namespace('App\Http\Livewire\Pages')->group(function()
 {
     Route::get('/', Welcome::class);
     Route::get('/login', Login::class)->name('login');
-    
+
     /**
      * Logged Auth
      */
     Route::middleware('auth')->group(function () {
         Route::get('dashboard', Dashboard::class);
-    
+
         // Dashboard
         Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard' ], function()
         {
