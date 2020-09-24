@@ -1,4 +1,8 @@
-<div>
-    {{-- Do your work, then step back. --}}
-    <h1>Welcome to PUBG Mobile</h1>
+@extends('layouts.default')
+
+@section('content')
+<div class="p-2 m-2">
+    <h1>PDD</h1>
+    <p>Portal Desa Digital</p>
 </div>
+@endsection

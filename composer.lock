@@ -1312,16 +1312,16 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Livewire\\LivewireServiceProvider"
+                        "Livewire\LivewireServiceProvider"
                     ],
                     "aliases": {
-                        "Livewire": "Livewire\\Livewire"
+                        "Livewire": "Livewire\Livewire"
                     }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Livewire\\": "src/"
+                    "Livewire\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

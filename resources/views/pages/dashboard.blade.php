@@ -1,6 +1,12 @@
+@extends('layouts.default')
+
+@section('content')
 <div class="container py-2 dashboard">
+
     <h1>Dashboard</h1>
+
     <div class="columns">
+
         <div class="column col-3 col-sm-12">
             <div class="stats" style="background: slateblue;">
                 <div class="title">Operator</div>
@@ -8,6 +14,7 @@
                 {{ $operator }}
             </div>
         </div>
+
         <div class="column col-3 col-sm-12">
             <div class="stats" style="background: teal;">
                 <div class="title">Penduduk</div>
@@ -15,6 +22,7 @@
                 {{ $penduduk }}
             </div>
         </div>
+
         <div class="column col-3 col-sm-12">
             <div class="stats" style="background: tomato;">
                 <div class="title">Keluarga</div>
@@ -22,6 +30,7 @@
                 {{ $keluarga }}
             </div>
         </div>
+
         <div class="column col-3 col-sm-12">
             <div class="stats">
                 <div class="title">Wilayah Dusun</div>
@@ -29,5 +38,8 @@
                 {{ $lingkungan }}
             </div>
         </div>
+        
     </div>
+
 </div>
+@endsection
