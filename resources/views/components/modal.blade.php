@@ -12,7 +12,7 @@
         {{ $slot }}
       </div>
     </div>
-    @if(isset($footer))
+    @if($footer)
     <div class="modal-footer">
       {{ $footer }}
     </div>
