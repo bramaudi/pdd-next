@@ -4,6 +4,7 @@ namespace Database\Seeders\Kependudukan;
 
 use Database\Seeders\Kependudukan\KeluargaSeeder;
 use Database\Seeders\Kependudukan\KepalaKeluargaSeeder;
+use Database\Seeders\Kependudukan\PengurusSeeder;
 use Illuminate\Database\Seeder;
 
 class KependudukanSeeder extends Seeder
@@ -17,5 +18,6 @@ class KependudukanSeeder extends Seeder
     {
         $this->call(KeluargaSeeder::class);
         $this->call(KepalaKeluargaSeeder::class);
+        $this->call(PengurusSeeder::class);
     }
 }

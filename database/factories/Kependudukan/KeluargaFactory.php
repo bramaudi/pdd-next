@@ -23,8 +23,6 @@ class KeluargaFactory extends Factory
      */
     public function definition()
     {
-        $config = Meta::where('key', 'portal-desa-digital')->first()->decode();
-
         return [
             'no_kk'         => $this->faker->unique()->numberBetween(pow(10, 15), pow(11, 15)),
             'rt_id'         => Rt::all()->random()->id

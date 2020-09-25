@@ -1,0 +1,15 @@
+Kepala Desa
+Sekretaris Desa
+Kaur Keuangan
+Kaur Perencanaan
+Kaur Kesejahteraan
+Kasi Pemerintahan
+Kasi Pelayanan
+Staf Kasi Kesejahteraan
+Staf Kasi Pemerintahan
+Staf Kasi Pelayanan
+Kawil Dusun I
+Kawil Dusun II
+Kawil Dusun III
+Kawil Dusun IV
+Kawil Dusun V
