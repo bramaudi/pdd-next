@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Form;
+namespace App\Http\Livewire\Desa;
 
 use App\Models\Indonesia\District;
 use App\Models\Indonesia\Province;
@@ -108,7 +108,7 @@ class Config extends Component
 
     public function render()
     {
-        return view('livewire.form.config', [
+        return view('livewire.desa.config', [
             'provinces' => Province::all(),
             'regencies' => $this->province_id ? Regency::where('province_id', $this->province_id)->get() : [],
             'districts' => $this->regency_id ? District::where('regency_id', $this->regency_id)->get() : [],

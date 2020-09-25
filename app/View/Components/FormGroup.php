@@ -4,18 +4,19 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class submit extends Component
+class FormGroup extends Component
 {
-    public $text;
+    public $model, $type;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($text = 'Submit')
+    public function __construct($model, $type = 'text')
     {
-        $this->text = $text;
+        $this->model = $model;
+        $this->type = $type;
     }
 
     /**
@@ -25,6 +26,6 @@ class submit extends Component
      */
     public function render()
     {
-        return view('components.submit');
+        return view('components.form-group');
     }
 }

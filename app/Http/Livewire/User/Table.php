@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Table;
+namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use App\Models\User as ModelUser;
 use Livewire\WithPagination;
 
-class User extends Component
+class Table extends Component
 {
     use WithPagination;
 
@@ -16,7 +16,7 @@ class User extends Component
 
     public function render()
     {
-        return view('livewire.table.user', [
+        return view('livewire.user.table', [
             'list' => ModelUser::paginate(10)
         ]);
     }

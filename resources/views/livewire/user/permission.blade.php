@@ -2,10 +2,10 @@
     <div class="table-container mb-2">
         <table class="table table-striped table-hover">
             <tr>
-                <th>Jenis</th>
+                <th>Hak Akses</th>
                 <th>Tambah</th>
                 <th>Lihat</th>
-                <th>Edit</th>
+                <th>Ubah</th>
                 <th>Hapus</th>
             </tr>
 
@@ -41,7 +41,7 @@
                 </td>
                 <td>
                     <label class="form-checkbox">
-                        <input wire:model="config.read" type="checkbox">
+                        <input type="checkbox" disabled>
                         <i class="form-icon"></i>
                     </label>
                 </td>

@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container py-2">
-    <livewire:form.config />
+    <livewire:desa.config />
 </div>
 @endsection

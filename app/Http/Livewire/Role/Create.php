@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Form\Role;
+namespace App\Http\Livewire\Role;
 
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
@@ -24,6 +24,6 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.form.role.create');
+        return view('livewire.role.create');
     }
 }

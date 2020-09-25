@@ -19,7 +19,7 @@
                     <button
                         class="btn btn-sm tooltip"
                         data-tooltip="Ubah Data"
-                        @click="modal = 'edit'"
+                        @click="modal = 'update'"
                         wire:click="$emit('loadData', {{ $user->id }})"
                     >
                         <i class="icon icon-edit"></i>
@@ -28,7 +28,7 @@
                     <button
                         class="btn btn-sm btn-error tooltip"
                         data-tooltip="Hapus Pengguna"
-                        @click="modal = 'del'"
+                        @click="modal = 'delete'"
                         wire:click="$emit('loadData', {{ $user->id }})"
                     >
                         <i class="icon icon-delete"></i>

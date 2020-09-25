@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Form\Role;
+namespace App\Http\Livewire\Role;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
-class Update extends Component
+class Delete extends Component
 {
     public $roleId;
     public $name;
@@ -14,32 +16,26 @@ class Update extends Component
 
     public function loadData($id)
     {
-        $role = Role::find($id);
+        $role = Role::findOrFail($id);
         $this->roleId = $id;
         $this->name = $role->name;
     }
 
     public function submit()
     {
-        $this->validate([
-            'name' => 'required|max:20'
-        ]);
-
         $role = Role::find($this->roleId);
 
-        // Update jika bukan Super Admin
+        // Cegah hapus Super-Admin
         if ($role->name != 'Super Admin') {
-            $role->name = $this->name;
-            $role->save();
+            $role->delete();
         }
 
-        $this->name = '';
         $this->emit('remount');
         $this->dispatchBrowserEvent('close-modals');
     }
 
     public function render()
     {
-        return view('livewire.form.role.update');
+        return view('livewire.role.delete');
     }
 }

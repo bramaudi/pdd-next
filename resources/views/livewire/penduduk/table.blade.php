@@ -30,7 +30,7 @@
                     <button
                         class="btn btn-sm tooltip"
                         data-tooltip="Ubah Data"
-                        @click="modal = 'edit'"
+                        @click="modal = 'update'"
                         wire:click="$emit('loadData', {{ $penduduk->id }})"
                     >
                         <i class="icon icon-edit"></i>

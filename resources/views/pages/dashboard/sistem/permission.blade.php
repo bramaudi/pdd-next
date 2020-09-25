@@ -5,7 +5,7 @@
 
     <h3>{{ $role->name }}</h3>
 
-    <livewire:table.permission :roleId="$role->id" />
+    <livewire:user.permission :roleId="$role->id" />
 
 </div>
 @endsection

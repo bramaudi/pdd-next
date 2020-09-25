@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Table;
+namespace App\Http\Livewire\User;
 
 use Livewire\Component;
+use Spatie\Permission\Models\Permission as ModelsPermission;
 use Spatie\Permission\Models\Role;
 
 class Permission extends Component
@@ -27,7 +28,6 @@ class Permission extends Component
         'delete' => null,
     ];
     public $config = [
-        'read' => null,
         'update' => null,
     ];
 
@@ -47,13 +47,17 @@ class Permission extends Component
     }
 
     /**
-     * Muat nilai yang tersimpan dari database
+     * Muat nilai yang tersimpan dari database ke property
      */
     public function getCurrent()
     {
-        foreach(array_keys($this->parents) as $parentKey) {
-            foreach(array_keys($this->$parentKey) as $actions) {
-                if ($this->role->hasPermissionTo($parentKey . '.' . $actions)) {
+        foreach($this->parents as $parentKey => $_)
+        {
+            foreach($this->$parentKey as $actions => $_)
+            {
+                $permissionName = $parentKey . '.' . $actions;
+
+                if ($this->role->hasPermissionTo($permissionName)) {
                     $this->$parentKey[$actions] = true;
                 }
             }
@@ -89,6 +93,6 @@ class Permission extends Component
 
     public function render()
     {
-        return view('livewire.table.permission');
+        return view('livewire.user.permission');
     }
 }

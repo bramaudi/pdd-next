@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Form\User;
+namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +35,6 @@ class Delete extends Component
 
     public function render()
     {
-        return view('livewire.form.user.delete');
+        return view('livewire.user.delete');
     }
 }

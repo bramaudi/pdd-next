@@ -4,7 +4,7 @@
     <div style="display: flex; justify-content: center; align-items: center; height: 80vh">
         <div class="card pb-2">
             <div class="card-body">
-                <livewire:form.login />
+                <livewire:login />
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Form\User;
+namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
@@ -72,6 +72,6 @@ class Update extends Component
     public function render()
     {
         $this->roles = Role::where('name', '!=', 'Super Admin')->get();
-        return view('livewire.form.user.update');
+        return view('livewire.user.update');
     }
 }
