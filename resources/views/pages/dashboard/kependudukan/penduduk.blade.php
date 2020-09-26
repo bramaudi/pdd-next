@@ -16,7 +16,7 @@
     </x-modal>
 
     <x-modal header="Hapus Penduduk" state="delete">
-        livewire:penduduk.delete 
+        <livewire:penduduk.delete />
     </x-modal>
 
     <livewire:penduduk.table />
