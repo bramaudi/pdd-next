@@ -17,7 +17,7 @@ class Update extends Component
     public $email;
     public $role;
 
-    protected $listeners = ['loadData', 'closeModal'];
+    protected $listeners = ['loadData', 'modalClose'];
 
     public function loadData($id)
     {
@@ -30,7 +30,7 @@ class Update extends Component
         $this->loading = false;
     }
 
-    public function closeModal()
+    public function modalClose()
     {
         $this->userId = null;
 
@@ -66,7 +66,7 @@ class Update extends Component
 
         $this->emit('remountList');
         $this->dispatchBrowserEvent('close-modals');
-        $this->closeModal();
+        $this->modalClose();
     }
 
     public function render()

@@ -11,7 +11,7 @@ class Update extends Component
     public $name;
     public $loading = 'true';
 
-    protected $listeners = ['loadData', 'closeModal'];
+    protected $listeners = ['loadData', 'modalClose'];
 
     public function loadData($id)
     {
@@ -21,7 +21,7 @@ class Update extends Component
         $this->loading = false;
     }
 
-    public function closeModal()
+    public function modalClose()
     {
         $this->loading = false;
     }
