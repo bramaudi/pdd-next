@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 class Update extends Component
 {
     public $userId, $roles;
-    public $dataLoaded = false;
+    public $loading = true;
 
     // Form Model
     public $name;
@@ -17,7 +17,7 @@ class Update extends Component
     public $email;
     public $role;
 
-    protected $listeners = ['loadData', 'resetLoaded'];
+    protected $listeners = ['loadData', 'closeModal'];
 
     public function loadData($id)
     {
@@ -27,17 +27,17 @@ class Update extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->username = $user->username;
-        $this->dataLoaded = true;
+        $this->loading = false;
     }
 
-    public function resetLoaded()
+    public function closeModal()
     {
         $this->userId = null;
 
         $this->name = null;
         $this->email = null;
         $this->username = null;
-        $this->dataLoaded = false;
+        $this->loading = true;
     }
 
     public function submit()
@@ -66,7 +66,7 @@ class Update extends Component
 
         $this->emit('remountList');
         $this->dispatchBrowserEvent('close-modals');
-        $this->resetLoaded();
+        $this->closeModal();
     }
 
     public function render()

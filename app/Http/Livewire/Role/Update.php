@@ -9,14 +9,21 @@ class Update extends Component
 {
     public $roleId;
     public $name;
+    public $loading = 'true';
 
-    protected $listeners = ['loadData'];
+    protected $listeners = ['loadData', 'closeModal'];
 
     public function loadData($id)
     {
         $role = Role::find($id);
         $this->roleId = $id;
         $this->name = $role->name;
+        $this->loading = false;
+    }
+
+    public function closeModal()
+    {
+        $this->loading = false;
     }
 
     public function submit()
