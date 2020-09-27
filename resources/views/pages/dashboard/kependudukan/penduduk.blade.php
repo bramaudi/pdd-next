@@ -11,10 +11,6 @@
         livewire:penduduk.create 
     </x-modal>
 
-    <x-modal header="Update Penduduk" state="update">
-        livewire:penduduk.update 
-    </x-modal>
-
     <x-modal header="Hapus Penduduk" state="delete">
         <livewire:penduduk.delete />
     </x-modal>

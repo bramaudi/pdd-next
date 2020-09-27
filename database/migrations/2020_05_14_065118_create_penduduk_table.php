@@ -16,17 +16,20 @@ class CreatePendudukTable extends Migration
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nik');
+            $table->unsignedBigInteger('nik_ayah');
+            $table->unsignedBigInteger('nik_ibu');
             $table->unsignedBigInteger('keluarga_id');
             $table->unsignedBigInteger('rt_id');
-            $table->unsignedBigInteger('agama_id');
-            $table->unsignedBigInteger('jenis_kelamin_id');
-            $table->unsignedBigInteger('golongan_darah_id');
-            $table->unsignedBigInteger('kewarganegaraan_id');
-            $table->unsignedBigInteger('status_perkawinan_id');
-            $table->unsignedBigInteger('pekerjaan_id');
-            $table->unsignedBigInteger('pendidikan_id');
             $table->unsignedBigInteger('foto_id')->nullable();
-            $table->tinyInteger('is_kepala')->nullable();
+            $table->unsignedSmallInteger('agama_id');
+            $table->unsignedSmallInteger('jenis_kelamin_id');
+            $table->unsignedSmallInteger('golongan_darah_id');
+            $table->unsignedSmallInteger('kewarganegaraan_id');
+            $table->unsignedSmallInteger('status_perkawinan_id');
+            $table->unsignedSmallInteger('status_kependudukan_id');
+            $table->unsignedSmallInteger('pekerjaan_id');
+            $table->unsignedSmallInteger('pendidikan_id');
+            $table->unsignedSmallInteger('hubungan_keluarga_id');
             $table->string('nama_ayah');
             $table->string('nama_ibu');
             $table->string('ponsel');

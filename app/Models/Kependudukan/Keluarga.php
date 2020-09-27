@@ -3,6 +3,7 @@
 namespace App\Models\Kependudukan;
 
 use App\Models\Kependudukan\Penduduk;
+use App\Models\Label\Label;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,10 @@ class Keluarga extends Model
 
     public function kepala()
     {
-        return $this->anggota->whereNotNull('is_kepala')->first();
+        $kepalaKeluarga = Label::whereLabel('Kepala Keluarga')->first()->id;
+        return $this->anggota
+                    ->where('hubungan_keluarga_id', $kepalaKeluarga)
+                    ->first();
     }
 
     public function anggota(): HasMany

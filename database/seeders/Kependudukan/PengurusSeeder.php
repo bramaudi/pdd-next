@@ -15,7 +15,7 @@ class PengurusSeeder extends Seeder
     public function run()
     {
         Pengurus::factory()
-                ->times(20)
+                ->times(10)
                 ->create();
     }
 }

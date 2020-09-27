@@ -4,6 +4,7 @@ namespace Database\Seeders\Kependudukan;
 
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Kependudukan\Keluarga;
+use App\Models\Label\Label;
 use Illuminate\Database\Seeder;
 
 class KepalaKeluargaSeeder extends Seeder
@@ -15,21 +16,13 @@ class KepalaKeluargaSeeder extends Seeder
      */
     public function run()
     {
-        foreach(Keluarga::all() as $keluarga) {
-            // Cari keluarga yang tidak ada kepala keluarganya
-            $kepalaKeluarga = Penduduk::whereNotNull('is_kepala')
-                                ->where('keluarga_id', $keluarga->id)
-                                ->orderBy('tanggal_lahir') // paling tua
-                                ->first();
+        foreach(Keluarga::all() as $keluarga)
+        {
+            $label = Label::whereLabel('Kepala Keluarga')->first()->id;
 
-            // Buatkan kepala keluarga
-            if (!$kepalaKeluarga) {
-                $kepala = Penduduk::where('keluarga_id', $keluarga->id)
-                            ->orderBy('tanggal_lahir') // paling tua
-                            ->first();
-                $kepala->is_kepala = 1;
-                $kepala->save();
-            }
+            $kepala = $keluarga->anggota->sortBy('tanggal_lahir')->first();
+            $kepala->hubungan_keluarga_id = $label;
+            $kepala->save();
         }
     }
 }

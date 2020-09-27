@@ -27,14 +27,13 @@
             <tr>
                 <td>{{ $penduduk->id }}</td>
                 <td>
-                    <button
+                    <a
                         class="btn btn-sm tooltip"
                         data-tooltip="Ubah Data"
-                        @click="modal = 'update'"
-                        wire:click="$emit('loadData', {{ $penduduk->id }})"
+                        href="{{ route('penduduk.create', ['id' => $penduduk->id]) }}"
                     >
                         <i class="icon icon-edit"></i>
-                    </button>
+                    </a>
 
                     <button
                         class="btn btn-sm btn-error tooltip"

@@ -6,17 +6,18 @@ use Illuminate\View\Component;
 
 class FormGroup extends Component
 {
-    public $model, $type;
+    public $model, $type, $horizontal;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($model, $type = 'text')
+    public function __construct($model, $type = 'text', $horizontal = false)
     {
         $this->model = $model;
         $this->type = $type;
+        $this->horizontal = $horizontal;
     }
 
     /**

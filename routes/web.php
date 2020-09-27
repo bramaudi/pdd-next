@@ -40,7 +40,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     /** Kependudukan */
     Route::group(['prefix' => '/kependudukan'], function ()
     {
-        Route::get('/penduduk', [Penduduk::class, 'index']);
+        Route::get('/penduduk', [Penduduk::class, 'index'])->name('penduduk.index');
+        Route::get('/penduduk/update/{id}', [Penduduk::class, 'update'])->name('penduduk.create');
         Route::get('/keluarga', [Keluarga::class, 'index']);
     });
 

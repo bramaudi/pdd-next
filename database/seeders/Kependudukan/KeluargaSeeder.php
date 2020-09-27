@@ -16,14 +16,16 @@ class KeluargaSeeder extends Seeder
      */
     public function run()
     {
-        $times = 100;
+        $times = 5;
 
         $output = new ConsoleOutput();
         $progressBar = new ProgressBar($output, $times);
 
         for ($i = 0; $i < $times; $i++) {
 
-            Keluarga::factory()->hasAnggota(random_int(3, 10))->create();
+            Keluarga::factory()
+                    ->hasAnggota(random_int(3, 10))
+                    ->create();
 
             $progressBar->advance();
 
