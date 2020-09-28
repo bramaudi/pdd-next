@@ -32,23 +32,26 @@
 </head>
 
 <body>
+
+    <div id="app">
+        <livewire:header />
+        
+        <div class="off-canvas">
     
-    <livewire:header />
+            <div id="sidebar" class="off-canvas-sidebar">
+                <livewire:sidebar />
+            </div>
     
-    <div class="off-canvas">
-
-        <div id="sidebar" class="off-canvas-sidebar">
-            <livewire:sidebar />
+            <a class="off-canvas-overlay" href="#"></a>
+    
+            <div class="off-canvas-content">
+                @yield('content')
+                <footer>&copy; 2020 Portal Desa Ditigal</footer>
+            </div>
+    
         </div>
-
-        <a class="off-canvas-overlay" href="#"></a>
-
-        <div class="off-canvas-content">
-            @yield('content')
-            <footer>&copy; 2020 Portal Desa Ditigal</footer>
-        </div>
-
     </div>
+    
 
     <livewire:scripts />
 

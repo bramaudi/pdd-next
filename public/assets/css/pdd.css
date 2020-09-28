@@ -29,6 +29,11 @@
 .icon { margin-bottom: 3px; } /* Spectre icon */
 
 
+#app {
+    overflow: hidden;
+}
+
+
 /* Header */
 header {
     padding: 8px 15px;
@@ -59,6 +64,10 @@ footer {
 }
 .off-canvas-content {
     padding: 0 !important;
+}
+
+.container {
+    padding: 10px;
 }
 
 /* Font Awesome */
@@ -107,7 +116,7 @@ i[class*="fa"] {
 /* Suaiankan Table */
 .table-container {
     overflow: auto;
-    width: calc(100vw - 23px);
+    width: calc(100vw - 28px);
     margin: 3px;
 }
 .table {
