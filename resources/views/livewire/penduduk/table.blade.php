@@ -30,7 +30,7 @@
                     <a
                         class="btn btn-sm tooltip"
                         data-tooltip="Ubah Data"
-                        href="{{ route('penduduk.create', ['id' => $penduduk->id]) }}"
+                        href="{{ route('penduduk.update', ['id' => $penduduk->id]) }}"
                     >
                         <i class="icon icon-edit"></i>
                     </a>

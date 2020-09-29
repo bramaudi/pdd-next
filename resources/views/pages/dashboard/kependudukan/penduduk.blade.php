@@ -3,13 +3,9 @@
 @section('content')
 <div class="container py-2" x-data="{ modal: null }" @close-modals.window="modal = null">
 
-    <button class="btn m-1" @click="modal = 'create'">
+    <a class="btn m-1" href="{{ route('penduduk.create') }}">
         <i class="icon icon-plus mr-1"></i> Tambah Penduduk
-    </button>
-
-    <x-modal header="Buat Penduduk" state="create">
-        livewire:penduduk.create 
-    </x-modal>
+    </a>
 
     <x-modal header="Hapus Penduduk" state="delete">
         <livewire:penduduk.delete />

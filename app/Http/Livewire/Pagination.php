@@ -8,6 +8,6 @@ class Pagination extends Component
 {
     public function render()
     {
-        return view('livewire.components.pagination');
+        return view('livewire.pagination');
     }
 }

@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 
 class Penduduk extends Controller
 {
+    public function create()
+    {
+        return view('pages.dashboard.kependudukan.penduduk-create');
+    }
+    
     public function update($id)
     {
         return view('pages.dashboard.kependudukan.penduduk-update', [

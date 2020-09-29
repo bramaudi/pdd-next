@@ -23,6 +23,11 @@ class PendudukFactory extends Factory
             'nama_ibu'               => $this->faker->name,
             'tempat_lahir'           => $this->faker->city,
             'tanggal_lahir'          => $this->faker->date,
+            'waktu_lahir'            => $this->faker->time(),
+            'akta_lahir'             => $this->faker->uuid,
+            'kelahiran_anak_ke'      => $this->faker->numberBetween(1, 5),
+            'berat_lahir'            => $this->faker->numberBetween(2.9, 3.6),
+            'panjang_lahir'          => $this->faker->numberBetween(44.2, 55.6),
             'alamat'                 => $this->faker->streetAddress,
             'ponsel'                 => $this->faker->phoneNumber,
             'rt_id'                  => Rt::all()->random()->id,
@@ -36,6 +41,14 @@ class PendudukFactory extends Factory
             'pendidikan_id'          => Label::whereLabel('pendidikan')          ->first()->turunan->random()->id,
             'pekerjaan_id'           => Label::whereLabel('pekerjaan')           ->first()->turunan->random()->id,
             'kewarganegaraan_id'     => Label::whereLabel('kewarganegaraan')     ->first()->turunan->random()->id,
+            'ktp_el_id'              => Label::whereLabel('ktp-el')              ->first()->turunan->random()->id,
+            'status_rekam_id'        => Label::whereLabel('status-rekam')        ->first()->turunan->random()->id,
+            'tempat_dilahirkan_id'   => Label::whereLabel('tempat-dilahirkan')   ->first()->turunan->random()->id,
+            'penolong_kelahiran_id'  => Label::whereLabel('penolong-kelahiran')  ->first()->turunan->random()->id,
+            'jenis_kelahiran_id'     => Label::whereLabel('jenis-kelahiran')     ->first()->turunan->random()->id,
+            'cacat_id'               => Label::whereLabel('cacat')               ->first()->turunan->random()->id,
+            'sakit_menahun_id'       => Label::whereLabel('sakit-menahun')       ->first()->turunan->random()->id,
+            'cara_kb_id'             => Label::whereLabel('cara-kb')             ->first()->turunan->random()->id,
         ];
     }
 }

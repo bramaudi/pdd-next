@@ -41,7 +41,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     Route::group(['prefix' => '/kependudukan'], function ()
     {
         Route::get('/penduduk', [Penduduk::class, 'index'])->name('penduduk.index');
-        Route::get('/penduduk/update/{id}', [Penduduk::class, 'update'])->name('penduduk.create');
+        Route::get('/penduduk/update/{id}', [Penduduk::class, 'update'])->name('penduduk.update');
+        Route::get('/penduduk/create', [Penduduk::class, 'create'])->name('penduduk.create');
         Route::get('/keluarga', [Keluarga::class, 'index']);
     });
 

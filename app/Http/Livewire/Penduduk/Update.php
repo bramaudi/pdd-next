@@ -9,11 +9,9 @@ use Livewire\Component;
 
 class Update extends Component
 {
-    public $model, $loading = 'true';
+    public $model;
 
     public $input = [];
-
-    protected $listeners = ['loadData', 'modalClose'];
 
     /**
      * Injek index pada $this->input dengan nama kolom table
@@ -39,16 +37,6 @@ class Update extends Component
         {
             $this->input[$inputKey] = $this->model[$inputKey];
         }
-
-        $this->loading = 'false';
-    }
-
-    /**
-     * Event saat modal ditutup
-     */
-    public function modalClose()
-    {
-        $this->loading = 'true';
     }
 
     /**
@@ -66,6 +54,7 @@ class Update extends Component
             'pekerjaan'           => Label::whereLabel('pekerjaan'),
             'status_perkawinan'   => Label::whereLabel('status-perkawinan'),
             'golongan_darah'      => Label::whereLabel('golongan-darah'),
+            'kewarganegaraan'     => Label::whereLabel('kewarganegaraan'),
         ];
 
         $option = [];

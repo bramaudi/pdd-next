@@ -83,6 +83,19 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label class="form-label" for="input-input.kewarganegaraan">
+            Kewarganegaraan:
+        </label>
+        <select wire:change="$set('input.kewarganegaraan_id', $event.target.value)" class="form-select" id="input-input.kewarganegaraan">
+            <option value="{{ $input['kewarganegaraan_id'] }}">{{ $label['kewarganegaraan'] }}</option>
+            <option value="">--</option>
+            @foreach($option['kewarganegaraan'] as $r)
+                <option value="{{ $r->id }}">{{ $r->label }}</option>
+            @endforeach
+        </select>
+    </div>
+
     <br>
     <div class="divider" data-content="Pendidikan & Pekerjaan"></div>
 
