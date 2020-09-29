@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class FormGroup extends Component
 {
-    public $model, $type, $horizontal;
+    public $model, $type, $horizontal, $error;
 
     /**
      * Create a new component instance.
@@ -18,6 +18,9 @@ class FormGroup extends Component
         $this->model = $model;
         $this->type = $type;
         $this->horizontal = $horizontal;
+        // Ex: input.nama => nama
+        $error = explode('.', $model);
+        $this->error = $error[count($error) - 1];
     }
 
     /**
