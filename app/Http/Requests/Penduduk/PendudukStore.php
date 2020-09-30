@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Penduduk;
 
+use App\Models\Label\Label;
+use Illuminate\Validation\Rule;
+
 class PendudukStore
 {
     /**
@@ -9,8 +12,27 @@ class PendudukStore
      *
      * @return array
      */
-    public function rules()
+    public function rules($request)
     {
+        $request = (object)$request;
+
+        $kawin_id = Label::whereLabel('status-perkawinan')
+                            ->first()
+                            ->turunan
+                            ->where('label', 'KAWIN')
+                            ->first()->id;
+
+        $cerai_hidup_id = Label::whereLabel('status-perkawinan')
+                            ->first()
+                            ->turunan
+                            ->where('label', 'CERAI HIDUP')
+                            ->first()->id;
+
+        $cerai_mati_id = Label::whereLabel('status-perkawinan')
+                            ->first()
+                            ->turunan
+                            ->where('label', 'CERAI MATI')
+                            ->first()->id;
         return [
             'rt_id'                  => 'required',
             'nik'                    => 'required',
@@ -26,6 +48,9 @@ class PendudukStore
             'tempat_lahir'           => 'required',
             'tanggal_lahir'          => 'required',
             'waktu_lahir'            => 'required',
+            'jenis_kelahiran_id'     => 'required',
+            'kelahiran_anak_ke'      => 'required',
+            'penolong_kelahiran_id'  => 'required',
             'tempat_dilahirkan_id'   => 'required',
             'berat_lahir'            => 'required',
             'panjang_lahir'          => 'required',
@@ -43,10 +68,10 @@ class PendudukStore
             // 'alamat_sebelumnya'   => 'required',
             'alamat'                 => 'required',
             'status_perkawinan_id'   => 'required',
-            // 'akta_kawin'          => 'required',
-            'tanggal_kawin'          => 'required_with:akta_kawin',
-            // 'akta_cerai'          => 'required',
-            'tanggal_cerai'          => 'required_with:akta_cerai',
+            'akta_kawin'             => Rule::requiredIf($request->status_perkawinan_id === $kawin_id),
+            'tanggal_kawin'          => Rule::requiredIf($request->status_perkawinan_id === $kawin_id),
+            'akta_cerai'             => Rule::requiredIf($request->status_perkawinan_id === $cerai_hidup_id || $request->status_perkawinan_id === $cerai_mati_id),
+            'tanggal_cerai'          => Rule::requiredIf($request->status_perkawinan_id === $cerai_hidup_id || $request->status_perkawinan_id === $cerai_mati_id),
             'golongan_darah_id'      => 'required',
             'cacat_id'               => 'required',
             'sakit_menahun_id'       => 'required',
@@ -76,6 +101,9 @@ class PendudukStore
             'tempat_lahir'           => 'Tempat Lahir',
             'tanggal_lahir'          => 'Tanggal Lahir',
             'waktu_lahir'            => 'Waktu Lahir',
+            'jenis_kelahiran_id'     => 'Jenis Kelahiran',
+            'kelahiran_anak_ke'      => 'Kelahiran Anak KE',
+            'penolong_kelahiran_id'  => 'Penolong Kelahiran',
             'tempat_dilahirkan_id'   => 'Tempat Dilahirkan',
             'berat_lahir'            => 'Berat Lahir',
             'panjang_lahir'          => 'Panjang Lahir',

@@ -14,22 +14,7 @@ class Penduduk extends Model
 
     protected $table = 'penduduk';
 
-    protected $fillable = [
-        "nik",
-        "rt_id",
-        "agama_id",
-        "jenis_kelamin_id",
-        "golongan_darah_id",
-        "kewarganegaraan_id",
-        "status_perkawinan_id",
-        "pekerjaan_id",
-        "ponsel",
-        "nama",
-        "tempat_lahir",
-        "alamat",
-        "tanggal_lahir",
-        'foto_id'
-    ];
+    protected $guarded = ['id', 'updated_at', 'created_at'];
 
     public function getUmurAttribute()
     {

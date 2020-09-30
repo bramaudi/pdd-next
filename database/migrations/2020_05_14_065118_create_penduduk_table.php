@@ -40,7 +40,7 @@ class CreatePendudukTable extends Migration
             $table->unsignedTinyInteger('status_rekam_id');
             $table->unsignedTinyInteger('cacat_id');
             $table->unsignedTinyInteger('sakit_menahun_id');
-            $table->unsignedTinyInteger('cara_kb_id');
+            $table->unsignedTinyInteger('cara_kb_id')->nullable();
             $table->unsignedTinyInteger('kelahiran_anak_ke');
             $table->unsignedTinyInteger('berat_lahir');
             $table->unsignedTinyInteger('panjang_lahir');

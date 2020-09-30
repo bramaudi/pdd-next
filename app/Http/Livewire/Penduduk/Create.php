@@ -6,7 +6,6 @@ use App\Http\Requests\Penduduk\PendudukStore;
 use App\Models\Cluster\Lingkungan;
 use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
-use App\Models\Kependudukan\Keluarga;
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Label\Label;
 use Illuminate\Support\Facades\Schema;
@@ -39,6 +38,8 @@ class Create extends Component
             'hubungan_keluarga'   => Label::whereLabel('hubungan-keluarga'),
             'jenis_kelamin'       => Label::whereLabel('jenis-kelamin'),
             'tempat_dilahirkan'   => Label::whereLabel('tempat-dilahirkan'),
+            'jenis_kelahiran'     => Label::whereLabel('jenis-kelahiran'),
+            'penolong_kelahiran'  => Label::whereLabel('penolong-kelahiran'),
             'agama'               => Label::whereLabel('agama'),
             'status_kependudukan' => Label::whereLabel('status-kependudukan'),
             'pendidikan'          => Label::whereLabel('pendidikan'),
@@ -54,7 +55,15 @@ class Create extends Component
 
         foreach($fields as $key => $val)
         {
-            $option[$key] = $val->first()->turunan;
+            $option[$key] = [];
+
+            foreach($val->first()->turunan as $label)
+            {
+                array_push($option[$key], [
+                    'value' => $label->id,
+                    'name'  => $label->label,
+                ]);
+            }
         }
 
         $option['lingkungan'] = Lingkungan::all();
@@ -71,20 +80,25 @@ class Create extends Component
         $request = new PendudukStore;
 
         $data = $this->input;
-        $rule = $request->rules();
+        $rule = $request->rules($data);
         $attr = $request->attributes();
 
         $validator = Validator::make($data, $rule, [], $attr);
         $validatedData = $validator->validate();
 
-        Penduduk::create($validatedData);
+        $create = Penduduk::create($validatedData);
+
+        if ($create) {
+            session()->flash('success', 'Penduduk berhasil ditambahkan.');
+        } else {
+            session()->flash('failed', 'Penduduk gagal ditambahkan.');
+        }
     }
     
     public function render()
     {
         return view('livewire.penduduk.create', [
             'option' => $this->makeOptions(),
-            'errors' => $this->getErrorBag(),
         ]);
     }
 }
