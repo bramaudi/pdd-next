@@ -27,8 +27,8 @@
                     @endif
     
                     @if ($page == $paginator->currentPage())
-                    <li wire:key="pagination-page{{ $page }}" class="page-item active">
-                        <a href="#">{{ $page }}</a>
+                    <li wire:key="pagination-current" class="page-item active">
+                        <a tabindex="0">{{ $page }}</a>
                     </li>
                     @elseif ($page === $paginator->currentPage() + 1 || $page === $paginator->currentPage() + 2 || $page === $paginator->currentPage() - 1 || $page === $paginator->currentPage() - 2)
                     <li wire:key="pagination-page{{ $page }}" class="page-item c-hand">
