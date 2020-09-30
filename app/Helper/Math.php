@@ -13,7 +13,7 @@ trait Math {
     {
         $birth = new DateTime($date);
         $today = new DateTime('today');
-        return $birth < $today ? $today->diff($birth)->y : null;
+        return $birth < $today ? $today->diff($birth)->y : '???';
     }
 
 }
