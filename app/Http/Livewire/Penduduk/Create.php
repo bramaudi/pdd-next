@@ -78,12 +78,22 @@ class Create extends Component
     }
 
     /**
+     * Hapus semua input
+     */
+    public function resetInput()
+    {
+        foreach (array_keys($this->penduduk) as $key) {
+            $this->penduduk[$key] = null;
+        }
+    }
+
+    /**
      * Submit Action
      */
     public function submit()
     {
         $this->resetErrorBag();
-        
+
         $request = new PendudukStore;
 
         $data = $this->penduduk;
@@ -96,6 +106,7 @@ class Create extends Component
         $create = Penduduk::create($validatedData);
 
         if ($create) {
+            $this->resetInput();
             session()->flash('success', 'Penduduk berhasil ditambahkan.');
         } else {
             session()->flash('failed', 'Penduduk gagal ditambahkan.');
