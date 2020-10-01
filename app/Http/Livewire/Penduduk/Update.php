@@ -2,16 +2,40 @@
 
 namespace App\Http\Livewire\Penduduk;
 
+use App\Http\Requests\Penduduk\PendudukUpdate;
+use App\Models\Cluster\Lingkungan;
+use App\Models\Cluster\Rt;
+use App\Models\Cluster\Rw;
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Label\Label;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Update extends Component
 {
-    public $model;
+    public $penduduk = [];
+    public $lingkungan_id, $rw_id;
 
-    public $input = [];
+    private $options = [
+        'ktp_el'              ,
+        'status_rekam'        ,
+        'hubungan_keluarga'   ,
+        'jenis_kelamin'       ,
+        'tempat_dilahirkan'   ,
+        'jenis_kelahiran'     ,
+        'penolong_kelahiran'  ,
+        'agama'               ,
+        'status_kependudukan' ,
+        'pendidikan'          ,
+        'pekerjaan'           ,
+        'status_perkawinan'   ,
+        'kewarganegaraan'     ,
+        'golongan_darah'      ,
+        'cacat'               ,
+        'sakit_menahun'       ,
+        'cara_kb'             ,
+    ];
 
     /**
      * Injek index pada $this->input dengan nama kolom table
@@ -22,54 +46,65 @@ class Update extends Component
 
         foreach($schema as $column)
         {
-            $this->input[$column] = null;
+            $this->penduduk[$column] = null;
         }
     }
 
     /**
-     * Muat nilai $this->input dari db
+     * Mount lalu bind nilai ke properti $penduduk
      */
-    public function mount($pendudukId)
+    public function mount($id)
     {
-        $this->model = Penduduk::findOrFail($pendudukId);
+        $penduduk = Penduduk::find($id);
 
-        foreach ($this->input as $inputKey => $inputVal)
+        foreach(array_keys($this->penduduk) as $key)
         {
-            $this->input[$inputKey] = $this->model[$inputKey];
+            $this->penduduk[$key] = $penduduk->{$key};
         }
     }
 
     /**
-     * Untuk muat nama label dari id
-     * dan membuat daftar opsi
+     * Membuat array untuk list opsi pada form select
      */
-    public function label()
+    public function makeOptions()
     {
-        $fields = [
-            'hubungan_keluarga'   => Label::whereLabel('hubungan-keluarga'),
-            'jenis_kelamin'       => Label::whereLabel('jenis-kelamin'),
-            'agama'               => Label::whereLabel('agama'),
-            'status_kependudukan' => Label::whereLabel('status-kependudukan'),
-            'pendidikan'          => Label::whereLabel('pendidikan'),
-            'pekerjaan'           => Label::whereLabel('pekerjaan'),
-            'status_perkawinan'   => Label::whereLabel('status-perkawinan'),
-            'golongan_darah'      => Label::whereLabel('golongan-darah'),
-            'kewarganegaraan'     => Label::whereLabel('kewarganegaraan'),
-        ];
-
         $option = [];
-        $name = [];
 
-        foreach($fields as $inputKey => $label)
+        foreach($this->options as $field)
         {
-            $option[$inputKey] = $label->first()->turunan;
-            $name[$inputKey] = Label::find($this->input[$inputKey.'_id'])->label;
+            $option[$field] = [];
+            $labelName = str_replace('_', '-', $field);
+
+            foreach(Label::whereLabel($labelName)->first()->turunan as $label)
+            {
+                array_push($option[$field], [
+                    'value' => $label->id,
+                    'name'  => $label->label,
+                ]);
+            }
         }
 
-        return (object)[
-            'option' => $option,
-            'name' => $name,
-        ];
+        return $option;
+    }
+
+    /**
+     * Membuat array untuk nilai terpilih
+     */
+    public function makeSelected()
+    {
+        $selected = [];
+
+        foreach($this->options as $field)
+        {
+            $label = Label::find($this->penduduk[$field . '_id']);
+
+            $selected[$field] = [
+                'value' => $label->id,
+                'name'  => $label->label,
+            ];
+        }
+
+        return $selected;
     }
 
     /**
@@ -77,27 +112,29 @@ class Update extends Component
      */
     public function submit()
     {
-        // Todo: validation rules & flash message
+        $request = new PendudukUpdate;
 
-        $model = $this->model;
+        $data = $this->penduduk;
+        $rule = $request->rules($data);
+        $attr = $request->attributes();
 
-        foreach($this->input as $column => $value)
-        {
-            $model->$column = $value;
+        $validator = Validator::make($data, $rule, [], $attr);
+        $validatedData = $validator->validate();
+
+        $create = Penduduk::create($validatedData);
+
+        if ($create) {
+            session()->flash('success', 'Penduduk berhasil ditambahkan.');
+        } else {
+            session()->flash('failed', 'Penduduk gagal ditambahkan.');
         }
-
-        $model->save();
     }
-
-    /**
-     * Render
-     */
+    
     public function render()
     {
-        return view('livewire.penduduk.update',
-        [
-            'option' => $this->label()->option,
-            'label' => $this->label()->name,
+        return view('livewire.penduduk.update', [
+            'option' => $this->makeOptions(),
+            'selected' => $this->makeSelected(),
         ]);
     }
 }

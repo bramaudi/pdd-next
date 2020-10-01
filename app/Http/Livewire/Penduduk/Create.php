@@ -14,8 +14,28 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $input = [];
+    public $penduduk = [];
     public $lingkungan_id, $rw_id;
+
+    private $options = [
+        'ktp_el'              ,
+        'status_rekam'        ,
+        'hubungan_keluarga'   ,
+        'jenis_kelamin'       ,
+        'tempat_dilahirkan'   ,
+        'jenis_kelahiran'     ,
+        'penolong_kelahiran'  ,
+        'agama'               ,
+        'status_kependudukan' ,
+        'pendidikan'          ,
+        'pekerjaan'           ,
+        'status_perkawinan'   ,
+        'kewarganegaraan'     ,
+        'golongan_darah'      ,
+        'cacat'               ,
+        'sakit_menahun'       ,
+        'cara_kb'             ,
+    ];
 
     /**
      * Injek index pada $this->input dengan nama kolom table
@@ -26,40 +46,25 @@ class Create extends Component
 
         foreach($schema as $column)
         {
-            $this->input[$column] = null;
+            $this->penduduk[$column] = null;
         }
     }
 
+    /**
+     * Membuat array untuk list opsi pada form select
+     */
     public function makeOptions()
     {
-        $fields = [
-            'ktp_el'              => Label::whereLabel('ktp-el'),
-            'status_rekam'        => Label::whereLabel('status-rekam'),
-            'hubungan_keluarga'   => Label::whereLabel('hubungan-keluarga'),
-            'jenis_kelamin'       => Label::whereLabel('jenis-kelamin'),
-            'tempat_dilahirkan'   => Label::whereLabel('tempat-dilahirkan'),
-            'jenis_kelahiran'     => Label::whereLabel('jenis-kelahiran'),
-            'penolong_kelahiran'  => Label::whereLabel('penolong-kelahiran'),
-            'agama'               => Label::whereLabel('agama'),
-            'status_kependudukan' => Label::whereLabel('status-kependudukan'),
-            'pendidikan'          => Label::whereLabel('pendidikan'),
-            'pekerjaan'           => Label::whereLabel('pekerjaan'),
-            'status_perkawinan'   => Label::whereLabel('status-perkawinan'),
-            'kewarganegaraan'     => Label::whereLabel('kewarganegaraan'),
-            'golongan_darah'      => Label::whereLabel('golongan-darah'),
-            'cacat'               => Label::whereLabel('cacat'),
-            'sakit_menahun'       => Label::whereLabel('sakit-menahun'),
-            'cara_kb'             => Label::whereLabel('cara-kb'),
-        ];
         $option = [];
 
-        foreach($fields as $key => $val)
+        foreach($this->options as $field)
         {
-            $option[$key] = [];
+            $option[$field] = [];
+            $labelName = str_replace('_', '-', $field);
 
-            foreach($val->first()->turunan as $label)
+            foreach(Label::whereLabel($labelName)->first()->turunan as $label)
             {
-                array_push($option[$key], [
+                array_push($option[$field], [
                     'value' => $label->id,
                     'name'  => $label->label,
                 ]);
@@ -79,7 +84,7 @@ class Create extends Component
     {
         $request = new PendudukStore;
 
-        $data = $this->input;
+        $data = $this->penduduk;
         $rule = $request->rules($data);
         $attr = $request->attributes();
 
