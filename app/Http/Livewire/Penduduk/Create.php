@@ -82,6 +82,8 @@ class Create extends Component
      */
     public function submit()
     {
+        $this->resetErrorBag();
+        
         $request = new PendudukStore;
 
         $data = $this->penduduk;
@@ -104,6 +106,11 @@ class Create extends Component
     {
         return view('livewire.penduduk.create', [
             'option' => $this->makeOptions(),
+            'is_kawin' => Label::whereLabel('KAWIN')->first()->id,
+            'is_cerai' => [
+                Label::whereLabel('CERAI HIDUP')->first()->id,
+                Label::whereLabel('CERAI MATI')->first()->id,
+            ],
         ]);
     }
 }

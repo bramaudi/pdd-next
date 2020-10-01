@@ -97,11 +97,14 @@ class Update extends Component
         foreach($this->options as $field)
         {
             $label = Label::find($this->penduduk[$field . '_id']);
+            $selected[$field] = [];
 
-            $selected[$field] = [
-                'value' => $label->id,
-                'name'  => $label->label,
-            ];
+            if ($label) {
+                $selected[$field] = [
+                    'value' => $label->id,
+                    'name'  => $label->label,
+                ];
+            }
         }
 
         return $selected;
@@ -112,6 +115,8 @@ class Update extends Component
      */
     public function submit()
     {
+        $this->resetErrorBag();
+
         $request = new PendudukUpdate;
 
         $data = $this->penduduk;
@@ -121,9 +126,10 @@ class Update extends Component
         $validator = Validator::make($data, $rule, [], $attr);
         $validatedData = $validator->validate();
 
-        $create = Penduduk::create($validatedData);
+        $penduduk = Penduduk::find($this->penduduk['id']);
+        $update = $penduduk->update($validatedData);
 
-        if ($create) {
+        if ($update) {
             session()->flash('success', 'Penduduk berhasil ditambahkan.');
         } else {
             session()->flash('failed', 'Penduduk gagal ditambahkan.');
@@ -135,6 +141,11 @@ class Update extends Component
         return view('livewire.penduduk.update', [
             'option' => $this->makeOptions(),
             'selected' => $this->makeSelected(),
+            'is_kawin' => Label::whereLabel('KAWIN')->first()->id,
+            'is_cerai' => [
+                Label::whereLabel('CERAI HIDUP')->first()->id,
+                Label::whereLabel('CERAI MATI')->first()->id,
+            ],
         ]);
     }
 }

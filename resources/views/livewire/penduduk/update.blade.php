@@ -1,7 +1,8 @@
 <form wire:submit.prevent="submit" class="side-control">
 
     <blockquote class="text-tiny">
-        <span class="text-error">*</span> Wajib diisi, tidak boleh kosong.
+        <span class="text-error mr-2">*</span> Wajib diisi, tidak boleh kosong. <br>
+        <span class="text-error mr-2">?</span> Wajib jika tersedia.
     </blockquote>
 
     <div class="columns">
@@ -228,26 +229,26 @@
             </x-form-group-select>
         </div>
         <div class="column col-4 col-sm-12">
-            <x-form-group model="penduduk.akta_kawin">
-                No. Akta / Buku Nikah:
+            <x-form-group model="penduduk.akta_kawin" :disabled="$penduduk['status_perkawinan_id'] != $is_kawin">
+                No. Akta / Buku Nikah <span class="text-error">?</span>:
             </x-form-group>
         </div>
         <div class="column col-4 col-sm-12">
-            <x-form-group model="penduduk.tanggal_kawin" type="date">
-                Tanggal Perkawinan:
+            <x-form-group model="penduduk.tanggal_kawin" type="date" :disabled="$penduduk['status_perkawinan_id'] != $is_kawin">
+                Tanggal Perkawinan <span class="text-error">?</span>:
             </x-form-group>
         </div>
     </div>
 
     <div class="columns">
         <div class="column col-6 col-sm-12">
-            <x-form-group model="penduduk.akta_cerai">
-                Akta Perceraian:
+            <x-form-group model="penduduk.akta_cerai" :disabled="!in_array($penduduk['status_perkawinan_id'], $is_cerai)">
+                Akta Perceraian <span class="text-error">?</span>:
             </x-form-group>
         </div>
         <div class="column col-6 col-sm-12">
-            <x-form-group model="penduduk.tanggal_cerai" type="date">
-                Tanggal Perceraian:
+            <x-form-group model="penduduk.tanggal_cerai" type="date" :disabled="!in_array($penduduk['status_perkawinan_id'], $is_cerai)">
+                Tanggal Perceraian <span class="text-error">?</span>:
             </x-form-group>
         </div>
     </div>

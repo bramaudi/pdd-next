@@ -16,23 +16,13 @@ class PendudukUpdate
     {
         $request = (object)$request;
 
-        $kawin_id = Label::whereLabel('status-perkawinan')
-                            ->first()
-                            ->turunan
-                            ->where('label', 'KAWIN')
-                            ->first()->id;
+        $is_kawin = Label::whereLabel('KAWIN')->first()->id;
 
-        $cerai_hidup_id = Label::whereLabel('status-perkawinan')
-                            ->first()
-                            ->turunan
-                            ->where('label', 'CERAI HIDUP')
-                            ->first()->id;
+        $is_cerai = [
+            Label::whereLabel('CERAI HIDUP')->first()->id,
+            Label::whereLabel('CERAI MATI')->first()->id
+        ];
 
-        $cerai_mati_id = Label::whereLabel('status-perkawinan')
-                            ->first()
-                            ->turunan
-                            ->where('label', 'CERAI MATI')
-                            ->first()->id;
         return [
             'rt_id'                  => 'required',
             'nik'                    => 'required',
@@ -58,7 +48,7 @@ class PendudukUpdate
             'pekerjaan_id'           => 'required',
             'kewarganegaraan_id'     => 'required',
             // 'dokumen_paspor'      => 'required',
-            // 'tanggal_akhir_paspor' => 'required',
+            'tanggal_akhir_paspor'   => 'required_with:dokumen_paspor',
             // 'dokumen_kitas'       => 'required',
             'nik_ayah'               => 'required',
             'nama_ayah'              => 'required',
@@ -68,10 +58,10 @@ class PendudukUpdate
             // 'alamat_sebelumnya'   => 'required',
             'alamat'                 => 'required',
             'status_perkawinan_id'   => 'required',
-            'akta_kawin'             => Rule::requiredIf($request->status_perkawinan_id === $kawin_id),
-            'tanggal_kawin'          => Rule::requiredIf($request->status_perkawinan_id === $kawin_id),
-            'akta_cerai'             => Rule::requiredIf($request->status_perkawinan_id === $cerai_hidup_id || $request->status_perkawinan_id === $cerai_mati_id),
-            'tanggal_cerai'          => Rule::requiredIf($request->status_perkawinan_id === $cerai_hidup_id || $request->status_perkawinan_id === $cerai_mati_id),
+            'akta_kawin'             => Rule::requiredIf($request->status_perkawinan_id == $is_kawin),
+            'tanggal_kawin'          => Rule::requiredIf($request->status_perkawinan_id == $is_kawin),
+            'akta_cerai'             => Rule::requiredIf(in_array($request->status_perkawinan_id, $is_cerai)),
+            'tanggal_cerai'          => Rule::requiredIf(in_array($request->status_perkawinan_id, $is_cerai)),
             'golongan_darah_id'      => 'required',
             'cacat_id'               => 'required',
             'sakit_menahun_id'       => 'required',

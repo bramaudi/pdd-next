@@ -279,12 +279,12 @@
             </x-form-group-select>
         </div>
         <div class="column col-4 col-sm-12">
-            <x-form-group model="penduduk.akta_kawin">
+            <x-form-group model="penduduk.akta_kawin" :disabled="$penduduk['status_perkawinan_id'] != $is_kawin">
                 No. Akta / Buku Nikah:
             </x-form-group>
         </div>
         <div class="column col-4 col-sm-12">
-            <x-form-group model="penduduk.tanggal_kawin" type="date">
+            <x-form-group model="penduduk.tanggal_kawin" type="date" :disabled="$penduduk['status_perkawinan_id'] != $is_kawin">
                 Tanggal Perkawinan:
             </x-form-group>
         </div>
@@ -292,12 +292,12 @@
 
     <div class="columns">
         <div class="column col-6 col-sm-12">
-            <x-form-group model="penduduk.akta_cerai">
+            <x-form-group model="penduduk.akta_cerai" :disabled="!in_array($penduduk['status_perkawinan_id'], $is_cerai)">
                 Akta Perceraian:
             </x-form-group>
         </div>
         <div class="column col-6 col-sm-12">
-            <x-form-group model="penduduk.tanggal_cerai" type="date">
+            <x-form-group model="penduduk.tanggal_cerai" type="date" :disabled="!in_array($penduduk['status_perkawinan_id'], $is_cerai)">
                 Tanggal Perceraian:
             </x-form-group>
         </div>
