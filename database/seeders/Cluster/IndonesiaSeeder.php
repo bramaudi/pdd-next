@@ -5,8 +5,6 @@ namespace Database\Seeders\Cluster;
 use Closure;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class IndonesiaSeeder extends Seeder
 {
@@ -23,12 +21,15 @@ class IndonesiaSeeder extends Seeder
              ->villagesSeeder();
     }
 
-    protected function loop(array $input, Closure $fn): self
+    protected function divide(array $input, Closure $fn): self
     {
-        $output = new ConsoleOutput();
+        $output = $this->command->getOutput();
+
         $count = count($input);
-        $progressBar = new ProgressBar($output, $count);
+
         $side = ceil($count / 1500);
+
+        $output->progressStart($count);
 
         for($i = 0; $i <= $side; $i += 1)
         {
@@ -41,11 +42,10 @@ class IndonesiaSeeder extends Seeder
 
             call_user_func($fn, $data);
 
-            $progressBar->advance();
+            $output->progressAdvance(count($data));
         }
 
-        $progressBar->finish();
-        $output->write("\n");
+        $output->progressFinish();
 
         return $this;
     }
@@ -54,7 +54,9 @@ class IndonesiaSeeder extends Seeder
     {
         $data = file(base_path('database/seeders/_data/indonesia/provinces.csv'));
 
-        return $this->loop($data, function ($data) {
+        $this->command->info('Seeding Indonesian Provinces');
+
+        return $this->divide($data, function ($data) {
 
             $provinces = [];
 
@@ -73,7 +75,9 @@ class IndonesiaSeeder extends Seeder
     {
         $data = file(base_path('database/seeders/_data/indonesia/regencies.csv'));
 
-        return $this->loop($data, function ($data) {
+        $this->command->info('Seeding Indonesian Regencies');
+
+        return $this->divide($data, function ($data) {
 
             $regencies = [];
 
@@ -92,7 +96,9 @@ class IndonesiaSeeder extends Seeder
     {
         $data = file(base_path('database/seeders/_data/indonesia/districts.csv'));
 
-        return $this->loop($data, function ($data) {
+        $this->command->info('Seeding Indonesian Districts');
+
+        return $this->divide($data, function ($data) {
 
             $districs = [];
 
@@ -111,7 +117,9 @@ class IndonesiaSeeder extends Seeder
     {
         $data = file(base_path('database/seeders/_data/indonesia/villages.csv'));
 
-        return $this->loop($data, function ($data) {
+        $this->command->info('Seeding Indonesian Villages');
+
+        return $this->divide($data, function ($data) {
 
             $villages = [];
 

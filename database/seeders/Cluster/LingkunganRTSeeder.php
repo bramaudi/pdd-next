@@ -4,8 +4,6 @@ namespace Database\Seeders\Cluster;
 
 use App\Models\Cluster\Rt;
 use Illuminate\Database\Seeder;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LingkunganRTSeeder extends Seeder
 {
@@ -18,20 +16,17 @@ class LingkunganRTSeeder extends Seeder
     {
         $count = 18 * 18 + 10 * 18 + 100;
 
-        $output = new ConsoleOutput();
-        
-        $progressBar = new ProgressBar($output, $count);
+        $output = $this->command->getOutput();
+
+        $output->progressStart($count);
 
         for ($i = 0; $i < $count; $i++) {
 
             Rt::factory()->create();
-            
-            $progressBar->advance();
+
+            $output->progressAdvance();
         }
 
-        $progressBar->finish();
-
-        $output->write("\n");
-
+        $output->progressFinish();
     }
 }
