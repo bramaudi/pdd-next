@@ -167,7 +167,7 @@
     <div class="columns">
         <div class="column col-6 col-sm-12">
             <x-form-group model="penduduk.tanggal_akhir_paspor" type="date">
-                Tanggal paspor berakhir:
+                Tanggal paspor berakhir <span class="text-error mr-2">?</span>:
             </x-form-group>
         </div>
         <div class="column col-6 col-sm-12">
