@@ -5,7 +5,7 @@
         <label class="form-label" for="input-{{ $model }}">{{ $slot }}</label>
     </div>
     <div class="col-9 col-sm-12">
-        <select wire:change="$set('{{ $model }}', $event.target.value)" class="form-select" id="input-{{ $model }}">
+        <select wire:change="$set('{{ $model }}', $event.target.value)" class="form-select" id="input-{{ $model }}" {{ $disabled }}>
             @if($selected)
             <option value="{{ $selected['value'] }}">{{ $selected['name'] }}</option>
             @endif
@@ -22,7 +22,7 @@
 
 <div class="form-group @error($error) has-error @enderror">
     <label class="form-label" for="input-{{ $model }}">{{ $slot }}</label>
-    <select wire:change="$set('{{ $model }}', $event.target.value)" class="form-select" id="input-{{ $model }}">
+    <select wire:change="$set('{{ $model }}', $event.target.value)" class="form-select" id="input-{{ $model }}" {{ $disabled }}>
         @if($selected)
         <option value="{{ $selected['value'] }}">{{ $selected['name'] }}</option>
         @endif

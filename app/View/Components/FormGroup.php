@@ -6,19 +6,20 @@ use Illuminate\View\Component;
 
 class FormGroup extends Component
 {
-    public $model, $type, $horizontal, $error, $step;
+    public $model, $type, $horizontal, $error, $step, $disabled;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($model, $type = 'text', $horizontal = false)
+    public function __construct($model, $type = 'text', $horizontal = false, $disabled = false)
     {
         $this->model = $model;
         $this->type = $type;
         $this->horizontal = $horizontal;
         $this->step = $type == 'time' ? 'step=1' : '';
+        $this->disabled = $disabled ? 'disabled': '';
 
         // Ex: input.nama => nama
         $error = explode('.', $model);
