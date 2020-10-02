@@ -6,8 +6,6 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Label\Label;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LabelSeeder extends Seeder
 {
@@ -19,13 +17,11 @@ class LabelSeeder extends Seeder
     public function run()
     {
         $labels = glob(base_path('database/seeders/_data/label/*.txt'));
-        
-        $output = new ConsoleOutput();
 
-        $progressBar = new ProgressBar($output, count($labels));
+        $output = $this->command->getOutput();
 
         // Mulai tampilkan progress bar
-        $progressBar->start();
+        $output->progressStart(count($labels));
 
         foreach ($labels as $file) {
 
@@ -36,16 +32,12 @@ class LabelSeeder extends Seeder
                 $kategori->turunan()->firstOrCreate(['label' => trim($line)]);
 
             }
-            
+
             // Majukan progress bar
-            $progressBar->advance();
+            $output->progressAdvance();
 
         }
-        
-        $progressBar->finish();
 
-        // Add newline
-        $output->write("\n");
-
+        $output->progressFinish();
     }
 }

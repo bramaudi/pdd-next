@@ -4,8 +4,6 @@ namespace Database\Seeders\Cluster;
 
 use App\Models\Cluster\Rw;
 use Illuminate\Database\Seeder;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LingkunganRWSeeder extends Seeder
 {
@@ -18,21 +16,17 @@ class LingkunganRWSeeder extends Seeder
     {
         $count = 18 * 18 + 10;
 
-        $output = new ConsoleOutput();
+        $output = $this->command->getOutput();
 
-        $progressBar = new ProgressBar($output, $count);
+        $output->progressStart($count);
 
         for ($i = 0; $i < $count; $i++) {
 
             Rw::factory()->create();
 
-            $progressBar->advance();
-
+            $output->progressAdvance();
         }
 
-        $progressBar->finish();
-
-        $output->write("\n");
-
+        $output->progressFinish();
     }
 }
