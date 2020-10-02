@@ -14,6 +14,7 @@
             </label>
             <div class="accordion-body">
                 <a href="/dashboard/desa/config"><i class="fas fa-id-card"></i> Identitas Desa</a>
+                <a href="/dashboard/desa/wilayah"><i class="fas fa-map"></i> Wilayah Administratif</a>
             </div>
         </div>
 

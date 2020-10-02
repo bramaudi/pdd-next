@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\Penduduk;
 use App\Http\Controllers\Dashboard\Permission;
 use App\Http\Controllers\Dashboard\Role;
 use App\Http\Controllers\Dashboard\User;
+use App\Http\Controllers\Dashboard\Wilayah;
 use App\Http\Controllers\Welcome;
 
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     Route::group(['prefix' => '/desa', 'namespace' => 'Dashboard'], function ()
     {
         Route::get('/config', [Config::class, 'index']);
+        Route::get('/wilayah', [Wilayah::class, 'index']);
     });
 
     /** Kependudukan */
