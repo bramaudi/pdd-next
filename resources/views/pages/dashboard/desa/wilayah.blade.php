@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-2">
 
-    <h1>Wilayah</h1>
+    <livewire:wilayah.table />
     
 </div>
 @endsection

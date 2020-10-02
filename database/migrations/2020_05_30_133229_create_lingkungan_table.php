@@ -16,6 +16,8 @@ class CreateLingkunganTable extends Migration
         Schema::create('lingkungan', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
+            $table->unsignedBigInteger('kepala_id')->nullable();
+            $table->string('map_id')->nullable();
             $table->timestamps();
         });
     }
