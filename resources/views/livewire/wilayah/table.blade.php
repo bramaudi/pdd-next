@@ -6,7 +6,8 @@
             <tr>
                 <th>ID</th>
                 <th>Aksi</th>
-                <th>Nama</th>
+                <th>Dusun</th>
+                <th>Kepala Dusun</th>
                 <th>RW</th>
                 <th>RT</th>
                 <th>L + P</th>
@@ -37,6 +38,7 @@
                     </button>
                 </td>
                 <td>{{ $wilayah->nama }}</td>
+                <td>{{ $wilayah->kepala->nama ?? '--' }}</td>
                 <td>{{ count($wilayah->rw) }}</td>
                 <td>{{ count($wilayah->rt) }}</td>
                 <td>{{ count($wilayah->penduduk) }}</td>

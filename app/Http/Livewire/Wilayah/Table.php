@@ -11,6 +11,8 @@ class Table extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['remountList' => 'render'];
+
     public function render()
     {
         return view('livewire.wilayah.table', [
