@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Install extends Command
 {
@@ -40,15 +38,14 @@ class Install extends Command
      */
     public function handle()
     {
-        $output = new ConsoleOutput();
         $this->info('');
         $this->error('                         ');
-        $output->write("<fg=black;bg=red> ██████╗ ██████╗ ██████╗ </>");
-        $output->write("\n<fg=black;bg=red> ██╔══██╗██╔══██╗██╔══██╗</>");
-        $output->write("\n<fg=black;bg=red> ██████╔╝██║  ██║██║  ██║</>");
-        $output->write("\n<fg=black;bg=white> ██╔═══╝ ██║  ██║██║  ██║</>");
-        $output->write("\n<fg=black;bg=white> ██║     ██████╔╝██████╔╝</>");
-        $output->write("\n<fg=black;bg=white> ╚═╝     ╚═════╝ ╚═════╝ </>\n");
+        $this->output->write("<fg=black;bg=red> ██████╗ ██████╗ ██████╗ </>");
+        $this->output->write("\n<fg=black;bg=red> ██╔══██╗██╔══██╗██╔══██╗</>");
+        $this->output->write("\n<fg=black;bg=red> ██████╔╝██║  ██║██║  ██║</>");
+        $this->output->write("\n<fg=black;bg=white> ██╔═══╝ ██║  ██║██║  ██║</>");
+        $this->output->write("\n<fg=black;bg=white> ██║     ██████╔╝██████╔╝</>");
+        $this->output->write("\n<fg=black;bg=white> ╚═╝     ╚═════╝ ╚═════╝ </>\n");
         $this->info("\nSelamat Datang di Portal Desa Digital Installer v1");
         $this->info('------------------------------------------------------');
 
@@ -84,8 +81,7 @@ class Install extends Command
         try {
             $conn = new \mysqli($dbHost, $dbUser, $dbPass);
         } catch (\Exception $e) {
-            $output = new ConsoleOutput();
-            $output->write("<fg=red>Sambungan database tidak benar!</>\n");
+            $this->output->write("<fg=red>Sambungan database tidak benar!</>\n");
             die();
         }
 
@@ -93,15 +89,15 @@ class Install extends Command
 
             $databaseName = $this->ask('Masukan Nama Database');
             $schemaName = $databaseName ?: config("database.connections.mysql.database");
-            $charset = config("database.connections.mysql.charset",'utf8mb4');
-            $collation = config("database.connections.mysql.collation",'utf8mb4_unicode_ci');
-    
+            $charset = config("database.connections.mysql.charset", 'utf8mb4');
+            $collation = config("database.connections.mysql.collation", 'utf8mb4_unicode_ci');
+
             config(["database.connections.mysql.database" => null]);
-    
+
             $query = "CREATE DATABASE IF NOT EXISTS `$schemaName` CHARACTER SET `$charset` COLLATE `$collation`;";
-    
+
             $conn->query($query);
-    
+
             config(["database.connections.mysql.database" => $schemaName]);
 
             $this->info("\nMenyimpan konfigurasi database...");
@@ -114,16 +110,15 @@ class Install extends Command
                     '/DB_DATABASE=(.*+)?/i',
                 ),
                 array(
-                    'DB_HOST='.$dbHost,
-                    'DB_USERNAME='.$dbUser,
-                    'DB_PASSWORD='.$dbPass,
-                    'DB_DATABASE='.$schemaName,
+                    'DB_HOST=' . $dbHost,
+                    'DB_USERNAME=' . $dbUser,
+                    'DB_PASSWORD=' . $dbPass,
+                    'DB_DATABASE=' . $schemaName,
                 ),
                 file_get_contents('.env')
             ));
 
             $this->info("Menyiapkan installer...");
-
         }
     }
 
@@ -134,18 +129,18 @@ class Install extends Command
     {
         $this->line('Memeriksa Koneksi Database...');
 
-        
-        
+
+
         // Test database connection
-    
+
         $database_host = config('database.connections.mysql.host');
         $database_name = config('database.connections.mysql.database');
         $database_user = config('database.connections.mysql.username');
         $database_password = config('database.connections.mysql.password');
-        
+
         try {
-            $conn = new \mysqli($database_host,$database_user,$database_password,$database_name);
-            
+            $conn = new \mysqli($database_host, $database_user, $database_password, $database_name);
+
             if (!$conn->connect_errno) {
                 $this->info('Database berhasil tersambung.');
             }
@@ -156,10 +151,10 @@ class Install extends Command
             return false;
         }
     }
-    
+
     /**
      * Kosongkan Database.
-     * 
+     *
      * @return void
      */
     private function wipe()
@@ -168,22 +163,22 @@ class Install extends Command
         $this->call('db:wipe');
     }
 
-    /** 
+    /**
      * Jalankan Migrate.
-     * 
-     * @return void 
-    */
+     *
+     * @return void
+     */
     private function migrate()
     {
         $this->line("\nMemulai Proses Migrate...");
         $this->call('migrate');
     }
- 
-    /** 
+
+    /**
      * Jalankan Seeds.
-     * 
-     * @return void 
-    */
+     *
+     * @return void
+     */
     private function seed()
     {
         $this->line("\nMemulai Proses Seeding...");
@@ -196,12 +191,12 @@ class Install extends Command
             ]);
         }
     }
- 
-    /** 
+
+    /**
      * Hasilkan key.
-     * 
-     * @return void 
-    */
+     *
+     * @return void
+     */
     private function setUpKey()
     {
         $this->call('key:generate');
