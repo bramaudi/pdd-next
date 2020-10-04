@@ -37,6 +37,8 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     {
         Route::get('/config', [Config::class, 'index']);
         Route::get('/wilayah', [Wilayah::class, 'index']);
+        Route::get('/wilayah/rw/{lingkungan_id}', [Wilayah::class, 'rw'])->name('wilayah.rw');
+        Route::get('/wilayah/rt/{rw_id}', [Wilayah::class, 'rt'])->name('wilayah.rt');
     });
 
     /** Kependudukan */

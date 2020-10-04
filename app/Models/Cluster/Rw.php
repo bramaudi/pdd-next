@@ -12,7 +12,7 @@ class Rw extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nomor'];
+    protected $fillable = ['lingkungan_id', 'nomor'];
 
     protected $table = 'lingkungan_rw';
 

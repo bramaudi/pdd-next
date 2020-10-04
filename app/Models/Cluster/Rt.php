@@ -11,7 +11,7 @@ class Rt extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nomor'];
+    protected $fillable = ['rw_id', 'nomor'];
 
     protected $table = "lingkungan_rt";
 
