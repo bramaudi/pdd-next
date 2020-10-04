@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Database\Seeders\Cluster\LingkunganRTSeeder;
 use Database\Seeders\Cluster\LingkunganRWSeeder;
 use Database\Seeders\Cluster\LingkunganSeeder;
@@ -23,6 +24,8 @@ class DummySeeder extends Seeder
         $this->call(LingkunganRTSeeder::class);
         
         $this->call(KependudukanSeeder::class);
-        $this->call(UserSeeder::class);
+        User::factory()
+                ->times(16)
+                ->create();
     }
 }

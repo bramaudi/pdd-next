@@ -28,8 +28,5 @@ class UserSeeder extends Seeder
 
         $admin->assignRole('Super Admin');
 
-        User::factory()
-                ->times(16)
-                ->create();
     }
 }
