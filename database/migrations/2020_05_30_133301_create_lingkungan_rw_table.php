@@ -16,6 +16,7 @@ class CreateLingkunganRwTable extends Migration
         Schema::create('lingkungan_rw', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('lingkungan_id');
+            $table->unsignedBigInteger('kepala_id')->unique()->nullable();
             $table->string('nomor');
             $table->timestamps();
         });
