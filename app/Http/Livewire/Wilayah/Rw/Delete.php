@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Wilayah\Rw;
 
+use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
 use Livewire\Component;
 
@@ -20,8 +21,12 @@ class Delete extends Component
 
     public function submit()
     {
-        $model = Rw::findOrFail($this->rw_id);
-        $model->delete();
+        $rw = Rw::findOrFail($this->rw_id);
+        // Hapus RT
+        foreach ($rw->rt as $rt) {
+            Rt::find($rt->id)->delete();
+        }
+        $rw->delete();
 
         $this->emit('remountList');
         $this->dispatchBrowserEvent('close-modals');

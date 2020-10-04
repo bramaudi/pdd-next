@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Wilayah;
 
 use App\Models\Cluster\Lingkungan;
+use App\Models\Cluster\Rt;
+use App\Models\Cluster\Rw;
 use Livewire\Component;
 
 class Delete extends Component
@@ -20,8 +22,17 @@ class Delete extends Component
 
     public function submit()
     {
-        $model = Lingkungan::findOrFail($this->dusun_id);
-        $model->delete();
+        $dusun = Lingkungan::findOrFail($this->dusun_id);
+        // Hapus RW
+        foreach ($dusun->rw as $rw) {
+            // Hapus RT
+            foreach ($rw->rt as $rt) {
+                Rt::find($rt->id)->delete();
+            }
+            Rw::find($rw->id)->delete();
+        }
+        // Hapus Dusun
+        $dusun->delete();
 
         $this->emit('remountList');
         $this->dispatchBrowserEvent('close-modals');
