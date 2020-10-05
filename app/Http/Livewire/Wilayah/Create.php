@@ -45,8 +45,6 @@ class Create extends Component
 
     public function render()
     {
-        $kepala_dusun = $this->kepala_id ? Penduduk::find(Lingkungan::find($this->dusun_id)->kepala_id) : false;
-
         $findPenduduk = Penduduk::where('nik', 'like', "%$this->find%")
                                     ->orWhere('nama', 'like', "%$this->find%")
                                     ->get();
@@ -56,7 +54,6 @@ class Create extends Component
         return view('livewire.wilayah.create', [
             'list' => $this->find ? $findPenduduk : [],
             'finded' => $finded,
-            'kepala_dusun' => $kepala_dusun,
         ]);
     }
 }

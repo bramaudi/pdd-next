@@ -36,7 +36,7 @@
                     </button>
                 </td>
                 <td>{{ $rt->nomor }}</td>
-                <td>ketua-rt?</td>
+                <td>{{ $rt->kepala->nama ?? '--' }}</td>
                 <td>{{ count($rt->penduduk) }}</td>
                 <td>{{ count($rt->penduduk->where('jenis_kelamin_id', $pria_id)) }}</td>
                 <td>{{ count($rt->penduduk->where('jenis_kelamin_id', $wanita_id)) }}</td>

@@ -11,7 +11,7 @@ class Rt extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['rw_id', 'nomor'];
+    protected $fillable = ['rw_id', 'nomor', 'kepala_id'];
 
     protected $table = "lingkungan_rt";
 
@@ -23,5 +23,10 @@ class Rt extends Model
     public function penduduk(): HasMany
     {
         return $this->hasMany(Penduduk::class);
+    }
+
+    public function kepala() : BelongsTo
+    {
+        return $this->belongsTo(Penduduk::class);
     }
 }

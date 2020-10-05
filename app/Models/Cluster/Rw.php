@@ -2,6 +2,7 @@
 
 namespace App\Models\Cluster;
 
+use App\Models\Kependudukan\Penduduk;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +13,7 @@ class Rw extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['lingkungan_id', 'nomor'];
+    protected $fillable = ['lingkungan_id', 'nomor', 'kepala_id'];
 
     protected $table = 'lingkungan_rw';
 
@@ -29,5 +30,10 @@ class Rw extends Model
     public function penduduk(): HasManyThrough
     {
         return $this->hasManyThrough(Penduduk::class, Rt::class);
+    }
+
+    public function kepala() : BelongsTo
+    {
+        return $this->belongsTo(Penduduk::class);
     }
 }

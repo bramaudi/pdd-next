@@ -4,13 +4,6 @@
         Nama Dusun <span class="text-error">*</span>:
     </x-form-group>
 
-    @if($kepala_dusun)
-        <div class="form-group">
-            <label class="form-label">Kepala Dusun Sebelumnya:</label>
-            <input class="form-input" type="text" value="{{ $kepala_dusun['nik'] }} - {{ $kepala_dusun['nama'] }}" disabled>
-        </div>
-    @endif
-
     <div class="form-group @error('kepala_id') has-error @enderror">
         <label for="inp-find-kepala" class="form-label">
             Kepala Dusun <em>(NIK / Nama)</em>:
