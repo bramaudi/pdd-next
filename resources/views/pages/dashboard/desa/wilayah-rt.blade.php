@@ -16,7 +16,7 @@
     </x-modal>
 
     <x-modal header="Hapus RT" state="delete">
-        livewire:wilayah.rt.delete />
+        <livewire:wilayah.rt.delete :rw="$rw_id" />
     </x-modal>
 
     <livewire:wilayah.rt.table :rw="$rw_id" />

@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Wilayah\Rt;
 
-use App\Models\Cluster\Lingkungan;
 use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
 use App\Models\Kependudukan\Penduduk;
