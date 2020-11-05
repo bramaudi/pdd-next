@@ -3,6 +3,21 @@
 @section('content')
 <div class="container py-2" x-data="{ modal: null }" @close-modals.window="modal = null">
 
+    <ul class="px-1 m-none breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('wilayah.dusun') }}">Wilayah Administratif</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('wilayah.rw', ['lingkungan_id' => $lingkungan_id]) }}">RW</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="#">RT</a>
+        </li>
+    </ul>
+
     <button class="btn m-1" @click="modal = 'create'">
         <i class="icon icon-plus mr-1"></i> Tambah RT
     </button>
