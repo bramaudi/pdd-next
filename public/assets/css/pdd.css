@@ -37,7 +37,9 @@
 /* Header */
 header {
     padding: 8px 15px;
+    background: #fff;
     border-bottom: 1px solid #ccc;
+    z-index: 200;
 }
 header .icon.icon-menu {
     margin-bottom: .2rem;
@@ -59,8 +61,17 @@ footer {
 }
 
 /* Off-Canvas Overwrie */
+.off-canvas {
+    z-index: 100;
+}
+.off-canvas-overlay {
+    margin-top: 50px;
+}
 .off-canvas .off-canvas-sidebar {
+    margin-top: 50px;
     min-width: 13rem;
+    background: #fff;
+    z-index: 200;
 }
 .off-canvas-content {
     padding: 0 !important;
