@@ -61,17 +61,9 @@ footer {
 }
 
 /* Off-Canvas Overwrie */
-.off-canvas {
-    z-index: 100;
-}
-.off-canvas-overlay {
-    margin-top: 50px;
-}
 .off-canvas .off-canvas-sidebar {
-    margin-top: 50px;
     min-width: 13rem;
     background: #fff;
-    z-index: 200;
 }
 .off-canvas-content {
     padding: 0 !important;
