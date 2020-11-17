@@ -11,13 +11,24 @@ use Livewire\Component;
 
 class Config extends Component
 {
-    /** Model */
-    public $id_desa, $nama, $email, $telepon, $website, $tentang;
-    public $kades_nama, $kades_nip, $camat_nama, $camat_nip;
-    public $province_id, $regency_id, $district_id, $village_id;
+    
+    public  $id_desa,
+            $nama,
+            $email,
+            $telepon,
+            $website,
+            $tentang,
+            $kades_nama,
+            $kades_nip,
+            $camat_nama,
+            $camat_nip,
+            $province_id,
+            $regency_id,
+            $district_id,
+            $village_id;
 
     /**
-     * Berikan value dari database
+     * Muat nilai dari database
      */
     public function mount() : void
     {
@@ -30,7 +41,7 @@ class Config extends Component
     }
 
     /**
-     * Ganti provinsi -> reset id kabupaten & kecamatan
+     * Ganti provinsi
      */
     public function changeProvince($province_id)
     {
@@ -40,6 +51,9 @@ class Config extends Component
         $this->village_id = null;
     }
 
+    /**
+     * Ganti kabupaten
+     */
     public function changeRegency($regency_id)
     {
         $this->regency_id = $regency_id;
@@ -47,6 +61,9 @@ class Config extends Component
         $this->village_id = null;
     }
 
+    /**
+     * Ganti kecamatan
+     */
     public function changeDistrict($district_id)
     {
         $this->district_id = $district_id;
@@ -54,7 +71,7 @@ class Config extends Component
     }
 
     /**
-     * Submit update config
+     * Event submit form
      */
     public function submit() : void
     {
@@ -109,14 +126,14 @@ class Config extends Component
     public function render()
     {
         return view('livewire.desa.config', [
-            'provinces' => Province::all(),
-            'regencies' => $this->province_id ? Regency::where('province_id', $this->province_id)->get() : [],
-            'districts' => $this->regency_id ? District::where('regency_id', $this->regency_id)->get() : [],
-            'villages' => $this->district_id ? Village::where('district_id', $this->district_id)->get() : [],
+            'provinces'     => Province::all(),
+            'regencies'     => $this->province_id ? Regency::where('province_id', strval($this->province_id))->get() : [],
+            'districts'     => $this->regency_id ? District::where('regency_id', strval($this->regency_id))->get() : [],
+            'villages'      => $this->district_id ? Village::where('district_id', strval($this->district_id))->get() : [],
             'province_name' => Province::find($this->province_id)->name,
-            'regency_name' => $this->regency_id ? Regency::find($this->regency_id)->name : '--',
-            'district_name' => $this->district_id ? District::find($this->district_id)->name : '--',
-            'village_name' => $this->village_id ? Village::find($this->village_id)->name : '--',
+            'regency_name'  => $this->regency_id ? Regency::find(strval($this->regency_id))->name : '--',
+            'district_name' => $this->district_id ? District::find(strval($this->district_id))->name : '--',
+            'village_name'  => $this->village_id ? Village::find(strval($this->village_id))->name : '--',
         ]);
     }
 }
