@@ -30,6 +30,7 @@ Route::get('/login', [Login::class, 'index'])->name('login');
 
 Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
 {
+    
     Route::get('/', [Dashboard::class, 'index']);
 
     /** Desa */
@@ -58,37 +59,3 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
         Route::get('/permission/{roleId?}', [Permission::class, 'index']);
     });
 });
-
-    /**
-     * Logged Auth
-     */
-    //         Route::group(
-    //             ['middleware' => ['permission:config.read|config.update'],
-    //             'namespace' => 'Desa',
-    //             'prefix' => 'desa'
-    //         ], function() {
-    //             Route::get('/config', Config::class);
-    //         });
-
-    //         // Kependudukan
-    //         Route::group([
-    //             'middleware' => ['permission:penduduk.create|penduduk.read|penduduk.update|penduduk.delete'],
-    //             'namespace' => 'Kependudukan',
-    //             'prefix' => 'kependudukan'
-    //         ], function() {
-    //             Route::get('/penduduk', Penduduk::class);
-    //             Route::get('/keluarga', Keluarga::class);
-    //         });
-
-    //         // Sistem
-    //         Route::group(
-    //             ['middleware' => ['permission:user.create|user.read|user.update|user.delete'],
-    //             'namespace' => 'Sistem',
-    //             'prefix' => 'sistem'
-    //         ], function() {
-    //             Route::get('/user', User::class);
-    //             Route::get('/role', Role::class);
-    //             Route::get('/permission/{roleId?}', Permission::class);
-    //         });
-    //     });
-    // });
