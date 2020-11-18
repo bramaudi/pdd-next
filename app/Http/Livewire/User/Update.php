@@ -58,7 +58,7 @@ class Update extends Component
             if ($this->role == '-') {
                 $user->syncRoles(); // kosongkan roles
             } else {
-                $user->assignRole($this->role);
+                $user->syncRoles($this->role);
             }
         }
 
