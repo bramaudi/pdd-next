@@ -18,12 +18,19 @@ Panduan untuk installasi paket rilis (.zip) untuk penggunaan production:
     DB_USERNAME=root
     DB_PASSWORD=
     ```
-5. Login **Super Admin**:
+5. Ubah permission folder:
+    ```
+    sudo chmod -R 775 storage
+    sudo chmod -R 775 bootstrap/cache
+    sudo chown -R $USER:www-data storage
+    sudo chown -R $USER:www-data bootstrap/cache
+    ```
+6. Login **Super Admin**:
     ```
     User: admin
     Password: password
     ```
-6. Selesai, jangan lupa untuk mengubah kata sandi default ;)
+7. Selesai, jangan lupa untuk mengubah kata sandi default ;)
 
 ## Lokal Development
 
