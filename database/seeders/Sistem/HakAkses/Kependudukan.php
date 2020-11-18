@@ -12,18 +12,12 @@ class Kependudukan extends Seeder {
         /**
          * Penduduk
          */
-        Permission::firstOrCreate(['name' => 'penduduk.create']);
-        Permission::firstOrCreate(['name' => 'penduduk.read']);
-        Permission::firstOrCreate(['name' => 'penduduk.update']);
-        Permission::firstOrCreate(['name' => 'penduduk.delete']);
+        Permission::firstOrCreate(['name' => 'kependudukan_penduduk']);
     
         /**
          * Keluarga
          */
-        Permission::firstOrCreate(['name' => 'keluarga.create']);
-        Permission::firstOrCreate(['name' => 'keluarga.read']);
-        Permission::firstOrCreate(['name' => 'keluarga.update']);
-        Permission::firstOrCreate(['name' => 'keluarga.delete']);
+        Permission::firstOrCreate(['name' => 'kependudukan_keluarga']);
 
     }
 

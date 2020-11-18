@@ -3,92 +3,52 @@
 namespace App\Http\Livewire\User;
 
 use Livewire\Component;
-use Spatie\Permission\Models\Permission as ModelsPermission;
 use Spatie\Permission\Models\Role;
 
 class Permission extends Component
 {
-    public $role;
-
-    /**
-     * Penamaan Permission
-     */
-    public $parents = [
-        'user' => 'Pengguna',
-        'config' => 'Info Desa'
+    public $roleId;
+    public $changed = false;
+    public $permissions = [
+        'desa_identitas' => false,
+        'desa_wilayah' => false,
+        'kependudukan_penduduk' => false,
+        'kependudukan_keluarga' => false,
+        'sistem_pengguna' => false,
+        'sistem_jabatan' => false,
     ];
 
-    /**
-     * Rincian Permission @array
-     */
-    public $user = [
-        'create' => null,
-        'read' => null,
-        'update' => null,
-        'delete' => null,
-    ];
-    public $config = [
-        'update' => null,
-    ];
-
-    /**
-     * Inisiasi nilai
-     */
-    public function mount($roleId = 0)
+    public function mount($roleId)
     {
-        if (!$roleId) {
-            return redirect()->to('/dashboard/sistem/role');
-        }
-
         $this->roleId = $roleId;
-        $this->role = Role::find($roleId);
-
-        $this->getCurrent();
-    }
-
-    /**
-     * Muat nilai yang tersimpan dari database ke property
-     */
-    public function getCurrent()
-    {
-        foreach($this->parents as $parentKey => $_)
-        {
-            foreach($this->$parentKey as $actions => $_)
-            {
-                $permissionName = $parentKey . '.' . $actions;
-
-                if ($this->role->hasPermissionTo($permissionName)) {
-                    $this->$parentKey[$actions] = true;
-                }
-            }
+        $role = Role::findById($roleId);
+        foreach ($this->permissions as $key => $val) {
+            $this->permissions[$key] = $role->hasPermissionTo($key);
         }
     }
 
-    /**
-     * Perbarui nilai ke database
-     */
+    public function changed()
+    {
+        $this->changed = true;
+    }
+
     public function submit()
     {
-        foreach(array_keys($this->parents) as $parentKey) {
-            foreach(array_keys($this->$parentKey) as $actions) {
-                $this->$parentKey[$actions]
-                    ? $this->role->givePermissionTo($parentKey . '.' . $actions)
-                    : $this->role->revokePermissionTo($parentKey . '.' . $actions);
-            }
+        $role = Role::find($this->roleId);
+        foreach ($this->permissions as $key => $val) {
+            $val
+                ? $role->givePermissionTo($key)
+                : $role->revokePermissionTo($key);
         }
+        $this->changed = false;
 
-        session()->flash('success', 'Hak akses telah diperbarui');
+        session()->flash('success', 'Pembaruan berhasil tersimpan');
     }
 
     public function resetChanges()
     {
-        foreach(array_keys($this->parents) as $parentKey) {
-            foreach(array_keys($this->$parentKey) as $actions) {
-                $this->$parentKey[$actions] = null;
-            }
-        }
-
-        $this->getCurrent();
+        $this->mount($this->roleId);
+        $this->changed = false;
     }
 
     public function render()

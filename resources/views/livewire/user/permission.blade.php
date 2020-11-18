@@ -1,72 +1,59 @@
 <div>
-    <div class="table-container mb-2">
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>Hak Akses</th>
-                <th>Tambah</th>
-                <th>Lihat</th>
-                <th>Ubah</th>
-                <th>Hapus</th>
-            </tr>
-
-            <!-- Pengguna -->
-
-            <tr>
-                <td>
-                    <i class="fas fa-users mr-2"></i>
-                    Pengguna
-                </td>
-                @foreach(array_keys($user) as $action)
-                    <td>
-                        <label class="form-checkbox">
-                            <input wire:model="user.{{ $action }}" type="checkbox">
-                            <i class="form-icon"></i>
-                        </label>
-                    </td>
-                @endforeach
-            </tr>
-
-            <!-- Identitas Desa -->
-
-            <tr>
-                <td>
-                    <i class="fas fa-id-card mr-2"></i>
-                    Identitas Desa
-                </td>
-                <td>
+    <div class="columns">
+        <div class="column col-6 col-sm-12">
+            <div class="card">
+                <div class="card-header"><strong>Desa</strong></div>
+                <div class="card-body">
                     <label class="form-checkbox">
-                        <input type="checkbox" disabled>
-                        <i class="form-icon"></i>
+                    <input wire:model="permissions.desa_identitas" wire:click="changed" type="checkbox">
+                        <i class="form-icon"></i> Identitas Desa
                     </label>
-                </td>
-                <td>
                     <label class="form-checkbox">
-                        <input type="checkbox" disabled>
-                        <i class="form-icon"></i>
+                    <input wire:model="permissions.desa_wilayah" wire:click="changed" type="checkbox">
+                        <i class="form-icon"></i> Wilayah Administratif
                     </label>
-                </td>
-                <td>
+                </div>
+            </div>
+        </div>
+        <div class="column col-6 col-sm-12">
+            <div class="card">
+                <div class="card-header"><strong>Kependudukan</strong></div>
+                <div class="card-body">
                     <label class="form-checkbox">
-                        <input wire:model="config.update" type="checkbox">
-                        <i class="form-icon"></i>
+                    <input wire:model="permissions.kependudukan_penduduk" wire:click="changed" type="checkbox">
+                        <i class="form-icon"></i> Penduduk
                     </label>
-                </td>
-                <td>
                     <label class="form-checkbox">
-                        <input type="checkbox" disabled>
-                        <i class="form-icon"></i>
+                    <input wire:model="permissions.kependudukan_keluarga" wire:click="changed" type="checkbox">
+                        <i class="form-icon"></i> Keluarga
                     </label>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
+        <div class="column col-12 mt-2">
+            <div class="card">
+                <div class="card-header"><strong>Sistem</strong></div>
+                <div class="card-body">
+                    <label class="form-checkbox">
+                    <input wire:model="permissions.sistem_pengguna" wire:click="changed" type="checkbox">
+                        <i class="form-icon"></i> Pengguna
+                    </label>
+                    <label class="form-checkbox">
+                        <input wire:model="permissions.sistem_jabatan" wire:click="changed" type="checkbox">
+                        <i class="form-icon"></i> Jabatan
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
     
+    <div class="divider"></div>
+
     @if(session()->has('success'))
-        <div class="divider"></div>
         <div class="toast toast-success">{{ session('success') }}</div>
         <div class="divider"></div>
     @endif
 
-    <button wire:click="submit" class="btn btn-lg btn-primary">Simpan</button>
+    <button wire:click="submit" class="btn btn-lg btn-primary" @if(!$changed) disabled @endif>Simpan</button>
     <button wire:click="resetChanges" class="btn btn-lg btn-link">Reset</button>
 </div>

@@ -25,37 +25,96 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+/**
+ * Guest Routes
+ */
 Route::get('/', [Welcome::class, 'index']);
 Route::get('/login', [Login::class, 'index'])->name('login');
 
+
+
+/**
+ * Auth Routes
+ */
 Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
 {
-    
+
+    /**
+     * Dashboard
+     */
     Route::get('/', [Dashboard::class, 'index']);
 
-    /** Desa */
+
+
+    /**
+     * Desa
+     */
     Route::group(['prefix' => '/desa', 'namespace' => 'Dashboard'], function ()
     {
-        Route::get('/config', [Config::class, 'index']);
-        Route::get('/wilayah', [Wilayah::class, 'index'])->name('wilayah.dusun');
-        Route::get('/wilayah/rw/{lingkungan_id}', [Wilayah::class, 'rw'])->name('wilayah.rw');
-        Route::get('/wilayah/rt/{rw_id}', [Wilayah::class, 'rt'])->name('wilayah.rt');
+        /**
+         * Identitas Desa
+         */
+        Route::get('/config', [Config::class, 'index'])->name('identitas')->middleware('permission:desa_identitas');
+
+        /**
+         * Wilayah Administratif
+         */
+        Route::group(['middleware' => 'permission:desa_wilayah'], function ()
+        {
+            Route::get('/wilayah', [Wilayah::class, 'index'])                 ->name('wilayah.dusun');
+            Route::get('/wilayah/rw/{lingkungan_id}', [Wilayah::class, 'rw']) ->name('wilayah.rw');
+            Route::get('/wilayah/rt/{rw_id}', [Wilayah::class, 'rt'])         ->name('wilayah.rt');
+        });
     });
 
-    /** Kependudukan */
+
+
+    /**
+     * Kependudukan
+     */
     Route::group(['prefix' => '/kependudukan'], function ()
     {
-        Route::get('/penduduk', [Penduduk::class, 'index'])->name('penduduk.index');
-        Route::get('/penduduk/update/{id}', [Penduduk::class, 'update'])->name('penduduk.update');
-        Route::get('/penduduk/create', [Penduduk::class, 'create'])->name('penduduk.create');
-        Route::get('/keluarga', [Keluarga::class, 'index']);
+        /**
+         * Penduduk
+         */
+        Route::group(['middleware' => 'permission:kependudukan_penduduk'], function ()
+        {
+            Route::get('/penduduk', [Penduduk::class, 'index'])              ->name('penduduk.index');
+            Route::get('/penduduk/update/{id}', [Penduduk::class, 'update']) ->name('penduduk.update');
+            Route::get('/penduduk/create', [Penduduk::class, 'create'])      ->name('penduduk.create');
+        });
+
+        /**
+         * Keluarga
+         */
+        Route::group(['middleware' => 'permission:kependudukan_keluarga'], function ()
+        {
+            Route::get('/keluarga', [Keluarga::class, 'index'])->name('keluarga.index');
+        });
     });
 
-    /** Sistem */
+
+
+    /**
+     * Sistem
+     */
     Route::group(['prefix' => '/sistem'], function ()
     {
-        Route::get('/user', [User::class, 'index']);
-        Route::get('/role', [Role::class, 'index']);
-        Route::get('/permission/{roleId?}', [Permission::class, 'index']);
+        /**
+         * Pengguna
+         */
+        Route::get('/user', [User::class, 'index'])->name('user.index')->middleware('permission:sistem_pengguna');
+
+        /**
+         * Jabatan
+         */
+        Route::group(['middleware' => 'permission:sistem_jabatan'], function ()
+        {
+            Route::get('/permission/{roleId?}', [Permission::class, 'index']) ->name('permission.index');
+            Route::get('/role', [Role::class, 'index'])->name('role.index');
+        });
     });
+
+
 });

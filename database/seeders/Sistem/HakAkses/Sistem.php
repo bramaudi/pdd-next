@@ -12,10 +12,13 @@ class Sistem extends Seeder {
         /**
          * Pengguna
          */
-        Permission::firstOrCreate(['name' => 'user.create']);
-        Permission::firstOrCreate(['name' => 'user.read']);
-        Permission::firstOrCreate(['name' => 'user.update']);
-        Permission::firstOrCreate(['name' => 'user.delete']);
+        Permission::firstOrCreate(['name' => 'sistem_pengguna']);
+
+
+        /**
+         * Jabatan
+         */
+        Permission::firstOrCreate(['name' => 'sistem_jabatan']);
 
     }
 

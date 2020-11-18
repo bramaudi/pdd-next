@@ -12,15 +12,12 @@ class Desa extends Seeder {
         /**
          * Identitas Desa
          */
-        Permission::firstOrCreate(['name' => 'config.update']);
+        Permission::firstOrCreate(['name' => 'desa_identitas']);
 
         /**
          * Wilayah Administratif
          */
-        Permission::firstOrCreate(['name' => 'pejabat.create']);
-        Permission::firstOrCreate(['name' => 'pejabat.read']);
-        Permission::firstOrCreate(['name' => 'pejabat.update']);
-        Permission::firstOrCreate(['name' => 'pejabat.delete']);
+        Permission::firstOrCreate(['name' => 'desa_wilayah']);
         
     }
 
