@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Surat\SuratFormat;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerSuratBuilder();
     }
 
     /**
@@ -24,5 +25,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+    }
+
+    protected function registerSuratBuilder(): void
+    {
+        // $this->app->bindIf(SuratFormat::class, fn () => new SuratFormat());
     }
 }

@@ -5,7 +5,11 @@
         <label class="form-label" for="input-{{ $model }}">{{ $slot }}</label>
     </div>
     <div class="col-9 col-sm-12">
-        <input class="form-input" wire:model="{{ $model }}" type="{{ $type }}" {{ $step }} {{ $disabled }}>
+        @if($type == "textarea")
+            <textarea class="form-input" wire:model="{{ $model }}" {{ $step }} {{ $disabled }}>{{ $model }}</textarea>
+        @else
+            <input class="form-input" wire:model="{{ $model }}" type="{{ $type }}" {{ $step }} {{ $disabled }}>
+        @endif
         @error($error) <div class="form-input-hint">{{ $message }}</div> @enderror
     </div>
 </div>
@@ -14,7 +18,11 @@
 
 <div class="form-group @error($error) has-error @enderror">
     <label class="form-label" for="input-{{ $model }}">{{ $slot }}</label>
-    <input class="form-input" wire:model="{{ $model }}" type="{{ $type }}" {{ $step }} {{ $disabled }}>
+    @if($type == "textarea")
+        <textarea class="form-input" wire:model="{{ $model }}" {{ $step }} {{ $disabled }}>{{ $model }}</textarea>
+    @else
+        <input class="form-input" wire:model="{{ $model }}" type="{{ $type }}" {{ $step }} {{ $disabled }}>
+    @endif
     @error($error) <div class="form-input-hint">{{ $message }}</div> @enderror
 </div>
 

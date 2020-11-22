@@ -112,7 +112,7 @@ class Create extends Component
             session()->flash('failed', 'Penduduk gagal ditambahkan.');
         }
     }
-    
+
     public function render()
     {
         return view('livewire.penduduk.create', [

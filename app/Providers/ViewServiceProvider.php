@@ -27,6 +27,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $meta = Meta::where('key', 'portal-desa-digital')->first()->decode();
+
             $view->with('desa', $meta);
         });
     }
