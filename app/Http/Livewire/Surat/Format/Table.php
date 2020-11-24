@@ -2,19 +2,26 @@
 
 namespace App\Http\Livewire\Surat\Format;
 
-use App\Models\Surat\SuratFormat;
+use App\Models\Surat\Format\Format;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Table extends Component
 {
-    public Collection $formats;
+    public $formats;
 
-    protected $listeners = ['remount' => 'mount'];
+    protected $listeners = ['refresh'];
+
+    public function refresh(): void
+    {
+        $this->formats = []; // Berhasil Mengosongkan List
+
+        // $this->mount(); // Hanya mengacak list, item yang terhapus masih ada dan pindah urutan
+    }
 
     public function mount(): void
     {
-        $this->formats = SuratFormat::all();
+        $this->formats = Format::all();
     }
 
     public function render()

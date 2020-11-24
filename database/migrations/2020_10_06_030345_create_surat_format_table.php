@@ -18,10 +18,9 @@ class CreateSuratFormatTable extends Migration
             $table->timestamps();
 
             $table->string('name');
-            $table->string('description');
             $table->string('prefix');
 
-            $table->string('template')->default('default');
+            $table->string('template')->default('default_template.docx');
 
             $table->boolean('active')->default(true);
             $table->boolean('pinned')->default(false);

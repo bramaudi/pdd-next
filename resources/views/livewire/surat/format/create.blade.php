@@ -8,10 +8,6 @@
         Kode Format <span class="text-error">*</span>:
     </x-form-group>
 
-    <x-form-group type="textarea" model="description">
-        Deskripsi <span class="text-error">*</span>:
-    </x-form-group>
-
     <x-submit text="Simpan" />
 
 </form>

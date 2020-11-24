@@ -2,34 +2,33 @@
 
 namespace App\Http\Livewire\Surat\Format;
 
-use App\Models\Surat\SuratFormat;
+use App\Models\Surat\Format\Format;
 use Livewire\Component;
 
 class Create extends Component
 {
     public ?string $name;
     public ?string $prefix;
-    public ?string $description;
 
     protected array $rules = [
         'name'      => 'required|min:6',
         'prefix'    => 'required',
-        'description' => 'required',
     ];
 
     public function submit()
     {
         $this->validate();
 
-        SuratFormat::create([
+        Format::create([
             "name"          => $this->name,
-            "prefix"        => $this->prefix,
-            "description"   => $this->description
+            "prefix"        => $this->prefix
         ]);
 
-        $this->emit('remount');
+        $this->emit('rerender');
 
         $this->dispatchBrowserEvent('close-modals');
+
+        unset($this->name, $this->prefix);
     }
 
     public function render()

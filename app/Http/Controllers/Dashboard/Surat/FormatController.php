@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Surat;
 
 use App\Http\Controllers\Controller;
-use App\Models\Surat\SuratFormat;
+use App\Models\Surat\Format\Format;
 // use Illuminate\Http\Request;
 
 class FormatController extends Controller
@@ -18,7 +18,7 @@ class FormatController extends Controller
         //
     }
 
-    public function properties(SuratFormat $format)
+    public function properties(Format $format)
     {
         return $format;
     }

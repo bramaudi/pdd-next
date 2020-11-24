@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Format extends Model
 {
     use HasFactory;
+
+    protected $table = "surat_format";
+
+    protected $fillable = ["name", "prefix", "active", "pinned"];
 }
