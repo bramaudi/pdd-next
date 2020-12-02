@@ -8,12 +8,14 @@ use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Label\Label;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Create extends Component
 {
+    private $cookiePrefix = 'pendudukCreate_'; // cegah kemungkinan duplikasi
     public $penduduk = [];
     public $lingkungan_id, $rw_id;
 
@@ -40,14 +42,25 @@ class Create extends Component
     /**
      * Injek index pada $this->input dengan nama kolom table
      */
-    public function __construct()
+    public function mount()
     {
         $schema = Schema::getColumnListing('penduduk');
 
         foreach($schema as $column)
         {
-            $this->penduduk[$column] = null;
+            $this->penduduk[$column] = Cookie::get($this->cookiePrefix.$column);
         }
+
+    }
+
+    /**
+     * Lifecycle bawaan livewire.
+     * Untuk menyimpan cache data pada form input
+     */
+    public function updated($name, $value)
+    {
+        $name = str_replace('penduduk.', '', $name);
+        Cookie::queue($this->cookiePrefix.$name, $value);
     }
 
     /**
@@ -84,6 +97,7 @@ class Create extends Component
     {
         foreach (array_keys($this->penduduk) as $key) {
             $this->penduduk[$key] = null;
+            Cookie::queue($this->cookiePrefix.$key, '');
         }
     }
 
