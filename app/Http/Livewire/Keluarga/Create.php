@@ -71,7 +71,7 @@ class Create extends Component
             // Assign penduduk (kepala_id) sebagai kepala keluarga
             $kepalaKeluarga = Label::whereLabel('Kepala Keluarga')->first()->id;
             $penduduk = Penduduk::findOrFail($this->kepala_id);
-            $penduduk->status_hubungan_id = $kepalaKeluarga;
+            $penduduk->hubungan_keluarga_id = $kepalaKeluarga;
             $penduduk->keluarga_id = $keluarga->id;
             $penduduk->save();
 
