@@ -22,7 +22,24 @@
             @foreach($list as $keluarga)
                 <tr>
                     <td>{{ $keluarga->id }}</td>
-                    <td>--</td>
+                    <td>
+                        <!-- <a
+                            class="btn btn-sm tooltip"
+                            data-tooltip="Ubah Data"
+                            href="{ route('keluarga.update', ['id' => $keluarga->id]) }"
+                        >
+                            <i class="icon icon-edit"></i>
+                        </a> -->
+
+                        <button
+                            class="btn btn-sm btn-error tooltip"
+                            data-tooltip="Hapus Keluarga"
+                            @click="modal = 'delete'"
+                            wire:click="$emit('loadData', {{ $keluarga->id }})"
+                        >
+                            <i class="icon icon-delete"></i>
+                        </button>
+                    </td>
                     <td>{{ $keluarga->kepala() ? $keluarga->kepala()->foto_id : '--' }}</td>
                     <td>{{ $keluarga->no_kk }}</td>
                     <td>{{ $keluarga->kepala() ? $keluarga->kepala()->nama : '--' }}</td>
