@@ -6,7 +6,7 @@
 
     <div class="form-group">
         <label class="form-label">RW:</label>
-        <input class="form-input" type="text" value="{{ $rw }}" disabled>
+        <input class="form-input" type="text" value="{{ $rw_nomor }}" disabled>
     </div>
 
     <x-form-group model="nomor">

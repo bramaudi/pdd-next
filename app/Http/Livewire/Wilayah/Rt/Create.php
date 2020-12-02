@@ -59,7 +59,7 @@ class Create extends Component
 
         return view('livewire.wilayah.rt.create', [
             'dusun' => $rw->lingkungan->nama,
-            'rw' => $rw->nomor,
+            'rw_nomor' => $rw->nomor,
             'list' => $this->find ? $findPenduduk : [],
             'finded' => $finded
         ]);
