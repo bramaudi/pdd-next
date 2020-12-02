@@ -8,14 +8,13 @@ use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Label\Label;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Create extends Component
 {
-    private $cookiePrefix = 'pendudukCreate_'; // cegah kemungkinan duplikasi
+    private $cachePrefix = 'pendudukCreate_'; // cegah kemungkinan duplikasi
     public $penduduk = [];
     public $lingkungan_id, $rw_id;
 
@@ -48,7 +47,7 @@ class Create extends Component
 
         foreach($schema as $column)
         {
-            $this->penduduk[$column] = Cookie::get($this->cookiePrefix.$column);
+            $this->penduduk[$column] = session($this->cachePrefix.$column);
         }
 
     }
@@ -60,7 +59,7 @@ class Create extends Component
     public function updated($name, $value)
     {
         $name = str_replace('penduduk.', '', $name);
-        Cookie::queue($this->cookiePrefix.$name, $value);
+        session([$this->cachePrefix.$name => $value]);
     }
 
     /**
@@ -97,7 +96,7 @@ class Create extends Component
     {
         foreach (array_keys($this->penduduk) as $key) {
             $this->penduduk[$key] = null;
-            Cookie::queue($this->cookiePrefix.$key, '');
+            session($this->cachePrefix.$key, '');
         }
     }
 
