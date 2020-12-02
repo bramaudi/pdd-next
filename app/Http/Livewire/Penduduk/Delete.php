@@ -9,6 +9,7 @@ class Delete extends Component
 {
     public $userId;
     public $name;
+    public $nik;
 
     protected $listeners = ['loadData'];
 
@@ -17,6 +18,7 @@ class Delete extends Component
         $penduduk = Penduduk::findOrFail($id);
         $this->userId = $id;
         $this->name = $penduduk->nama;
+        $this->nik = $penduduk->nik;
     }
 
     public function submit()
