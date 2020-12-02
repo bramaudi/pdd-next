@@ -53,7 +53,7 @@ class Create extends Component
     }
 
     /**
-     * Lifecycle bawaan livewire.
+     * "updated" = lifecycle bawaan livewire.
      * Untuk menyimpan cache data pada form input
      */
     public function updated($name, $value)
@@ -96,7 +96,7 @@ class Create extends Component
     {
         foreach (array_keys($this->penduduk) as $key) {
             $this->penduduk[$key] = null;
-            session($this->cachePrefix.$key, '');
+            session()->forget($this->cachePrefix.$key);
         }
     }
 
