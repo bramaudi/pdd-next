@@ -1,5 +1,10 @@
 <div>
-    <div class="loading loading-lg loading-full" wire:loading></div>
+@if(count($list))
+<a class="btn m-1" href="{{ route('penduduk.create') }}">
+    <i class="icon icon-plus mr-1"></i> Tambah Penduduk
+</a>
+
+<div class="loading loading-lg loading-full" wire:loading></div>
 
     <div class="table-container">
         <table class="table table-striped table-hover">
@@ -65,4 +70,22 @@
     </div>
 
     {{ $list->links('livewire.pagination') }}
+</div>
+
+@else
+
+    <div class="empty">
+        <div class="empty-icon">
+            <i class="icon icon-people"></i>
+        </div>
+        <p class="empty-title h5">Data Penduduk Kosong</p>
+        <p class="empty-subtitle">Belum terdapat satupun data penduduk.</p>
+        <div class="empty-action">
+            <a class="btn btn-primary" href="{{ route('penduduk.create') }}">
+                <i class="icon icon-plus mr-1"></i> Tambah Penduduk
+            </a>
+        </div>
+    </div>
+
+@endif
 </div>
