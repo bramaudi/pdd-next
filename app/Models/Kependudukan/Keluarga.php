@@ -14,6 +14,8 @@ class Keluarga extends Model
 
     protected $table = 'keluarga';
 
+    protected $fillable = ['no_kk', 'rt_id', 'tanggal_cetak'];
+
     public function kepala()
     {
         $kepalaKeluarga = Label::whereLabel('Kepala Keluarga')->first()->id;

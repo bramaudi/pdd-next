@@ -1,15 +1,11 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container py-2" x-data="{ modal: null }">
+<div class="container py-2">
 
-    <button class="btn" @click="modal = 'create'">
+    <a class="btn mr-1" href="{{ route('keluarga.create') }}">
         <i class="icon icon-plus mr-2"></i> Tambah KK Baru
-    </button>
-
-    <x-modal header="Tambah KK Baru" state="create">
-        <livewire:keluarga.create />
-    </x-modal>
+    </a>
 
     <livewire:keluarga.table />
 

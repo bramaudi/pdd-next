@@ -91,6 +91,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
         Route::group(['middleware' => 'permission:kependudukan_keluarga'], function ()
         {
             Route::get('/keluarga', [Keluarga::class, 'index'])->name('keluarga.index');
+            Route::get('/keluarga/create', [Keluarga::class, 'create'])->name('keluarga.create');
         });
     });
 
