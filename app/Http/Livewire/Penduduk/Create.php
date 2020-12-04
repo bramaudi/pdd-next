@@ -6,6 +6,7 @@ use App\Http\Requests\Penduduk\PendudukStore;
 use App\Models\Cluster\Lingkungan;
 use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
+use App\Models\Kependudukan\Keluarga;
 use App\Models\Kependudukan\Penduduk;
 use App\Models\Label\Label;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,10 @@ use Livewire\Component;
 class Create extends Component
 {
     private $cachePrefix = 'pendudukCreate_'; // cegah kemungkinan duplikasi
+    
+    // Jika membuat beserta data kk
+    public $withCreateKK, $no_kk, $tanggal_cetak;
+    
     public $penduduk = [];
     public $lingkungan_id, $rw_id;
 
@@ -41,10 +46,13 @@ class Create extends Component
     /**
      * Injek index pada $this->input dengan nama kolom table
      */
-    public function mount()
+    public function mount($kk = false)
     {
+        $this->withCreateKK = $kk;
         $schema = Schema::getColumnListing('penduduk');
 
+        $this->no_kk = session($this->cachePrefix.'no_kk');
+        $this->tanggal_cetak = session($this->cachePrefix.'tanggal_cetak');
         foreach($schema as $column)
         {
             $this->penduduk[$column] = session($this->cachePrefix.$column);
@@ -94,6 +102,11 @@ class Create extends Component
      */
     public function resetInput()
     {
+        $this->no_kk = null;
+        $this->tanggal_cetak = null;
+        session()->forget($this->cachePrefix.'no_kk');
+        session()->forget($this->cachePrefix.'tanggal_cetak');
+
         foreach (array_keys($this->penduduk) as $key) {
             $this->penduduk[$key] = null;
             session()->forget($this->cachePrefix.$key);
@@ -105,20 +118,43 @@ class Create extends Component
      */
     public function submit()
     {
-        $this->resetErrorBag();
+        $this->resetErrorBag(); // diperlukan untuk nama model nested
 
         $request = new PendudukStore;
-
+        
         $data = $this->penduduk;
         $rule = $request->rules($data);
         $attr = $request->attributes();
 
+        if ($this->withCreateKK) {
+            $rule['no_kk'] = 'required';
+            $attr['no_kk'] = 'Nomor KK';
+            $data['no_kk'] = $this->no_kk;
+            $attr['tanggal_cetak'] = 'Tanggal Cetak KK';
+            $data['tanggal_cetak'] = $this->tanggal_cetak;
+
+            $labelKepalaKeluarga = Label::whereLabel('Kepala Keluarga')->first();
+            $data['hubungan_keluarga_id'] = $labelKepalaKeluarga->id;
+        }
+
         $validator = Validator::make($data, $rule, [], $attr);
         $validatedData = $validator->validate();
+        
+        if ($this->withCreateKK) {
+            $createKK = Keluarga::create([
+                'no_kk' => $this->no_kk,
+                'rt_id' => $this->penduduk['rt_id'],
+                'tanggal_cetak' => $this->tanggal_cetak
+            ]);
+            $createPenduduk = Penduduk::create(array_merge(
+                $validatedData,
+                ['keluarga_id' => $createKK->id]
+            ));
+        } else {
+            $createPenduduk = Penduduk::create($validatedData);
+        }
 
-        $create = Penduduk::create($validatedData);
-
-        if ($create) {
+        if ($createPenduduk) {
             $this->resetInput();
             session()->flash('success', 'Penduduk berhasil ditambahkan.');
         } else {

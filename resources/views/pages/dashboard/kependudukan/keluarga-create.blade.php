@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container py-2">
-    <livewire:keluarga.create />
+    <livewire:penduduk.create :kk="true" />
 </div>
 @endsection

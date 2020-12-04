@@ -54,6 +54,22 @@
 
     </div>
 
+    @if(@$withCreateKK)
+    <br>
+    <div class="columns">
+        <div class="column col-6 col-sm-12">
+            <x-form-group model="no_kk">
+                Nomor KK <span class="text-error">*</span>:
+            </x-form-group>
+        </div>
+        <div class="column col-6 col-sm-12">
+            <x-form-group model="tanggal_cetak" type="date">
+                Tanggal Cetak:
+            </x-form-group>
+        </div>
+    </div>
+    @endif
+
     <br>
 
     <div class="columns">
@@ -94,7 +110,7 @@
             </x-form-group>
         </div>
         <div class="column col-4 col-sm-12">
-            <x-form-group-select model="penduduk.hubungan_keluarga_id" :options="$option['hubungan_keluarga']">
+            <x-form-group-select model="penduduk.hubungan_keluarga_id" :options="$option['hubungan_keluarga']" :disabled="$withCreateKK">
                 Hubungan Dalam Keluarga <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
