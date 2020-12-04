@@ -74,7 +74,7 @@
     <div class="form-group @error('kepala_id') has-error @enderror">
         <label for="inp-find-kepala" class="form-label">
             Kepala Keluarga <em>(NIK / Nama)</em> <span class="text-error">*</span>: <br>
-            <code>Terpilih: {{ $currentKepala->nik }}</code>
+            <small>Terpilih: {{ $currentKepala->nik }} - {{ $currentKepala->nama }}</small>
             
             @if($searchKepala && !$findedKepala)
             <ul wire:target="searchKepala" class="menu mb-2" style="max-height: 150px; overflow: auto">
@@ -144,7 +144,7 @@
 
     <!-- TODO: Tambah tombol hapus + keterangan hubungan dlm keluarga -->
     @foreach($anggota as $penduduk)
-        <li>{{ $penduduk->nik }} - {{ $penduduk->nama }}</li>
+        <li>{{ $penduduk->nik }} - {{ $penduduk->nama }} ({{ $penduduk->hubunganKeluarga->label }})</li>
     @endforeach
 
     <br>
