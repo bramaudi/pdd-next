@@ -92,6 +92,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
         {
             Route::get('/keluarga', [Keluarga::class, 'index'])->name('keluarga.index');
             Route::get('/keluarga/create', [Keluarga::class, 'create'])->name('keluarga.create');
+            Route::get('/keluarga/update/{id}', [Keluarga::class, 'update'])->name('keluarga.update');
         });
     });
 

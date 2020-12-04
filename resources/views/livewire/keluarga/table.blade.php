@@ -29,13 +29,13 @@
                 <tr>
                     <td>{{ $keluarga->id }}</td>
                     <td>
-                        <!-- <a
+                        <a
                             class="btn btn-sm tooltip"
                             data-tooltip="Ubah Data"
-                            href="{ route('keluarga.update', ['id' => $keluarga->id]) }"
+                            href="{{ route('keluarga.update', ['id' => $keluarga->id]) }}"
                         >
                             <i class="icon icon-edit"></i>
-                        </a> -->
+                        </a>
 
                         <button
                             class="btn btn-sm btn-error tooltip"
