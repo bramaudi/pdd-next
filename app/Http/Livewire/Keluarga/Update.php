@@ -7,6 +7,7 @@ use App\Models\Cluster\Rt;
 use App\Models\Cluster\Rw;
 use App\Models\Kependudukan\Keluarga;
 use App\Models\Kependudukan\Penduduk;
+use App\Models\Label\Label;
 use Livewire\Component;
 
 class Update extends Component
@@ -32,6 +33,32 @@ class Update extends Component
         
         $this->kepala_id = $keluarga->kepala()->id;
         $this->searchKepala = $keluarga->kepala()->nik;
+    }
+
+    /**
+     * Menambahkan penduduk terpilih sebagai anggota
+     */
+    public function addAnggota(Penduduk $penduduk)
+    {
+        $penduduk->keluarga_id = $this->keluargaId;
+        $penduduk->save();
+
+        $this->searchAnggota = null;
+    }
+
+    /**
+     * Menghapus penduduk dari anggota keluarga
+     */
+    public function removeAnggota(Penduduk $penduduk)
+    {
+        // tidak bisa menghapus kepala keluarga
+        $labelKepala = Label::whereLabel('Kepala Keluarga')->first();
+        if ($penduduk->hubungan_keluarga_id != $labelKepala->id) {
+            $penduduk->keluarga_id = null;
+            $penduduk->save();
+        }
+
+        $this->searchAnggota = null;
     }
 
     public function submit()

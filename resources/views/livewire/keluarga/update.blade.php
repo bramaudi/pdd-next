@@ -117,7 +117,7 @@
             <ul wire:target="searchAnggota" class="menu mb-2" style="max-height: 150px; overflow: auto">
                 @foreach($listAnggota as $r)
                 <li class="menu-item">
-                    <a tabindex="0" wire:click="$set('searchAnggota', '{{ $r->nik }}')">
+                    <a tabindex="0" wire:click="addAnggota({{ $r->id }})">
                         {{ $r->nik }} - {{ $r->nama }}
                     </a>
                 </li>
@@ -144,7 +144,12 @@
 
     <!-- TODO: Tambah tombol hapus + keterangan hubungan dlm keluarga -->
     @foreach($anggota as $penduduk)
-        <li>{{ $penduduk->nik }} - {{ $penduduk->nama }} ({{ $penduduk->hubunganKeluarga->label }})</li>
+        <li title="NIK: {{ $penduduk->nik }}">
+            {{ $penduduk->nama }} (<code>{{ $penduduk->hubunganKeluarga->label }}</code>)
+            <button type="button" wire:click="removeAnggota({{ $penduduk->id }})" data-tooltip="Hapus Dari Keluarga" class="tooltip btn btn-sm btn-error btn-action s-circle">
+                <i class="icon icon-delete"></i>
+            </button>
+        </li>
     @endforeach
 
     <br>
