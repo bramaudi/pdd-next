@@ -11,5 +11,6 @@ svg {
 @tailwind components;
 @tailwind utilities;
 
+@import './elements.postcss';
 @import './components.postcss';
 @import './layout.postcss';

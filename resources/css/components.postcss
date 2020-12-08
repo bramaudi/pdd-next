@@ -1,3 +1,13 @@
+.breadcrumb {
+    @apply flex mb-3
+}
+.breadcrumb--item, .breadcrumb--item-active {
+    @apply mr-2 px-2;
+    @apply rounded-sm shadow-md bg-gray-500 text-white
+}
+.breadcrumb--item-active { @apply bg-gray-300 text-current }
+.breadcrumb--separator { @apply mr-2 }
+
 .container {
     @apply w-full sm:w-4/6
 }
@@ -15,6 +25,9 @@
     @apply mb-3;
     @apply font-light text-xl sm:text-3xl border-b
 }
+.text-error {
+    @apply text-red-500
+}
 
 
 .input {
@@ -22,13 +35,36 @@
     @apply rounded-md;
     @apply border border-gray-300 text-gray-600
 }
+.input[disabled] { @apply bg-gray-200 }
+
+.input-search--item {
+    @apply block p-2 my-1;
+    @apply text-sm font-normal cursor-pointer whitespace-nowrap;
+    @apply rounded-md border bg-gray-200
+}
+.input-search--item.error {
+    @apply bg-red-200
+}
 
 
 .btn {
-    @apply p-2 px-3;
+    @apply inline-block p-2 px-3;
     @apply rounded-md shadow-lg;
     @apply bg-gray-700 hover:bg-gray-600 text-white
 }
+
+
+.pagination {
+    @apply flex p-5 justify-center;
+}
+.pagination a,
+.pagination span {
+    @apply p-1 px-3 mx-1;
+    @apply rounded-md;
+    @apply bg-gray-500 text-white
+}
+.pagination span { @apply bg-gray-200 text-current }
+
 
 .notif {
     @apply p-3 px-4 mt-2;

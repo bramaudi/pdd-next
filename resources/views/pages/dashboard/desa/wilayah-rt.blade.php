@@ -1,40 +1,40 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container py-2" x-data="{ modal: null }" @close-modals.window="modal = null">
+<div class="flex justify-center" x-data="{ modal: null }" @close-modals.window="modal = null">
+    <div class="container p-5">
 
-    <ul class="px-1 m-none breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="dashboard">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{{ route('wilayah.dusun') }}">Wilayah Administratif</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{{ route('wilayah.rw', ['lingkungan_id' => $lingkungan_id]) }}">RW</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="#">RT</a>
-        </li>
-    </ul>
+        <div class="breadcrumb">
+            <a class="breadcrumb--item" href="dashboard">Dashboard</a>
+            <div class="breadcrumb--separator">/</div>
+            <a class="breadcrumb--item" href="{{ route('wilayah.dusun') }}">Wilayah Administratif</a>
+            <div class="breadcrumb--separator">/</div>
+            <a class="breadcrumb--item" href="{{ route('wilayah.rw', ['lingkungan_id' => $lingkungan_id]) }}">RW</a>
+            <div class="breadcrumb--separator">/</div>
+            <span class="breadcrumb--item-active" href="#">RT</span>
+        </div>
 
-    <button class="btn m-1" @click="modal = 'create'">
-        <i class="icon icon-plus mr-1"></i> Tambah RT
-    </button>
+        <div class="card p-5">
+            <button class="btn mb-3 flex" @click="modal = 'create'">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                Tambah RT
+            </button>
+        
+            <x-modal header="Tambah RT" state="create">
+                <livewire:wilayah.rt.create :rw="$rw_id" />
+            </x-modal>
+        
+            <x-modal header="Perbarui RT" state="update">
+                <livewire:wilayah.rt.update :rw="$rw_id" />
+            </x-modal>
+        
+            <x-modal header="Hapus RT" state="delete">
+                <livewire:wilayah.rt.delete :rw="$rw_id" />
+            </x-modal>
+        
+            <livewire:wilayah.rt.table :rw="$rw_id" />
+        </div>
 
-    <x-modal header="Tambah RT" state="create">
-        <livewire:wilayah.rt.create :rw="$rw_id" />
-    </x-modal>
-
-    <x-modal header="Perbarui RT" state="update">
-        <livewire:wilayah.rt.update :rw="$rw_id" />
-    </x-modal>
-
-    <x-modal header="Hapus RT" state="delete">
-        <livewire:wilayah.rt.delete :rw="$rw_id" />
-    </x-modal>
-
-    <livewire:wilayah.rt.table :rw="$rw_id" />
-    
+    </div>
 </div>
 @endsection

@@ -1,21 +1,17 @@
-<div class="modal" id="modal-{{ $name ?? rand(00000, 99999) }}" :class="{ 'active': modal == '{{ $state }}' }">
-  <a href="#" @click="modal = null; Livewire.emit('modalClose')" class="modal-overlay" aria-label="Close"></a>
-  <div class="modal-container">
+<div :class="{ 'hidden': modal != '{{ $state }}' }" class="fixed flex justify-center items-center bg-gray-600 bg-opacity-40 top-0 left-0 right-0 h-screen">
+  <div @click.away="modal = null; Livewire.emit('modalClose')" class="card p-5 m-5">
+      
     @if($header)
-    <div class="modal-header">
-      <a href="#" @click="modal = null; Livewire.emit('modalClose')" class="btn btn-clear float-right" aria-label="Close"></a>
-      <div class="modal-title h5">{{ $header }}</div>
-    </div>
+    <div class="text-xl mb-3 border-b">{{ $header }}</div>
     @endif
-    <div class="modal-body">
-      <div class="content">
-        {{ $slot }}
-      </div>
-    </div>
+
+    {{ $slot }}
+
     @if($footer)
-    <div class="modal-footer">
+    <div class="mt-3">
       {{ $footer }}
     </div>
     @endif
+
   </div>
 </div>
