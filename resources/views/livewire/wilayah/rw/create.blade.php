@@ -36,7 +36,7 @@
             <input type="text" wire:model="find" class="input">
         @endif
 
-        @error('kepala_id') <div class="notif error">{{ $message }}</div> @enderror
+        @error('kepala_id') <div class="notif--error">{{ $message }}</div> @enderror
     </div>
 
     <x-submit text="Buat" />

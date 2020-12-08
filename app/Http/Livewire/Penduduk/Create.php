@@ -58,6 +58,8 @@ class Create extends Component
             $this->penduduk[$column] = session($this->cachePrefix.$column);
         }
 
+        // Khusus rt_id jangan cache
+        $this->penduduk['rt_id'] = null;
     }
 
     /**
@@ -91,9 +93,21 @@ class Create extends Component
             }
         }
 
-        $option['lingkungan'] = Lingkungan::all();
-        $option['rw'] = $this->lingkungan_id ? Rw::where('lingkungan_id', $this->lingkungan_id)->get() : [];
-        $option['rt'] = $this->rw_id ? Rt::where('rw_id', $this->rw_id)->get() : [];
+        $lingkungan = Lingkungan::all();
+        $rw = $this->lingkungan_id ? Rw::where('lingkungan_id', $this->lingkungan_id)->get() : [];
+        $rt = $this->rw_id ? Rt::where('rw_id', $this->rw_id)->get() : [];
+
+        $group = compact('lingkungan', 'rw', 'rt');
+
+        foreach ($group as $key => $list) {
+            foreach ($list as $r) {
+                $option[$key][] =[
+                    'value' => $r->id,
+                    'name' => $r->nama ?? $r->nomor
+                ];
+            }
+        }
+
         return $option;
     }
 
@@ -102,14 +116,12 @@ class Create extends Component
      */
     public function resetInput()
     {
+        session()->flush();
         $this->no_kk = null;
         $this->tanggal_cetak = null;
-        session()->forget($this->cachePrefix.'no_kk');
-        session()->forget($this->cachePrefix.'tanggal_cetak');
 
         foreach (array_keys($this->penduduk) as $key) {
             $this->penduduk[$key] = null;
-            session()->forget($this->cachePrefix.$key);
         }
     }
 
