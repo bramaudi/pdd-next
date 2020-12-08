@@ -1,0 +1,59 @@
+body {
+    @apply bg-gray-200
+}
+
+.header {
+    @apply flex items-center;
+    @apply p-3;
+    @apply select-none;
+    @apply bg-white shadow-md
+}
+
+.header-dot {
+    @apply block w-10 h-10;
+    @apply mr-3 p-2;
+    @apply cursor-pointer;
+    @apply rounded-full bg-gray-300 hover:bg-gray-400
+}
+
+.header-dot-content {
+    @apply absolute top-0 right-0 w-80;
+    @apply mt-11;
+    @apply cursor-auto rounded-md;
+    @apply shadow-sm border bg-white;
+}
+
+.header-link {
+    @apply flex items-center;
+    @apply p-1 px-3;
+    @apply rounded-md;
+    @apply hover:bg-gray-300   
+}
+.header-link .icon {
+    @apply w-5 h-5;
+    @apply mr-3
+}
+
+
+.sidebar {
+    @apply fixed h-screen w-96;
+    @apply py-2;
+    @apply border-t border-r bg-white
+}
+
+.sidebar .icon {
+    @apply w-5 h-5;
+    @apply mr-3
+}
+.sidebar-link {
+    @apply flex items-center;
+    @apply p-3 px-5;
+    @apply hover:bg-gray-300
+}
+
+.sidebar-dropdown {
+    @apply flex items-center;
+    @apply p-3 px-5;
+    @apply select-none cursor-pointer;
+    @apply bg-gray-100 hover:bg-gray-300
+}

@@ -123,17 +123,61 @@ class Config extends Component
 
     }
 
+    /**
+     * Membuat list untuk input option
+     */
+    public function makeOptions()
+    {
+        $options = [];
+        
+        $provinces = Province::all();
+        $regencies = $this->province_id ? Regency::where('province_id', strval($this->province_id))->get() : [];
+        $districts = $this->regency_id ? District::where('regency_id', strval($this->regency_id))->get() : [];
+        $villages = $this->district_id ? Village::where('district_id', strval($this->district_id))->get() : [];
+
+        $indonesia = compact('provinces', 'regencies', 'districts', 'villages');
+
+        foreach ($indonesia as $segment => $list) {
+            foreach ($list as $r) {
+                $options[$segment][] = [
+                    'value' => $r->id,
+                    'name' => $r->name,
+                ];
+            }
+        }
+
+        return $options;
+    }
+
+    /**
+     * Membuat array untuk mengisi nilai selected pada input option
+     */
+    public function makeSelected()
+    {
+        $selected = [];
+
+        $province = Province::find($this->province_id);
+        $regency  = $this->regency_id ? Regency::find(strval($this->regency_id)) : '--';
+        $district = $this->district_id ? District::find(strval($this->district_id)) : '--';
+        $village  = $this->village_id ? Village::find(strval($this->village_id)) : '--';
+
+        $indonesia = compact('province', 'regency', 'district', 'village');
+
+        foreach ($indonesia as $segment => $r) {
+            $selected[$segment] = [
+                'value' => $r->id,
+                'name' => $r->name,
+            ];
+        }
+
+        return $selected;
+    }
+
     public function render()
     {
         return view('livewire.desa.config', [
-            'provinces'     => Province::all(),
-            'regencies'     => $this->province_id ? Regency::where('province_id', strval($this->province_id))->get() : [],
-            'districts'     => $this->regency_id ? District::where('regency_id', strval($this->regency_id))->get() : [],
-            'villages'      => $this->district_id ? Village::where('district_id', strval($this->district_id))->get() : [],
-            'province_name' => Province::find($this->province_id)->name,
-            'regency_name'  => $this->regency_id ? Regency::find(strval($this->regency_id))->name : '--',
-            'district_name' => $this->district_id ? District::find(strval($this->district_id))->name : '--',
-            'village_name'  => $this->village_id ? Village::find(strval($this->village_id))->name : '--',
+            'options' => $this->makeOptions(),
+            'selected' => $this->makeSelected(),
         ]);
     }
 }

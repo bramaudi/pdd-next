@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container py-2">
+<div class="flex justify-center p-3">
     <livewire:desa.config />
 </div>
 @endsection

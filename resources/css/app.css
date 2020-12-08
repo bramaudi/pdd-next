@@ -1,0 +1,15 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+svg {
+    min-width: 1rem;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './components.postcss';
+@import './layout.postcss';

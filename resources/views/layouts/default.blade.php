@@ -18,40 +18,35 @@
 
     <livewire:styles />
 
-    <!-- Spectre -->
-    <link rel="stylesheet" href="{{ asset('assets/css/spectre.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/spectre-exp.min.css') }}">
+    <!-- Tailwind Base CSS -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
-    
-    <link rel="stylesheet" href="{{ asset('assets/css/pdd.css') }}">
+    <!-- Alpine JS -->
     <script src="{{ asset('assets/js/alpine.min.js') }}" defer></script>
 
 </head>
 
-<body>
+<body x-data="{ sidebar: false }">
 
-    <div id="app">
+    <header class="p-3 pr-1 flex items-center select-none bg-white shadow-md">
+        <button @click="sidebar = !sidebar" class="w-8 h-8 mr-3 border-2 border-transparent focus:outline-none">
+            <svg x-show="sidebar" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <svg x-show="!sidebar" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+        <a href="/" class="font-bold text-xl">
+            PDD
+        </a>
+
         <livewire:header />
-        
-        <div class="off-canvas">
-    
-            <div id="sidebar" class="off-canvas-sidebar">
-                <livewire:sidebar />
-            </div>
-    
-            <a class="off-canvas-overlay" href="#"></a>
-    
-            <div class="off-canvas-content">
-                @yield('content')
-                <footer>&copy; 2020 Portal Desa Ditigal</footer>
-            </div>
-    
-        </div>
-    </div>
-    
+    </header>
+
+    <aside x-show="sidebar" @click.away="sidebar = false" class="sidebar">
+        <livewire:sidebar />
+    </aside>
+
+    <main>
+        @yield('content')
+    </main>
 
     <livewire:scripts />
 

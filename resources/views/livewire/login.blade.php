@@ -1,20 +1,20 @@
-<form wire:submit.prevent="submit">
+<form wire:submit.prevent="submit" class="card form">
     
     {{-- User --}}
-    <div class="form-group @error('username') has-error @enderror">
-        <label class="form-label" for="inp-login-f-user">
+    <div class="mb-3">
+        <label class="block" for="inp-login-f-user">
             Email / Username / NIK:
         </label>
-        <input wire:model="username" type="text" class="form-input" id="inp-login-f-user">
+        <input wire:model="username" type="text" class="input w-full" id="inp-login-f-user">
         @error('username') <div class="form-input-hint">{{ $message }}</div> @enderror
     </div>
 
     {{-- Passwud --}}
-    <div class="form-group @error('password') has-error @enderror">
-        <label class="form-label" for="inp-login-f-user">
+    <div class="mb-3">
+        <label class="block" for="inp-login-f-user">
             Kata Sandi:
         </label>
-        <input wire:model="password" type="password" class="form-input" id="inp-login-f-user">
+        <input wire:model="password" type="password" class="input w-full" id="inp-login-f-user">
         @error('password') <div class="form-input-hint">{{ $message }}</div> @enderror
     </div>
 

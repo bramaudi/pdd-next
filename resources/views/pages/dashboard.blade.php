@@ -1,45 +1,28 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container py-2 dashboard">
+<div class="p-5">
 
-    <h1>Dashboard</h1>
+    <h1 class="text-3xl font-extrabold mb-3">Dashboard</h1>
 
-    <div class="columns">
-
-        <div class="column col-3 col-sm-12">
-            <div class="stats" style="background: slateblue;">
-                <div class="title">Operator</div>
-                <i class="fas fa-cog"></i>
-                {{ $operator }}
-            </div>
+    <div class="flex flex-col sm:flex-row text-white">
+        <div class="mx-1 sm:w-1/4 h-24 p-5 mb-2 rounded-lg shadow-lg" style="background: slateblue;">
+            <div class="font-bold">Operator</div>
+            <span class="text-3xl">{{ $operator }}</span>
         </div>
-
-        <div class="column col-3 col-sm-12">
-            <div class="stats" style="background: teal;">
-                <div class="title">Penduduk</div>
-                <i class="fas fa-users"></i>
-                {{ $penduduk }}
-            </div>
+        <div class="mx-1 sm:w-1/4 h-24 p-5 mb-2 rounded-lg shadow-lg" style="background: teal;">
+            <div class="font-bold">Penduduk</div>
+            <span class="text-3xl">{{ $penduduk }}</span>
         </div>
-
-        <div class="column col-3 col-sm-12">
-            <div class="stats" style="background: tomato;">
-                <div class="title">Keluarga</div>
-                <i class="fas fa-user-friends"></i>
-                {{ $keluarga }}
-            </div>
+        <div class="mx-1 sm:w-1/4 h-24 p-5 mb-2 rounded-lg shadow-lg" style="background: tomato;">
+            <div class="font-bold">Keluarga</div>
+            <span class="text-3xl">{{ $keluarga }}</span>
         </div>
-
-        <div class="column col-3 col-sm-12">
-            <div class="stats">
-                <div class="title">Wilayah Dusun</div>
-                <i class="fas fa-search-location"></i>
-                {{ $lingkungan }}
-            </div>
+        <div class="mx-1 sm:w-1/4 h-24 p-5 mb-2 rounded-lg shadow-lg bg-gray-800">
+            <div class="font-bold">Wilayah Dusun</div>
+            <span class="text-3xl">{{ $lingkungan }}</span>
         </div>
-        
     </div>
-
+        
 </div>
 @endsection
