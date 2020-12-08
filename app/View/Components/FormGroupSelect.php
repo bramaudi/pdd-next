@@ -6,18 +6,17 @@ use Illuminate\View\Component;
 
 class FormGroupSelect extends Component
 {
-    public $model, $selected, $horizontal, $options, $error, $disabled;
+    public $model, $selected, $options, $error, $disabled;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($model, $selected = null, $horizontal = false, $options = [], $disabled = false)
+    public function __construct($model, $selected = null, $options = [], $disabled = false)
     {
         $this->model = $model;
         $this->selected = $selected;
-        $this->horizontal = $horizontal;
         $this->options = $options;
         $this->disabled = $disabled ? 'disabled': '';
 
