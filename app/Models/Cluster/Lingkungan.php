@@ -15,7 +15,7 @@ class Lingkungan extends Model
     use HasRelationships, HasFactory;
 
     protected $table = 'lingkungan';
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'kepala_id'];
 
     public function rw(): HasMany
     {
