@@ -14,6 +14,9 @@ use Livewire\Component;
 
 class Update extends Component
 {
+    private $cachePrefix = 'pendudukUpdate_'; // cegah kemungkinan duplikasi
+
+    public $withCreateKK = false;
     public $penduduk = [];
     public $lingkungan_id, $rw_id;
 
@@ -61,6 +64,9 @@ class Update extends Component
         {
             $this->penduduk[$key] = $penduduk->{$key};
         }
+
+        $this->lingkungan_id = Rt::find($penduduk->rt_id)->rw->lingkungan->id;
+        $this->rw_id = Rt::find($penduduk->rt_id)->rw->id;
     }
 
     /**
@@ -81,6 +87,21 @@ class Update extends Component
                     'value' => $label->id,
                     'name'  => $label->label,
                 ]);
+            }
+        }
+
+        $lingkungan = Lingkungan::all();
+        $rw = $this->lingkungan_id ? Rw::where('lingkungan_id', $this->lingkungan_id)->get() : [];
+        $rt = $this->rw_id ? Rt::where('rw_id', $this->rw_id)->get() : [];
+
+        $group = compact('lingkungan', 'rw', 'rt');
+
+        foreach ($group as $key => $list) {
+            foreach ($list as $r) {
+                $option[$key][] =[
+                    'value' => $r->id,
+                    'name' => $r->nama ?? $r->nomor
+                ];
             }
         }
 
@@ -105,6 +126,17 @@ class Update extends Component
                     'name'  => $label->label,
                 ];
             }
+        }
+
+        $lingkungan = Lingkungan::find($this->lingkungan_id);
+        $rw = Rw::find($this->rw_id);
+        $rt = Rt::find($this->penduduk['rt_id']);
+
+        foreach (compact('lingkungan', 'rw', 'rt') as $key => $wilayah) {
+            $selected[$key] = [
+                'value' => $wilayah->id,
+                'name' => $wilayah->nomor ?? $wilayah->nama,
+            ];
         }
 
         return $selected;
@@ -138,7 +170,7 @@ class Update extends Component
     
     public function render()
     {
-        return view('livewire.penduduk.update', [
+        return view('livewire.penduduk.form', [
             'option' => $this->makeOptions(),
             'selected' => $this->makeSelected(),
             'is_kawin' => Label::whereLabel('KAWIN')->first()->id,

@@ -11,7 +11,7 @@
             <div class="breadcrumb--separator">/</div>
             <a class="breadcrumb--item" href="/dashboard/kependudukan/penduduk">Penduduk</a>
             <div class="breadcrumb--separator">/</div>
-            <span class="breadcrumb--item-active">Penduduk</span>
+            <span class="breadcrumb--item-active">Tambah</span>
         </div>
 
         <livewire:penduduk.create />

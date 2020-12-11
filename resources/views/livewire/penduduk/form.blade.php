@@ -13,14 +13,14 @@
 
     <div class="flex mb-3 items-center">
         <div class="flex-auto mr-3">
-            <x-form-group-select model="lingkungan_id" :options="$option['lingkungan']">
+            <x-form-group-select model="lingkungan_id" :selected="@$selected['lingkungan']" :options="$option['lingkungan']">
                 Dusun <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
 
         @if($lingkungan_id)
         <div class="mr-3">
-            <x-form-group-select model="rw_id" :options="$option['rw'] ?? []">
+            <x-form-group-select model="rw_id" :selected="@$selected['rw']" :options="$option['rw'] ?? []">
                 RW <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -28,16 +28,14 @@
 
         @if($rw_id)
         <div>
-            <x-form-group-select model="penduduk.rt_id" :options="$option['rt'] ?? []">
+            <x-form-group-select model="penduduk.rt_id" :selected="@$selected['rt']" :options="$option['rt'] ?? []">
                 RT <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         @endif
     </div>
 
-    {{ var_dump($penduduk['rt_id']) }}
-
-    @if(@$withCreateKK)
+    @if($withCreateKK)
     <div class="flex mb-3">
         <div class="flex-1 pr-3">
             <x-form-group model="no_kk">
@@ -69,12 +67,12 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.ktp_el_id" :options="$option['ktp_el']">
+            <x-form-group-select model="penduduk.ktp_el_id" :selected="@$selected['ktp_el']" :options="$option['ktp_el']">
                 KTP Elektronik <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.status_rekam_id" :options="$option['status_rekam']">
+            <x-form-group-select model="penduduk.status_rekam_id" :selected="@$selected['status_rekam']" :options="$option['status_rekam']">
                 Status Rekam <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -87,12 +85,12 @@
             </x-form-group>
         </div>
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.hubungan_keluarga_id" :options="$option['hubungan_keluarga']" :disabled="$withCreateKK">
+            <x-form-group-select model="penduduk.hubungan_keluarga_id" :selected="@$selected['hubungan_keluarga']" :options="$option['hubungan_keluarga']" :disabled="$withCreateKK">
                 Hubungan Keluarga <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.jenis_kelamin_id" :options="$option['jenis_kelamin']">
+            <x-form-group-select model="penduduk.jenis_kelamin_id" :selected="@$selected['jenis_kelamin']" :options="$option['jenis_kelamin']">
                 Jenis Kelamin <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -100,12 +98,12 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.agama_id" :options="$option['agama']">
+            <x-form-group-select model="penduduk.agama_id" :selected="@$selected['agama']" :options="$option['agama']">
                 Agama <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.status_kependudukan_id" :options="$option['status_kependudukan']">
+            <x-form-group-select model="penduduk.status_kependudukan_id" :selected="@$selected['status_kependudukan']" :options="$option['status_kependudukan']">
                 Status Kependudukan <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -138,7 +136,7 @@
             </x-form-group>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.tempat_dilahirkan_id" :options="$option['tempat_dilahirkan']">
+            <x-form-group-select model="penduduk.tempat_dilahirkan_id" :selected="@$selected['tempat_dilahirkan']" :options="$option['tempat_dilahirkan']">
                 Tempat Dilahirkan <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -146,7 +144,7 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.jenis_kelahiran_id" :options="$option['jenis_kelahiran']">
+            <x-form-group-select model="penduduk.jenis_kelahiran_id" :selected="@$selected['jenis_kelahiran']" :options="$option['jenis_kelahiran']">
                 Jenis Kelahiran <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -156,7 +154,7 @@
             </x-form-group>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.penolong_kelahiran_id" :options="$option['penolong_kelahiran']">
+            <x-form-group-select model="penduduk.penolong_kelahiran_id" :selected="@$selected['penolong_kelahiran']" :options="$option['penolong_kelahiran']">
                 Penolong Kelahiran <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -179,12 +177,12 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.pendidikan_id" :options="$option['pendidikan']">
+            <x-form-group-select model="penduduk.pendidikan_id" :selected="@$selected['pendidikan']" :options="$option['pendidikan']">
                 Pendidikan <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.pekerjaan_id" :options="$option['pekerjaan']">
+            <x-form-group-select model="penduduk.pekerjaan_id" :selected="@$selected['pekerjaan']" :options="$option['pekerjaan']">
                 Pekerjaan <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -194,7 +192,7 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.kewarganegaraan_id" :options="$option['kewarganegaraan']">
+            <x-form-group-select model="penduduk.kewarganegaraan_id" :selected="@$selected['kewarganegaraan']" :options="$option['kewarganegaraan']">
                 Kewarganegaraan <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -264,7 +262,7 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.status_perkawinan_id" :options="$option['status_perkawinan']">
+            <x-form-group-select model="penduduk.status_perkawinan_id" :selected="@$selected['status_perkawinan']" :options="$option['status_perkawinan']">
                 Status Perkawinan <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -297,12 +295,12 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.golongan_darah_id" :options="$option['golongan_darah']">
+            <x-form-group-select model="penduduk.golongan_darah_id" :selected="@$selected['golongan_darah']" :options="$option['golongan_darah']">
                 Golongan Darah <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.cacat_id" :options="$option['cacat']">
+            <x-form-group-select model="penduduk.cacat_id" :selected="@$selected['cacat']" :options="$option['cacat']">
                 Cacat <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
@@ -310,12 +308,12 @@
 
     <div class="flex mb-3">
         <div class="flex-1 mr-3">
-            <x-form-group-select model="penduduk.sakit_menahun_id" :options="$option['sakit_menahun']">
+            <x-form-group-select model="penduduk.sakit_menahun_id" :selected="@$selected['sakit_menahun']" :options="$option['sakit_menahun']">
                 Sakit Menahun <span class="text-error">*</span>:
             </x-form-group-select>
         </div>
         <div class="flex-1">
-            <x-form-group-select model="penduduk.cara_kb_id" :options="$option['cara_kb']">
+            <x-form-group-select model="penduduk.cara_kb_id" :selected="@$selected['cara_kb']" :options="$option['cara_kb']">
                 Akseptor KB:
             </x-form-group-select>
         </div>

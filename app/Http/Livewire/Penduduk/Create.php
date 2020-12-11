@@ -176,7 +176,7 @@ class Create extends Component
     
     public function render()
     {
-        return view('livewire.penduduk.create', [
+        return view('livewire.penduduk.form', [
             'option' => $this->makeOptions(),
             'is_kawin' => Label::whereLabel('KAWIN')->first()->id,
             'is_cerai' => [
