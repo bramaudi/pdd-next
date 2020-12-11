@@ -27,6 +27,11 @@ td {
 tr:nth-child(odd) {
   --tw-bg-opacity: 1;
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity))
+}
+
+blockquote {
+  border-left-width: 4px;
+  padding-left: 0.75rem
 }.breadcrumb {
   display: flex;
   margin-bottom: 0.75rem

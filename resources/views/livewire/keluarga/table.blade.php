@@ -1,51 +1,54 @@
-<div>
+<div class="card p-5">
 @if(count($list))
 
-    <a class="btn mr-1" href="{{ route('keluarga.create') }}">
-        <i class="icon icon-plus mr-2"></i> Tambah KK Baru
+    <a class="btn mb-3 inline-flex" href="{{ route('keluarga.create') }}">
+        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+        Tambah KK Baru
     </a>
 
     <div class="loading loading-lg loading-full" wire:loading></div>
 
-    <div class="table-container">
-        <table class="table table-striped table-hover">
+    <div class="overflow-auto">
+        <table class="w-full">
             <tr>
-                <td>ID</td>
-                <td>Aksi</td>
-                <td>Foto</td>
-                <td>Nomor KK</td>
-                <td>Kepala Keluarga</td>
-                <td>NIK</td>
-                <td>Jumlah Anggota</td>
-                <td>Jenis Kelamin</td>
-                <td>Alamat</td>
-                <td>Dusun</td>
-                <td>RT</td>
-                <td>RW</td>
-                <td>Tanggal Terdaftar</td>
-                <td>Tanggal Cetak KK</td>
+                <th>Aksi</th>
+                <th>ID</th>
+                <th>Foto</th>
+                <th>Nomor KK</th>
+                <th>Kepala Keluarga</th>
+                <th>NIK</th>
+                <th>Jumlah Anggota</th>
+                <th>Jenis Kelamin</th>
+                <th>Alamat</th>
+                <th>Dusun</th>
+                <th>RT</th>
+                <th>RW</th>
+                <th>Tanggal Terdaftar</th>
+                <th>Tanggal Cetak KK</th>
             </tr>
             @foreach($list as $keluarga)
                 <tr>
-                    <td>{{ $keluarga->id }}</td>
                     <td>
-                        <a
-                            class="btn btn-sm tooltip"
-                            data-tooltip="Ubah Data"
-                            href="{{ route('keluarga.update', ['id' => $keluarga->id]) }}"
-                        >
-                            <i class="icon icon-edit"></i>
-                        </a>
-
-                        <button
-                            class="btn btn-sm btn-error tooltip"
-                            data-tooltip="Hapus Keluarga"
-                            @click="modal = 'delete'"
-                            wire:click="$emit('loadData', {{ $keluarga->id }})"
-                        >
-                            <i class="icon icon-delete"></i>
-                        </button>
+                        <div class="flex">
+                            <a
+                                class="btn p-1 mr-1 bg-green-500"
+                                data-tooltip="Ubah Data"
+                                href="{{ route('keluarga.update', ['id' => $keluarga->id]) }}"
+                            >
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                            </a>
+    
+                            <button
+                                class="btn p-1 bg-red-500"
+                                data-tooltip="Hapus Keluarga"
+                                @click="modal = 'delete'"
+                                wire:click="$emit('loadData', {{ $keluarga->id }})"
+                            >
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </div>
                     </td>
+                    <td>{{ $keluarga->id }}</td>
                     <td>{{ $keluarga->kepala() ? $keluarga->kepala()->foto_id : '--' }}</td>
                     <td>{{ $keluarga->no_kk }}</td>
                     <td>{{ $keluarga->kepala() ? $keluarga->kepala()->nama : '--' }}</td>

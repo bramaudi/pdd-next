@@ -1,7 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container py-2">
-    <livewire:penduduk.create :kk="true" />
+<div class="flex justify-center">
+    <div class="container p-5">
+        <livewire:penduduk.create :kk="true" />
+    </div>
 </div>
 @endsection

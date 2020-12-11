@@ -11,7 +11,7 @@
             @if($find && !$finded)
             <div wire:target="find" class="max-h-32 overflow-auto">
                 @foreach($list as $r)
-                <span tabindex="0" wire:click="$set('find', '{{ $r->nik }}')" class="input-search--item">
+                <span wire:click="$set('find', '{{ $r->nik }}')" class="input-search--item">
                     {{ $r->nik }} - {{ $r->nama }}
                 </span>
                 @endforeach

@@ -1,7 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container py-2">
-    <livewire:keluarga.update :id="$id" />
+<div class="flex justify-center">
+    <div class="container p-5">
+        <livewire:keluarga.update :id="$id" />
+    </div>
 </div>
 @endsection

@@ -1,9 +1,11 @@
 <form wire:submit.prevent="submit" class="card form">
 
-    <blockquote class="border-l-4 pl-3 mb-3">
+    <blockquote>
         <span class="text-error mr-2">*</span> Wajib diisi, tidak boleh kosong. <br>
         <span class="text-error mr-2">?</span> Wajib jika tersedia.
     </blockquote>
+
+    <br>
 
     @error('rt_id')
         <div class="my-3 notif--error">
