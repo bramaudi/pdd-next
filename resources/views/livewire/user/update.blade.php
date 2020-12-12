@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit" class="pb-2" x-data>
+<form wire:submit.prevent="submit" class="form" x-data>
 
     @if($loading)
 
