@@ -1,4 +1,4 @@
-<button wire:target="submit" wire:loading.class="loading" class="btn">
+<button wire:target="submit" wire:loading.class="loading" class="btn" @if($disabled) disabled @endif>
     {{ $text }}
 </button>
 

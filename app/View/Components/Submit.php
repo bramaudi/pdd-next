@@ -7,15 +7,17 @@ use Illuminate\View\Component;
 class Submit extends Component
 {
     public $text;
+    public $disabled;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($text = 'Submit')
+    public function __construct($text = 'Submit', $disabled = false)
     {
         $this->text = $text;
+        $this->disabled = $disabled;
     }
 
     /**
