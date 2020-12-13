@@ -54,9 +54,22 @@ blockquote {
 .breadcrumb--separator { margin-right: 0.5rem
 }
 
-.card {
-  max-height: 100vh;
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
   overflow: auto;
+  position: fixed;
+  height: 100vh;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.4;
+}
+
+.card {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   border-radius: 0.5rem;
@@ -212,6 +225,9 @@ blockquote {
 .header {
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
   padding: 0.75rem;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -327,6 +343,10 @@ blockquote {
 .sidebar-dropdown:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity))
+}
+
+.main {
+  margin-top: 4rem
 }* {
   -webkit-tap-highlight-color: transparent;
 }
