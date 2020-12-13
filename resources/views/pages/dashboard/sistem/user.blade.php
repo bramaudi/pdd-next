@@ -10,11 +10,12 @@
         <span class="breadcrumb--item-active">Operator</span>
     </div>
 
+    <button class="btn mb-3 inline-flex" @click="modal = 'create'">
+        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+        Tambah Pengguna Baru
+    </button>
+    
     <div class="card p-5">
-        <button class="btn mb-3 inline-flex" @click="modal = 'create'">
-            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-            Tambah Pengguna Baru
-        </button>
 
         <x-modal header="Buat Pengguna" state="create">
             <livewire:user.create />
