@@ -34,7 +34,11 @@ blockquote {
   padding-left: 0.75rem
 }.breadcrumb {
   display: flex;
-  margin-bottom: 0.75rem
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  --tw-border-opacity: 1;
+  border-color: rgba(156, 163, 175, var(--tw-border-opacity));
+  border-bottom-width: 1px
 }
 
 .breadcrumb--item, .breadcrumb--item-active {
@@ -315,6 +319,7 @@ blockquote {
 }
 
 .sidebar {
+  display: none;
   height: 100vh;
   position: fixed;
   width: 24rem;
