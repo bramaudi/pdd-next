@@ -69,9 +69,24 @@ class Update extends Component
         $this->modalClose();
     }
 
+    public function makeOptions()
+    {
+        $roles = [];
+        $roleList = Role::where('name', '!=', 'Super Admin')->get();
+        foreach ($roleList as $role) {
+            $roles[] = [
+                'value' => $role->name,
+                'name' => $role->name,
+            ];
+        }
+
+        return $roles;
+    }
+
     public function render()
     {
-        $this->roles = Role::where('name', '!=', 'Super Admin')->get();
-        return view('livewire.user.update');
+        return view('livewire.user.update', [
+            'roles' => $this->makeOptions()
+        ]);
     }
 }
