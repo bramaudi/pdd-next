@@ -40,7 +40,7 @@
         <livewire:header />
     </header>
 
-    <aside :class="{ 'hidden': !sidebar }" @click.away="sidebar = false" class="sidebar">
+    <aside :class="{ 'block': sidebar }" @click.away="sidebar = false" class="sidebar">
         <livewire:sidebar />
     </aside>
 
