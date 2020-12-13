@@ -34,6 +34,14 @@
 }
 
 
+.form-checkbox {
+    @apply block mb-1 select-none cursor-pointer
+}
+.form-checkbox input {
+    @apply mr-2
+}
+
+
 .input {
     @apply appearance-none p-2 px-3 my-2;
     @apply rounded-md;
@@ -56,6 +64,10 @@
     @apply inline-block p-2 px-3;
     @apply rounded-md shadow-lg;
     @apply bg-gray-700 hover:bg-gray-600 text-white
+}
+.btn[disabled] {
+    @apply cursor-not-allowed;
+    @apply bg-gray-500
 }
 
 
