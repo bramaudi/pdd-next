@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@if(View::hasSection('title')) @yield('title') @else {{ $desa->nama }} @endif</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icons/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icons/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icons/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('icons/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('icons/safari-pinned-tab.svg') }}" color="#5bbad5">
-    <link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('public/icons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('public/icons/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('public/icons/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ asset('public/icons/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#b91d47">
-    <meta name="msapplication-config" content="{{ asset('icons/browserconfig.xml') }}">
+    <meta name="msapplication-config" content="{{ asset('public/icons/browserconfig.xml') }}">
     <meta name="theme-color" content="#ffffff">
 
     <livewire:styles />
