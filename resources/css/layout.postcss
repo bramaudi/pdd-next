@@ -3,7 +3,7 @@ body {
 }
 
 .header {
-    @apply flex items-center;
+    @apply fixed top-0 w-screen flex items-center;
     @apply p-3;
     @apply select-none;
     @apply bg-white shadow-md
@@ -36,7 +36,7 @@ body {
 
 
 .sidebar {
-    @apply fixed h-screen w-96;
+    @apply hidden fixed h-screen w-96;
     @apply py-2;
     @apply border-t border-r bg-white
 }
@@ -56,4 +56,9 @@ body {
     @apply p-3 px-5;
     @apply select-none cursor-pointer;
     @apply bg-gray-100 hover:bg-gray-300
+}
+
+
+.main {
+    @apply mt-16
 }

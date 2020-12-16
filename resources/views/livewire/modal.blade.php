@@ -1,11 +1,11 @@
 <div x-data>
     <div class="modal" :class="{ 'active': $wire.state }">
-        <a href="#close" wire:click="$set('modal.add', false)" class="modal-overlay" aria-label="Close"></a>
+        <span tabindex="0" wire:click="$set('modal.add', false)" class="modal-overlay" aria-label="Close"></span>
         <div class="modal-container">
             
             @if($header)
             <div class="modal-header">
-                <a href="#close" wire:click="$set('modal.add', false)" class="btn btn-clear float-right" aria-label="Close"></a>
+                <span tabindex="0" wire:click="$set('modal.add', false)" class="btn btn-clear float-right" aria-label="Close"></span>
                 <div class="modal-title h5">{{ $header }}</div>
             </div>
             @endif

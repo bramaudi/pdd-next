@@ -34,7 +34,11 @@ blockquote {
   padding-left: 0.75rem
 }.breadcrumb {
   display: flex;
-  margin-bottom: 0.75rem
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  --tw-border-opacity: 1;
+  border-color: rgba(156, 163, 175, var(--tw-border-opacity));
+  border-bottom-width: 1px
 }
 
 .breadcrumb--item, .breadcrumb--item-active {
@@ -54,22 +58,27 @@ blockquote {
 .breadcrumb--separator { margin-right: 0.5rem
 }
 
-.container {
-  width: 100%
-}
-
-@media (min-width: 640px) {
-  .container {
-    width: 66.666667%
-  }
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  position: fixed;
+  height: 100vh;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.4;
 }
 
 .card {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   border-radius: 0.5rem;
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  --tw-bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity))
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
 .form {
@@ -99,6 +108,20 @@ blockquote {
 .text-error {
   --tw-text-opacity: 1;
   color: rgba(239, 68, 68, var(--tw-text-opacity))
+}
+
+.form-checkbox {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 0.25rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none
+}
+
+.form-checkbox input {
+  margin-right: 0.5rem
 }
 
 .input {
@@ -168,6 +191,12 @@ blockquote {
   color: rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
+.btn[disabled] {
+  cursor: not-allowed;
+  --tw-bg-opacity: 1;
+  background-color: rgba(107, 114, 128, var(--tw-bg-opacity))
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -220,6 +249,9 @@ blockquote {
 .header {
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
   padding: 0.75rem;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -287,6 +319,7 @@ blockquote {
 }
 
 .sidebar {
+  display: none;
   height: 100vh;
   position: fixed;
   width: 24rem;
@@ -335,6 +368,10 @@ blockquote {
 .sidebar-dropdown:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity))
+}
+
+.main {
+  margin-top: 4rem
 }* {
   -webkit-tap-highlight-color: transparent;
 }

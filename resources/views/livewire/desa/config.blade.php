@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit" class="container card form">
+<form wire:submit.prevent="submit" class="card form">
 
     <div class="section">Identitas Desa</div>
 

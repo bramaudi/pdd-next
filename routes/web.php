@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Guest Routes
  */
-Route::get('/', [Welcome::class, 'index']);
+Route::get('/', [Welcome::class, 'index'])->name('index');
 Route::get('/login', [Login::class, 'index'])->name('login');
 
 
@@ -43,7 +43,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     /**
      * Dashboard
      */
-    Route::get('/', [Dashboard::class, 'index']);
+    Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
 
 
 
@@ -55,7 +55,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
         /**
          * Identitas Desa
          */
-        Route::get('/config', [Config::class, 'index'])->name('identitas')->middleware('permission:desa_identitas');
+        Route::get('/identitas', [Config::class, 'index'])->name('identitas')->middleware('permission:desa_identitas');
 
         /**
          * Wilayah Administratif

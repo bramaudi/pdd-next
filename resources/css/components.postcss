@@ -1,5 +1,6 @@
 .breadcrumb {
-    @apply flex mb-3
+    @apply flex mb-3 pb-3;
+    @apply border-b border-gray-400
 }
 .breadcrumb--item, .breadcrumb--item-active {
     @apply mr-2 px-2;
@@ -8,13 +9,16 @@
 .breadcrumb--item-active { @apply bg-gray-400 text-white }
 .breadcrumb--separator { @apply mr-2 }
 
-.container {
-    @apply w-full sm:w-4/6
+
+.modal {
+    @apply hidden overflow-auto fixed justify-center items-center;
+    @apply top-0 left-0 right-0 h-screen;
+    @apply bg-gray-600 bg-opacity-40;
 }
 
+
 .card {
-    @apply rounded-lg shadow-lg;
-    @apply bg-white
+    @apply rounded-lg shadow-lg bg-white
 }
 
 
@@ -28,6 +32,14 @@
 }
 .text-error {
     @apply text-red-500
+}
+
+
+.form-checkbox {
+    @apply block mb-1 select-none cursor-pointer
+}
+.form-checkbox input {
+    @apply mr-2
 }
 
 
@@ -53,6 +65,10 @@
     @apply inline-block p-2 px-3;
     @apply rounded-md shadow-lg;
     @apply bg-gray-700 hover:bg-gray-600 text-white
+}
+.btn[disabled] {
+    @apply cursor-not-allowed;
+    @apply bg-gray-500
 }
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="flex justify-center p-5">
+<div class="p-5">
     <livewire:desa.config />
 </div>
 @endsection
