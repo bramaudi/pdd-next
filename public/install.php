@@ -9,7 +9,12 @@ if (isset($_GET['install'])) {
   $json = [];
   $mysqli = new mysqli($host,$user,$pass,$name);
   
-  if ($mysqli -> connect_errno) {
+  if (empty($name)) {
+
+    $json['success'] = false;
+    $json['message'] = "Harap masukan nama basis data";
+
+  } elseif ($mysqli -> connect_errno) {
     
     $json['success'] = false;
     $json['message'] = "<strong>Masalah sambungan MySQL</strong>\n" . $mysqli -> connect_error;
@@ -17,7 +22,7 @@ if (isset($_GET['install'])) {
   } else {
 
     $json['success'] = true;
-    $json['message'] = 'Berhasil menyambungkan basis data.';
+    $json['message'] = 'Berhasil menyambungkan basis data';
 
   }
   
