@@ -15,7 +15,7 @@
 
     <div class="flex mb-3 items-center">
         <div class="flex-auto mr-3">
-            <x-form-group-select model="lingkungan_id" :selected="@$selected['lingkungan']" :options="$option['lingkungan']">
+            <x-form-group-select model="lingkungan_id" :selected="@$selected['lingkungan']" :options="@$option['lingkungan']">
                 Dusun <span class="text-error">*</span>:
             </x-form-group-select>
         </div>

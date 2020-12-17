@@ -5,9 +5,11 @@
         <option value="{{ $selected['value'] }}">{{ $selected['name'] }}</option>
         @endif
         <option value="">--</option>
+        @if($options)
         @foreach($options as $option)
             <option value="{{ $option['value'] }}">{{ $option['name'] }}</option>
         @endforeach
+        @endif
     </select>
     @error($error) <div class="notif--error">{{ $message }}</div> @enderror
 </div>
