@@ -25,12 +25,12 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         View::composer('*', function ($view) {
-            try {
-                $meta = Meta::where('key', 'portal-desa-digital')->first()->decode();
-                $view->with('desa', $meta);
-            } catch (\Exception $e) {
-                
+            $meta = Meta::where('key', 'portal-desa-digital');
+
+            if ($meta->exists()) {
+                $view->with('desa', $meta->first()->decode());
             }
         });
     }
