@@ -15,7 +15,7 @@ class Login extends Component
         'password' => 'required'
     ];
 
-    public function submit() : void
+    public function submit(): void
     {
         $this->validate();
 

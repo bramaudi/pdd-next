@@ -7,10 +7,11 @@ use App\Http\Controllers\Dashboard\Keluarga;
 use App\Http\Controllers\Dashboard\Penduduk;
 use App\Http\Controllers\Dashboard\Permission;
 use App\Http\Controllers\Dashboard\Role;
+use App\Http\Controllers\Dashboard\Surat\TemplateController;
 use App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Dashboard\Wilayah;
 use App\Http\Controllers\Welcome;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,8 +38,7 @@ Route::get('/login', [Login::class, 'index'])->name('login');
 /**
  * Auth Routes
  */
-Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
-{
+Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function () {
 
     /**
      * Dashboard
@@ -50,8 +50,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     /**
      * Desa
      */
-    Route::group(['prefix' => '/desa', 'namespace' => 'Dashboard'], function ()
-    {
+    Route::group(['prefix' => '/desa', 'namespace' => 'Dashboard'], function () {
         /**
          * Identitas Desa
          */
@@ -60,11 +59,10 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
         /**
          * Wilayah Administratif
          */
-        Route::group(['middleware' => 'permission:desa_wilayah'], function ()
-        {
-            Route::get('/wilayah', [Wilayah::class, 'index'])                 ->name('wilayah.dusun');
-            Route::get('/wilayah/rw/{lingkungan_id}', [Wilayah::class, 'rw']) ->name('wilayah.rw');
-            Route::get('/wilayah/rt/{rw_id}', [Wilayah::class, 'rt'])         ->name('wilayah.rt');
+        Route::group(['middleware' => 'permission:desa_wilayah'], function () {
+            Route::get('/wilayah', [Wilayah::class, 'index'])->name('wilayah.dusun');
+            Route::get('/wilayah/rw/{lingkungan_id}', [Wilayah::class, 'rw'])->name('wilayah.rw');
+            Route::get('/wilayah/rt/{rw_id}', [Wilayah::class, 'rt'])->name('wilayah.rt');
         });
     });
 
@@ -73,26 +71,35 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     /**
      * Kependudukan
      */
-    Route::group(['prefix' => '/kependudukan'], function ()
-    {
+    Route::group(['prefix' => '/kependudukan'], function () {
         /**
          * Penduduk
          */
-        Route::group(['middleware' => 'permission:kependudukan_penduduk'], function ()
-        {
-            Route::get('/penduduk', [Penduduk::class, 'index'])              ->name('penduduk.index');
-            Route::get('/penduduk/update/{id}', [Penduduk::class, 'update']) ->name('penduduk.update');
-            Route::get('/penduduk/create', [Penduduk::class, 'create'])      ->name('penduduk.create');
+        Route::group(['middleware' => 'permission:kependudukan_penduduk'], function () {
+            Route::get('/penduduk', [Penduduk::class, 'index'])->name('penduduk.index');
+            Route::get('/penduduk/update/{id}', [Penduduk::class, 'update'])->name('penduduk.update');
+            Route::get('/penduduk/create', [Penduduk::class, 'create'])->name('penduduk.create');
         });
 
         /**
          * Keluarga
          */
-        Route::group(['middleware' => 'permission:kependudukan_keluarga'], function ()
-        {
+        Route::group(['middleware' => 'permission:kependudukan_keluarga'], function () {
             Route::get('/keluarga', [Keluarga::class, 'index'])->name('keluarga.index');
             Route::get('/keluarga/create', [Keluarga::class, 'create'])->name('keluarga.create');
             Route::get('/keluarga/update/{id}', [Keluarga::class, 'update'])->name('keluarga.update');
+        });
+    });
+
+    /**
+     * Surat
+     */
+
+    Route::prefix('surat')->name('surat.')->group(function () {
+
+        Route::prefix('template')->name('template.')->group(function () {
+
+            Route::get('/', [TemplateController::class, 'index'])->name('index');
         });
     });
 
@@ -101,8 +108,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
     /**
      * Sistem
      */
-    Route::group(['prefix' => '/sistem'], function ()
-    {
+    Route::group(['prefix' => '/sistem'], function () {
         /**
          * Pengguna
          */
@@ -111,12 +117,9 @@ Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function ()
         /**
          * Jabatan
          */
-        Route::group(['middleware' => 'permission:sistem_jabatan'], function ()
-        {
-            Route::get('/permission/{roleId?}', [Permission::class, 'index']) ->name('permission.index');
+        Route::group(['middleware' => 'permission:sistem_jabatan'], function () {
+            Route::get('/permission/{roleId?}', [Permission::class, 'index'])->name('permission.index');
             Route::get('/role', [Role::class, 'index'])->name('role.index');
         });
     });
-
-
 });

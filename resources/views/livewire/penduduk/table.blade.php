@@ -5,7 +5,7 @@
     <div class="loading loading-lg loading-full" wire:loading></div>
 
         <div class="overflow-auto">
-            <table class="w-full">
+            <table class="w-full text-center">
                 <tr>
                     <th>Aksi</th>
                     <th>ID</th>

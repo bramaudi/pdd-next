@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Surat\Service as SuratService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -24,5 +24,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+    }
+
+    public function registerSuratService(): void
+    {
+        $this->app->bindIf(SuratService::class, fn () => new SuratService);
     }
 }

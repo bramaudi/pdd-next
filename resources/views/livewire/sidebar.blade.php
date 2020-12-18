@@ -114,7 +114,7 @@
                 </svg>
                 Cetak
             </a>
-            <a href="/dashboard/kependudukan/keluarga" class="sidebar-link pl-12">
+            <a href="{{ route('surat.template.index') }}" class="sidebar-link pl-12">
                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
