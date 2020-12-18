@@ -35,7 +35,7 @@
                             <a
                                 class="btn p-1 mr-1 bg-blue-500"
                                 data-tooltip="Ubah Hak Akses"
-                                href="{{ route('permission.index', ['roleId' => $role->id] }}"
+                                href="{{ route('permission.index', ['roleId' => $role->id ]) }}"
                             >
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path></svg>
                             </a>

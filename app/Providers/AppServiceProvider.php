@@ -23,7 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $installed = file_exists(storage_path('/installed'));
+
+        if (!$installed) {
+            header('Location: /install.php');
+        }
     }
 
     public function registerSuratService(): void

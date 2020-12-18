@@ -225,7 +225,7 @@ blockquote {
 .pagination span { --tw-bg-opacity: 1; background-color: rgba(229, 231, 235, var(--tw-bg-opacity)); color: currentColor
 }
 
-.notif--error, .notif--success {
+.notif, .notif--error, .notif--success {
   margin-top: 0.5rem;
   padding: 0.75rem;
   padding-left: 1rem;
