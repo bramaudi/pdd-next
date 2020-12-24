@@ -1,5 +1,9 @@
 <?php
 
+if (file_exists('../.env')) {
+  header('Location: /');
+}
+
 function setMessage($success, $message)
 {
   return [
@@ -44,24 +48,17 @@ if (isset($_GET['install_env'])) {
   $pass = @$_GET['pass'];
   $name = @$_GET['name'];
 
-  $appname = @$_GET['appname'];
   $debug = @$_GET['debug'];
 
   $json = [];
-
-  if (empty($name)) {
-
-    $json = setMessage(false, 'Harap masukan nama aplikasi');
-
-  } else {
-   
-    $json = setMessage(true, 'Memproses installasi..');
-    
-  }
-
+  
   function set_env ($key, $value, $source) {
     return preg_replace("/$key=(.*)$/m", "$key=$value", $source);
   }
+
+  // app keygen
+  $rand = random_bytes(32);
+  $appkey = 'base64:'.base64_encode($rand)."\n";
 
   // echo json_encode($json);
   $env = file_get_contents('../.env.example');
@@ -69,11 +66,18 @@ if (isset($_GET['install_env'])) {
   $env = set_env('DB_USERNAME', $user, $env);
   $env = set_env('DB_PASSWORD', $pass, $env);
   $env = set_env('DB_DATABASE', $name, $env);
-  $env = set_env('APP_NAME',    $name, $env);
+  $env = set_env('APP_NAME',    $appname, $env);
+  $env = set_env('APP_KEY',     $appkey, $env);
   $env = set_env('APP_ENV',     'production', $env);
   $env = set_env('APP_DEBUG',   $debug ? 'true' : 'false', $env);
-  echo $env;
+  file_put_contents('../storage/installed', 'Installed on '. date("l jS \of F Y h:i:s A") , "\n", FILE_APPEND);
+  file_put_contents('../.env', $env);
+
+  $json = setMessage(true, 'Memproses installasi..');
+
+  echo json_encode($json);
   die();
+
 }
 
 ?><!DOCTYPE html>
@@ -137,10 +141,6 @@ if (isset($_GET['install_env'])) {
 
   <form id="form-env" class="hide">
     <div class="font-bold text-xl text-center mb-3">Penyiapan Lingkungan</div>
-    <div class="mb-3">
-      <label class="block">Nama</label>
-      <input type="text" id="env-name" class="input w-full" value="PDD">
-    </div>
 
     <div class="flex items-center select-none mb-3">
       <label class="inline-block mr-3" for="env-debug">Debug</label>
@@ -156,6 +156,8 @@ if (isset($_GET['install_env'])) {
       <button class="btn" type="button" id="btn_backward">&laquo; Sebelumnya</button>
       <button class="btn ml-auto bg-green-500">Install</button>
     </div>
+
+    <div id="env-result"></div>
   </form>
     
   </div>
@@ -211,14 +213,28 @@ if (isset($_GET['install_env'])) {
       })
 
       const env = {
-        appname: $('#env-name').value,
         debug: $('#env-debug').checked
       };
       
+      const resultENV = $('#env-result');
+      resultENV.className = ''
+      resultENV.classList.add('notif')
+      resultENV.innerHTML = 'Memeriksa ...'
+      
       fetch('?install_env&' + new URLSearchParams({ ...db, ...env }))
         .then(res => res.json())
-        .then(res => {
-          console.log(res);
+        .then(({ success, message }) => {
+          const domClass = success
+              ? 'notif--success'
+              : 'notif--error'
+          resultENV.classList.add(domClass);
+          resultENV.innerHTML = message.replace(/\n/g, '<br/>')
+
+          if (success) {
+            setTimeout(() => {
+              window.location.href = '/'
+            }, 1000)
+          }
         })
     }
     
