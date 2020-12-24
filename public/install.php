@@ -1,85 +1,7 @@
 <?php
-
 if (file_exists('../.env')) {
   header('Location: /');
 }
-
-function setMessage($success, $message)
-{
-  return [
-    'success' => $success,
-    'message' => $message
-  ];
-}
-
-if (isset($_GET['install_db'])) {
-  
-  $host = @$_GET['host'];
-  $user = @$_GET['user'];
-  $pass = @$_GET['pass'];
-  $name = @$_GET['name'];
-
-  $json = [];
-  $mysqli = new mysqli($host,$user,$pass,$name);
-  
-  if (empty($name)) {
-
-    $json = setMessage(false, 'Harap masukan nama basis data');
-
-  } elseif ($mysqli -> connect_errno) {
-    
-    $json = setMessage(false, "<strong>Masalah sambungan MySQL</strong>\n" . $mysqli -> connect_error);
-
-  } else {
-
-    $json = setMessage(true, 'Berhasil menyambungkan basis data');
-
-  }
-  
-  echo json_encode($json);
-  die();
-}
-
-
-if (isset($_GET['install_env'])) {
-
-  $host = @$_GET['host'];
-  $user = @$_GET['user'];
-  $pass = @$_GET['pass'];
-  $name = @$_GET['name'];
-
-  $debug = @$_GET['debug'];
-
-  $json = [];
-  
-  function set_env ($key, $value, $source) {
-    return preg_replace("/$key=(.*)$/m", "$key=$value", $source);
-  }
-
-  // app keygen
-  $rand = random_bytes(32);
-  $appkey = 'base64:'.base64_encode($rand)."\n";
-
-  // echo json_encode($json);
-  $env = file_get_contents('../.env.example');
-  $env = set_env('DB_HOST',     $host, $env);
-  $env = set_env('DB_USERNAME', $user, $env);
-  $env = set_env('DB_PASSWORD', $pass, $env);
-  $env = set_env('DB_DATABASE', $name, $env);
-  $env = set_env('APP_NAME',    $appname, $env);
-  $env = set_env('APP_KEY',     $appkey, $env);
-  $env = set_env('APP_ENV',     'production', $env);
-  $env = set_env('APP_DEBUG',   $debug ? 'true' : 'false', $env);
-  file_put_contents('../storage/installed', 'Installed on '. date("l jS \of F Y h:i:s A") , "\n", FILE_APPEND);
-  file_put_contents('../.env', $env);
-
-  $json = setMessage(true, 'Memproses installasi..');
-
-  echo json_encode($json);
-  die();
-
-}
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,7 +100,7 @@ if (isset($_GET['install_env'])) {
     $('#form-db').onsubmit = (event) => {
       event.preventDefault();
 
-      const db = {}; // input
+      const db = { action: 'db' }; // input
       (['host','user','pass','name']).map(n => {
         db[n] = $(`#db-${n}`).value;
       })
@@ -188,7 +110,10 @@ if (isset($_GET['install_env'])) {
       resultDB.classList.add('notif')
       resultDB.innerHTML = 'Memeriksa ...'
 
-      fetch('?install_db&' + new URLSearchParams(db))
+      fetch('/installer-action.php', {
+        method: 'POST',
+        body: JSON.stringify(db)
+      })
         .then(res => res.json())
         .then(({ success, message }) => {
             const domClass = success
@@ -207,7 +132,7 @@ if (isset($_GET['install_env'])) {
     $('#form-env').onsubmit = event => {
       event.preventDefault()
 
-      const db = {};
+      const db = { action: 'env' };
       (['host','user','pass','name']).map(n => {
         db[n] = $(`#db-${n}`).value;
       })
@@ -219,23 +144,27 @@ if (isset($_GET['install_env'])) {
       const resultENV = $('#env-result');
       resultENV.className = ''
       resultENV.classList.add('notif')
-      resultENV.innerHTML = 'Memeriksa ...'
+      resultENV.innerHTML = 'Menjalankan installasi, harap tunggu ...'
       
-      fetch('?install_env&' + new URLSearchParams({ ...db, ...env }))
-        .then(res => res.json())
-        .then(({ success, message }) => {
-          const domClass = success
-              ? 'notif--success'
-              : 'notif--error'
-          resultENV.classList.add(domClass);
-          resultENV.innerHTML = message.replace(/\n/g, '<br/>')
+      fetch('/installer-action.php', {
+        method: 'POST',
+        body: JSON.stringify({ ...db, ...env })
+      })
+      .then(res => res.json())
+      .then(({ success, message }) => {
+        console.log(success, message);
+        const domClass = success
+            ? 'notif--success'
+            : 'notif--error'
+        resultENV.classList.add(domClass);
+        resultENV.innerHTML = message.replace(/\n/g, '<br/>')
 
-          if (success) {
-            setTimeout(() => {
-              window.location.href = '/'
-            }, 1000)
-          }
-        })
+        if (success) {
+          setTimeout(() => {
+            window.location.href = '/'
+          }, 1000)
+        }
+      })
     }
     
   </script>
