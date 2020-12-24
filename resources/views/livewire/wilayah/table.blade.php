@@ -1,4 +1,5 @@
 <div>
+@if(count($list))
     <div class="loading loading-lg loading-full" wire:loading></div>
 
     <div class="overflow-auto">
@@ -60,4 +61,13 @@
     </div>
 
     {{ $list->links('livewire.pagination') }}
+
+@else
+
+    <div class="p-5">
+        <div class="text-2xl">Data Wilayah Kosong</div>
+        <div class="my-5 mb-3">Belum terdapat satupun data wilayah.</div>
+    </div>
+
+@endif
 </div>

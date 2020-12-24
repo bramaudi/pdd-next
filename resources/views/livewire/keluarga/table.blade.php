@@ -64,17 +64,9 @@
 
 @else
 
-    <div class="empty">
-        <div class="empty-icon">
-            <i class="icon icon-people"></i>
-        </div>
-        <p class="empty-title h5">Data Keluarga Kosong</p>
-        <p class="empty-subtitle">Belum terdapat satupun data keluarga.</p>
-        <div class="empty-action">
-            <a class="btn btn-primary" href="{{ route('keluarga.create') }}">
-                <i class="icon icon-plus mr-1"></i> Tambah Keluarga
-            </a>
-        </div>
+    <div class="p-5">
+        <div class="text-2xl">Data Keluarga Kosong</div>
+        <div class="my-5 mb-3">Belum terdapat satupun data keluarga.</div>
     </div>
 
 @endif
