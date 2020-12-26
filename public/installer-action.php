@@ -82,10 +82,10 @@ if ($post->action == 'test') {
     }
   }
 
-  setMessage(true, 'Selesai mengimpor sql');
-
-  file_put_contents('../storage/installed', 'Installed on '. date("l jS \of F Y h:i:s A") , "\n", FILE_APPEND);
+  file_put_contents('../storage/installed', 'Installed on '. date("l jS \of F Y h:i:s A")."\n", FILE_APPEND);
   file_put_contents('../.env', $env);
+
+  setMessage(true, 'Selesai mengimpor sql');
 
 } else {
   die('??');
