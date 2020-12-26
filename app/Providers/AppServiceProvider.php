@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $installed = file_exists(storage_path('/installed'));
 
         if (!$installed) {
-            header('Location: /install.php');
+            header('Location: '.url()->current().'/install.php');
         }
     }
 }
